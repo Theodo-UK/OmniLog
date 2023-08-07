@@ -6,9 +6,17 @@ This project uses [sst](https://docs.sst.dev/what-is-sst), so we're using the SS
 
 SST is a tool that makes it easy for us to run our nextJS web app via AWS lamdas.
 
+### Local Development
+
+If you are developing the website without the external resources, e.g using dummy data and don't want to setup the AWS stack, use this option.
+
+`yarn` to install dependencies.
+
+`yarn local` to start the next web app locally.
+
 ### Setting Up AWS
 
-Having an AWS account is a requirement for local development, as we want to proxy the lambda as much as we can!
+Having an AWS account is a requirement for live lambda development, as we want to proxy the lambda as much as we can!
 
 Requirements:
 - AWS account.
@@ -16,9 +24,7 @@ Requirements:
 
 To do the above, [follow this tutorial](https://docs.sst.dev/advanced/iam-credentials#loading-from-a-file).
 
-### Local development
-
-`yarn` to install dependencies.
+### Live Lambda development
 
 `npx sst dev` to start the Live Lambda Development environment.
 > The first time you run this, it'll deploy your app to AWS. This can take a couple of minutes.
