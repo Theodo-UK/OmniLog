@@ -22,13 +22,13 @@ if not OPENAI_API_KEY:
 
 openai.api_key = OPENAI_API_KEY
 
+input_string = "Mouse"
+
 response = openai.Completion.create(
             model="text-davinci-003",
-            prompt=generate_prompt("Mouse"),
+            prompt=generate_prompt(input_string),
             temperature=0.6,
         )
-
-print(response)
 
 DATABASE_URL = os.getenv('DATABASE_URL')
 
@@ -44,8 +44,28 @@ time = cur.fetchone()[0]
 cur.execute('SELECT version();')
 version = cur.fetchone()[0]
 
+if not time or not version:
+    raise ConnectionError(f"Could not connect to database: {DATABASE_URL}")
+
 print('Current time:', time)
 print('PostgreSQL version:', version)
+
+with open('schema.sql', 'r') as f:
+    schema = f.read()
+
+try: 
+    cur.execute(schema)
+except psycopg2.errors.DuplicateTable as e:
+    print(f"Table schema already defined: {e}")
+    conn.rollback()
+
+
+cur.execute("""
+    INSERT INTO llm_logs (unixtime_seconds, input_string, output_string, total_tokens)
+    VALUES (%s, %s, %s, %s);
+""", (response.created, input_string, response.choices[0].text, response.usage.total_tokens))
+
+conn.commit()
 
 cur.close()
 conn.close()
