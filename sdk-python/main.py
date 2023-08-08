@@ -1,6 +1,7 @@
 import os
 import openai
 from dotenv import load_dotenv
+import psycopg2
 
 load_dotenv()
 
@@ -26,3 +27,25 @@ response = openai.Completion.create(
             prompt=generate_prompt("Mouse"),
             temperature=0.6,
         )
+
+print(response)
+
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+if not DATABASE_URL:
+    raise EnvironmentError(f"DATABASE_URL not found: {DATABASE_URL}\nMake sure that you have a DATABASE_URL value in the .env file.")
+
+conn = psycopg2.connect(DATABASE_URL)
+cur = conn.cursor()
+
+cur.execute('SELECT NOW();')
+time = cur.fetchone()[0]
+
+cur.execute('SELECT version();')
+version = cur.fetchone()[0]
+
+print('Current time:', time)
+print('PostgreSQL version:', version)
+
+cur.close()
+conn.close()
