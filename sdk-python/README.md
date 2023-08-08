@@ -1,3 +1,8 @@
+### Getting started
+1. Enter env variables in example.env and rename to .env
+2. Create and start venv (see instructions below)
+3. From venv, run `python3 main.py`
+
 ### Virtual Environment for Local Dev
 Make sure virtual environment is created
 1. Create virtual environment in root directory: `python3 -m venv .venv_llm-ops`
