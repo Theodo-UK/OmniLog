@@ -40,3 +40,6 @@ next-env.d.ts
 #sst
 .sst
 .sst/
+/.sst/debug.log
+
+.env
