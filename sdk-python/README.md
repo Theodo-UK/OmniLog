@@ -29,3 +29,9 @@ Make sure virtual environment is created
    - Helps to fix: `ModuleNotFoundError: No module named 'lib'`
    - If not, check that scripts and folders do not have the same name
 2. Run `python3 path/to/file`
+
+### Testing local prisma server
+while in `sdk-python`:
+1. run `prisma db push`
+2. run `prisma generate`
+3. run `python3 prisma/example.py`
