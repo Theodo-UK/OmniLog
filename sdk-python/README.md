@@ -22,7 +22,7 @@ Make sure virtual environment is created
 5. After dev, you should update requirements.txt:
    - `pip freeze > requirements.txt`
    - WARNING: this prevents any additional packages from being installed in venv, only run this command after finishing dev
-   - To start installing packages in venv again, delete .venv folder and restart process 
+   - To start installing packages in venv again, delete .venv folder and restart process
 
 ### Running .py files
 1. While in venv, run `export PYTHONPATH='.'`
