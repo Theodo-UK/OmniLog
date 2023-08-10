@@ -8,4 +8,8 @@ log = {
         'token_count': 6,
     }
 result = asyncio.get_event_loop().run_until_complete(send_data(log))
-print(f'created log: {result.json(indent=2, sort_keys=True)}')
+
+if result["success"]:
+    print("Success!")
+else:
+    print(result["error"])

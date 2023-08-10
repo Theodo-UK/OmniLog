@@ -1,11 +1,15 @@
 from prisma import Client
 
 
-async def send_data(input_log) -> None:
+async def send_data(input_log) -> dict:
     db = Client()
     await db.connect()
 
-    saved_log = await db.log.create(input_log)
+    try:
+        await db.log.create(input_log)
+        await db.disconnect()
+        return {'success': True }
 
-    await db.disconnect()
-    return saved_log
+    except Exception as e:
+        await db.disconnect()
+        return { 'success': False, 'error': e }
