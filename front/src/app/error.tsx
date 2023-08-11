@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Header from "./Header";
 
 export default function Error({
     error,
@@ -14,9 +15,9 @@ export default function Error({
     }, [error]);
 
     return (
-        <div>
+        <Header>
             <h2>Something went wrong!</h2>
             <button onClick={() => reset()}>Try again</button>
-        </div>
+        </Header>
     );
 }
