@@ -29,8 +29,6 @@ export default function Loading() {
                     <div className="h-4 bg-gray-200 rounded w-2/3"></div>
                 </div>
             </div>
-
-
         </main>
-    )
+    );
 }

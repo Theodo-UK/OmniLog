@@ -1,4 +1,3 @@
-
 type Props = {
     logs: {
         id: number;
@@ -6,13 +5,12 @@ type Props = {
         input_string: string;
         output_string: string;
         total_tokens: number;
-    }[]
-}
+    }[];
+};
 export default function LogsTable({ logs }: Props) {
-
     return (
         <div className="border bg-white shadow rounded-md p-4 w-full mx-auto">
-            <table >
+            <table>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -26,7 +24,9 @@ export default function LogsTable({ logs }: Props) {
                     {logs.map((log) => (
                         <tr key={log.id}>
                             <td>{log.id}</td>
-                            <td>{new Date(log.datetime_utc).toLocaleString()}</td>
+                            <td>
+                                {new Date(log.datetime_utc).toLocaleString()}
+                            </td>
                             <td>{log.input_string}</td>
                             <td>{log.output_string}</td>
                             <td>{log.total_tokens}</td>
@@ -35,5 +35,5 @@ export default function LogsTable({ logs }: Props) {
                 </tbody>
             </table>
         </div>
-    )
+    );
 }

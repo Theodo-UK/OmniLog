@@ -2,7 +2,7 @@ import { cache } from "react";
 
 export const LogsData = {
     getLogs: cache(async () => {
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        await new Promise((resolve) => setTimeout(resolve, 2000));
         return [
             {
                 id: 1,
@@ -39,7 +39,6 @@ export const LogsData = {
                 output_string: "You're welcome!",
                 total_tokens: 1,
             },
-        ]
-    }
-    ),
-}
+        ];
+    }),
+};
