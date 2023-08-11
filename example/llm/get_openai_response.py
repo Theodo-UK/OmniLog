@@ -20,5 +20,5 @@ def get_openai_response(prompt: str) -> dict:
     return {
         "datetime_utc": datetime.utcfromtimestamp(response.created),
         "output": response.choices[0].text,
-        "token_count": response.usage.total_tokens,
+        "total_tokens": response.usage.total_tokens,
     }
