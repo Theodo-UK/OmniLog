@@ -1,9 +1,7 @@
 import os
 from dotenv import load_dotenv
 load_dotenv()
-from omnilog.get_llm_response import get_llm_response
-from omnilog.write_data import write_data
-from omnilog.connect_to_db import connect_to_db
+from omnilog import get_llm_response, write_data, connect_to_db
 from datetime import datetime
 
 prompt = "What is a proompt?"
