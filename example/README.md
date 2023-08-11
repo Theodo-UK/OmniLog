@@ -1,7 +1,7 @@
 # OmniLog testing
 
 ## Dev
-To use the OmniLog package, you only need to duplicate the `omnilog` folder of `sdk-python/src` to the `example` folder.
+To use the OmniLog package, you only need to copy the `sdk-python/src` folder into the `example` folder.
 
 ## Prod
 For the time being, using the OmniLog package in production requires a manual install.
