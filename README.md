@@ -27,7 +27,7 @@ git clone https://github.com/Theodo-UK/OmniLog.git
 4. Bootstrap the project onto your AWS:
 
 ```bash
-./front/init.sh
+./init.sh
 ```
 And follow the prompts within the script.
 
