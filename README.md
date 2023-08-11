@@ -12,7 +12,7 @@ Get started with OmniLog in five easy steps:
 1. Ensure you have an AWS account with a user that has the necessary permissions to bootstrap our project into your AWS. [You can check & follow the steps here to do that](/docs/aws_setup.md).
 
 2. Configure a Postgres database:
-- We recommend [Neon](https://neon.tech/) for an simple setup with a very generous free tier. You will need the connection string later e.g:
+- We recommend [Neon](https://neon.tech/) for an simple setup with a very generous free tier. You will need the connection string later (This can be found on the homepage after creating your Neon project) e.g:
 
 <div align="center">
     <img src="./images/connection_details.avif" alt="LLM-Ops-logo" width="100%"/>
