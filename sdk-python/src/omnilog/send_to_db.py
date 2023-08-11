@@ -14,7 +14,12 @@ def send_to_db(url, log):
 
 
 def connect_to_db(url):
-    conn = psycopg2.connect(url)
+    try:
+        conn = psycopg2.connect(url)
+    except psycopg2.OperationalError:
+        print(f"Could not connect to database: {url}\n")
+        raise
+
     cur = conn.cursor()
     cur.execute('SELECT NOW();')
     time = cur.fetchone()[0]
