@@ -39,6 +39,15 @@ from omnilog import init, log
 ```
 That's it! You should now be able to navigate to Navigate to the AWS uri given from `init.sh` and see your prompts via the log explorer.
 
+# Removing the AWS resources
+
+If you want to remove the AWS resources, then you simply have to call this script:
+```bash
+./teardown.sh
+```
+
+>⚠️ REMOVAL POLICY:
+By default, AWS does not remove resources like S3 buckets or DynamoDB tables. You will need to modify these manually via the AWS console.
 
 # Developer Info
 ### Table of Contents
