@@ -1,11 +1,12 @@
 import os
 from dotenv import load_dotenv
 load_dotenv()
-from omnilog import get_llm_response, write_data, connect_to_db
+from omnilog import write_data, connect_to_db
+from llm import get_openai_response
 from datetime import datetime
 
 prompt = "What is a proompt?"
-response = get_llm_response(prompt)
+response = get_openai_response(prompt)
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 connection, cursor = connect_to_db(DATABASE_URL)
