@@ -6,26 +6,44 @@ type Props = {
 export default function LogsTable({ logs }: Props) {
     return (
         <div className="border bg-white shadow rounded-md p-4 w-full mx-auto">
-            <table>
+            <table className="table-auto w-full">
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Date/Time (UTC)</th>
-                        <th>Input String</th>
-                        <th>Output String</th>
-                        <th>Total Tokens</th>
+                    <tr className="bg-gray-100">
+                        <th className="px-4 py-2 text-left text-gray-600">
+                            ID
+                        </th>
+                        <th className="px-4 py-2 text-left text-gray-600">
+                            Date/Time (UTC)
+                        </th>
+                        <th className="px-4 py-2 text-left text-gray-600">
+                            Input String
+                        </th>
+                        <th className="px-4 py-2 text-left text-gray-600">
+                            Output String
+                        </th>
+                        <th className="px-4 py-2 text-left text-gray-600">
+                            Total Tokens
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     {logs.map((log) => (
-                        <tr key={log.id}>
-                            <td>{log.id}</td>
-                            <td>
+                        <tr key={log.id} className="border-b border-gray-200">
+                            <td className="px-4 py-2 text-gray-800">
+                                {log.id}
+                            </td>
+                            <td className="px-4 py-2 text-gray-800">
                                 {new Date(log.datetime_utc).toLocaleString()}
                             </td>
-                            <td>{log.input_string}</td>
-                            <td>{log.output_string}</td>
-                            <td>{log.total_tokens}</td>
+                            <td className="px-4 py-2 text-gray-800">
+                                {log.input_string}
+                            </td>
+                            <td className="px-4 py-2 text-gray-800">
+                                {log.output_string}
+                            </td>
+                            <td className="px-4 py-2 text-gray-800">
+                                {log.total_tokens}
+                            </td>
                         </tr>
                     ))}
                 </tbody>
