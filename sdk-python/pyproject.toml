@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "omnilog"
+version = "0.0.1"
+authors = [
+    { name="Callum Hemsley", email="callumh@theodo.co.uk" },
+    { name="Justin Kek", email="justink@theodo.co.uk" },
+    { name="François Lorne", email="francoisl@theodo.co.uk" },
+]
+description = "logger for LLM conversations"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dynamic = ["dependencies"]
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[project.urls]
+"Homepage" = "https://github.com/Theodo-UK/OmniLog"
+"Bug Tracker" = "https://github.com/Theodo-UK/OmniLog/issues"
