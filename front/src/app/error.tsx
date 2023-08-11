@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import Header from "./Header";
+import { Scaffold } from "../atomic/molecules/Scaffold";
 
 export default function Error({
     error,
@@ -15,9 +15,9 @@ export default function Error({
     }, [error]);
 
     return (
-        <Header>
+        <Scaffold>
             <h2>Something went wrong!</h2>
             <button onClick={() => reset()}>Try again</button>
-        </Header>
+        </Scaffold>
     );
 }
