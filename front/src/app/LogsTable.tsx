@@ -1,11 +1,7 @@
+import { llm_logs } from "@prisma/client";
+
 type Props = {
-    logs: {
-        id: number;
-        datetime_utc: number;
-        input_string: string;
-        output_string: string;
-        total_tokens: number;
-    }[];
+    logs: llm_logs[];
 };
 export default function LogsTable({ logs }: Props) {
     return (

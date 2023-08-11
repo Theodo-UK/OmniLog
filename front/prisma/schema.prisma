@@ -17,7 +17,7 @@ datasource db {
 
 model llm_logs {
   id               Int      @id @default(autoincrement())
-  timestamp DateTime
+  datetime_utc DateTime
   input_string     String
   output_string    String
   total_tokens     Int
