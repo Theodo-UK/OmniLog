@@ -1,19 +1,15 @@
 import os
 from dotenv import load_dotenv
 load_dotenv()
-from omnilog import write_data, connect_to_db
-from llm import get_openai_response
-from datetime import datetime
+from omnilog.send_to_db import send_to_db
+from llm.get_openai_response import get_openai_response
 
 prompt = "What is a proompt?"
-response = get_openai_response(prompt)
+log = get_openai_response(prompt)
+log["input"]= prompt
 
 DATABASE_URL = os.getenv("DATABASE_URL")
-connection, cursor = connect_to_db(DATABASE_URL)
+if not DATABASE_URL:
+    raise EnvironmentError(f"DATABASE_URL not found: {DATABASE_URL}\nMake sure that you have a DATABASE_URL value in the .env file.")
 
-write_data(cursor, datetime.utcfromtimestamp(response.created), prompt, response.choices[0].text, response.usage.total_tokens)
-
-connection.commit()
-
-cursor.close()
-connection.close()
+send_to_db(DATABASE_URL, log)
