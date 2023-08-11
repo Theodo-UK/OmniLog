@@ -1,8 +1,7 @@
 import { llm_logs } from "@prisma/client";
-import { cache } from "react";
 
 export const LogsData = {
-    getLogs: cache(async (): Promise<llm_logs[]> => {
+    getLogs: async (): Promise<llm_logs[]> => {
         await new Promise((resolve) => setTimeout(resolve, 2000));
         return [
             {
@@ -41,5 +40,5 @@ export const LogsData = {
                 total_tokens: 1,
             },
         ];
-    }),
+    },
 };
