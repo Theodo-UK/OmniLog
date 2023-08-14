@@ -1,3 +1,4 @@
+"use client";
 import { llm_logs } from "@prisma/client";
 
 type Props = {
@@ -28,12 +29,20 @@ export default function LogsTable({ logs }: Props) {
                 </thead>
                 <tbody>
                     {logs.map((log) => (
-                        <tr key={log.id} className="border-b border-gray-200">
+                        <tr
+                            key={log.id}
+                            className="hover:bg-gray-200 cursor-pointer"
+                            onClick={() =>
+                                console.log(`Clicked log with ID ${log.id}`)
+                            }
+                        >
                             <td className="px-4 py-2 text-gray-800">
                                 {log.id}
                             </td>
                             <td className="px-4 py-2 text-gray-800">
-                                {new Date(log.datetime_utc).toLocaleString()}
+                                {new Date(log.datetime_utc).toLocaleString(
+                                    "en-GB",
+                                )}
                             </td>
                             <td className="px-4 py-2 text-gray-800">
                                 {log.input_string}
