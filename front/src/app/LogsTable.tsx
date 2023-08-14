@@ -36,7 +36,7 @@ export default function LogsTable({ logs }: Props) {
                         <tr
                             key={log.id}
                             className="hover:bg-gray-200 cursor-pointer"
-                            onClick={() => router.push(`logs/${log.id}`)}
+                            onClick={() => router.push(`/logs/${log.id}`)}
                         >
                             <td className="px-4 py-2 text-gray-800">
                                 {log.id}
