@@ -1,3 +1,4 @@
+import { CardAtom } from "@/atomic/atoms/CardAtom";
 import { LogsData } from "@/data/LogsData";
 
 export default async function LogDetails({
@@ -8,7 +9,7 @@ export default async function LogDetails({
     const logDetails = await LogsData.getLogDetails(params.id);
 
     return (
-        <div className="border bg-white shadow rounded-md p-4 w-full mx-auto">
+        <CardAtom>
             <table className="table-auto w-full">
                 <tbody>
                     <tr>
@@ -39,6 +40,6 @@ export default async function LogDetails({
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </CardAtom>
     );
 }

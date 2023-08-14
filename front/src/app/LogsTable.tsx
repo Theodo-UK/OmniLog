@@ -1,3 +1,4 @@
+import { CardAtom } from "@/atomic/atoms/CardAtom";
 import { llm_logs } from "@prisma/client";
 
 type Props = {
@@ -5,7 +6,7 @@ type Props = {
 };
 export default function LogsTable({ logs }: Props) {
     return (
-        <div className="border bg-white shadow rounded-md p-4 w-full mx-auto">
+        <CardAtom>
             <table className="table-auto w-full">
                 <thead>
                     <tr className="bg-gray-100">
@@ -48,6 +49,6 @@ export default function LogsTable({ logs }: Props) {
                     ))}
                 </tbody>
             </table>
-        </div>
+        </CardAtom>
     );
 }
