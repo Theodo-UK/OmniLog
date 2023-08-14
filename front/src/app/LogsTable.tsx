@@ -1,11 +1,14 @@
 "use client";
 import { CardAtom } from "@/atomic/atoms/CardAtom";
 import { llm_logs } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
 type Props = {
     logs: llm_logs[];
 };
 export default function LogsTable({ logs }: Props) {
+    const router = useRouter();
+
     return (
         <CardAtom>
             <table className="table-auto w-full">
@@ -33,9 +36,7 @@ export default function LogsTable({ logs }: Props) {
                         <tr
                             key={log.id}
                             className="hover:bg-gray-200 cursor-pointer"
-                            onClick={() =>
-                                console.log(`Clicked log with ID ${log.id}`)
-                            }
+                            onClick={() => router.push(`logs/${log.id}`)}
                         >
                             <td className="px-4 py-2 text-gray-800">
                                 {log.id}
