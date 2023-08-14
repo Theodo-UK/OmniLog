@@ -11,13 +11,13 @@ export default function LogsTable({ logs }: Props) {
 
     return (
         <CardAtom>
-            <table className="table-auto w-full">
+            <table className="table-fixed w-full">
                 <thead>
                     <tr className="bg-gray-100">
-                        <th className="px-4 py-2 text-left text-gray-600">
+                        <th className="px-4 py-2 text-left text-gray-600 w-1/12">
                             ID
                         </th>
-                        <th className="px-4 py-2 text-left text-gray-600">
+                        <th className="px-4 py-2 text-left text-gray-600 w-1/6">
                             Date/Time (UTC)
                         </th>
                         <th className="px-4 py-2 text-left text-gray-600">
@@ -26,7 +26,7 @@ export default function LogsTable({ logs }: Props) {
                         <th className="px-4 py-2 text-left text-gray-600">
                             Output String
                         </th>
-                        <th className="px-4 py-2 text-left text-gray-600">
+                        <th className="px-4 py-2 text-left text-gray-600  w-1/12">
                             Total Tokens
                         </th>
                     </tr>
@@ -46,10 +46,10 @@ export default function LogsTable({ logs }: Props) {
                                     "en-GB",
                                 )}
                             </td>
-                            <td className="px-4 py-2 text-gray-800">
+                            <td className="px-4 py-2 text-gray-800 truncate">
                                 {log.input_string}
                             </td>
-                            <td className="px-4 py-2 text-gray-800">
+                            <td className="px-4 py-2 text-gray-800 truncate">
                                 {log.output_string}
                             </td>
                             <td className="px-4 py-2 text-gray-800">
