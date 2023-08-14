@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { GenericError } from "@/atomic/molecules/GenericError";
 
 export default function Error({
     error,
@@ -9,14 +9,5 @@ export default function Error({
     error: Error;
     reset: () => void;
 }) {
-    useEffect(() => {
-        console.error(error);
-    }, [error]);
-
-    return (
-        <div>
-            <h2>Something went wrong!</h2>
-            <button onClick={() => reset()}>Try again</button>
-        </div>
-    );
+    return <GenericError error={error} reset={reset} />;
 }
