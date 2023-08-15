@@ -4,10 +4,10 @@
 read -p "Enter connection string from the database (including password): " connection_string
 
 # Move into the front directory
-cd /front
+cd front
 
 # Create the .env file
-echo "CONNECTION_STRING=$connection_string" > .env
+echo "DATABASE_URL=$connection_string" > .env
 
 npx prisma db push
 
