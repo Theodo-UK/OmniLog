@@ -23,7 +23,7 @@ def send_to_db(url, log):
 
 def check_url_type(url):
     if type(url) != str:
-        raise TypeError("url must be a string")
+        raise TypeError("Have you checked your url connection string is correct?")
 
 
 def check_log_type(log):
