@@ -25,3 +25,6 @@ dependencies = {file = ["requirements.txt"]}
 [project.urls]
 "Homepage" = "https://github.com/Theodo-UK/OmniLog"
 "Bug Tracker" = "https://github.com/Theodo-UK/OmniLog/issues"
+
+[tool.black]
+line-length = 100
