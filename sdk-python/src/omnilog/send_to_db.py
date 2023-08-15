@@ -29,7 +29,7 @@ def check_url_type(url):
 def check_log_type(log):
     if type(log) is not dict:
         raise TypeError(
-            f"Have you checked your log is a dictionary? It is a {type(log)}"
+            f"Have you checked your log is a dictionary?\nlog must be a dictionary with keys: datetime_utc, input, output, total_tokens"
         )
     if set(log.keys()) != {"datetime_utc", "input", "output", "total_tokens"}:
         raise KeyError(

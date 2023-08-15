@@ -48,7 +48,7 @@ class TestTypes(unittest.TestCase):
 
         self.assertRaisesRegex(
             TypeError,
-            "Have you checked your log is a dictionary?",
+            "Have you checked your log is a dictionary\?\nlog must be a dictionary with keys: datetime_utc, input, output, total_tokens",
             send_to_db,
             url,
             log,
