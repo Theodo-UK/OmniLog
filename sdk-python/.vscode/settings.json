@@ -9,6 +9,8 @@
   "python.linting.flake8Args": [
     "--config",
     "${workspaceFolder}/.flake8",
+    "--max-line-length",
+    "100",
   ],
   "python.linting.pylintEnabled": false,
   "[python]": {
@@ -17,4 +19,8 @@
     },
     "editor.tabSize": 4,
   },
+  "black-formatter.args": [
+    "--line-length",
+    "100"
+  ]
 }
