@@ -5,8 +5,8 @@ import LogsTable from "./LogsTable";
 export default async function Home() {
     const logs = await LogsData.getLogs();
 
-    if(logs.length === 0) {
-      return <EmptyLogs/>
+    if (logs.length === 0) {
+        return <EmptyLogs />;
     }
 
     return <LogsTable logs={logs} />;
