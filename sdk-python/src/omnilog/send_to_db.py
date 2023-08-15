@@ -10,7 +10,7 @@ def send_to_db(url, log):
 
     cursor.execute(
         """
-    INSERT INTO llm_logs (datetime_utc, input_string, output_string, total_tokens) this is a test for extra long string
+    INSERT INTO llm_logs (datetime_utc, input_string, output_string, total_tokens)
     VALUES (%s, %s, %s, %s);
     """,
         (log["datetime_utc"], log["input"], log["output"], log["total_tokens"]),
