@@ -23,7 +23,7 @@ def get_openai_response(prompt: str) -> dict:
     )
 
     return {
-        "datetime_utc": datetime.fromtimestamp(response.created, timezone.utc),
+        "datetime_utc": datetime.utcfromtimestamp(response.created),
         "output": response.choices[0].text,
         "total_tokens": response.usage.total_tokens,
     }

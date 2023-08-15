@@ -27,20 +27,22 @@ def check_url_type(url):
 
 
 def check_log_type(log):
-    if type(log) != dict:
-        raise TypeError("log must be a dictionary")
+    if type(log) is not dict:
+        raise TypeError(
+            f"Have you checked your log is a dictionary? It is a {type(log)}"
+        )
     if set(log.keys()) != {"datetime_utc", "input", "output", "total_tokens"}:
-        raise ValueError(
+        raise KeyError(
             "log must be a dictionary with keys: datetime_utc, input, output, total_tokens"
         )
-    if type(log["datetime_utc"]) != datetime:
-        raise TypeError("log['datetime_utc'] must be a datetime object")
-    if type(log["input"]) != str:
-        raise TypeError("log['input'] must be a string")
-    if type(log["output"]) != str:
-        raise TypeError("log['output'] must be a string")
-    if type(log["total_tokens"]) != int:
-        raise TypeError("log['total_tokens'] must be an integer")
+    if type(log["datetime_utc"]) is not datetime.datetime:
+        raise TypeError("log.datetime_utc must be a datetime object")
+    if type(log["input"]) is not str:
+        raise TypeError("log.input must be a string")
+    if type(log["output"]) is not str:
+        raise TypeError("log.output must be a string")
+    if type(log["total_tokens"]) is not int:
+        raise TypeError("log.total_tokens must be an integer")
 
 
 def connect_to_db(url):
