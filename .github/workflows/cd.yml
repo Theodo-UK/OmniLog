@@ -1,0 +1,42 @@
+name: cd-front
+run-name: ${{ github.actor }} is executing cd-front
+
+# run on merge since you cannot push to main directly
+on:
+  push: 
+    branches:
+      - main 
+      
+
+defaults:
+  run:
+    working-directory: front
+
+jobs:
+  cd-webapp:
+    runs-on: ubuntu-latest
+    steps:
+      # Followed https://github.com/aws-actions/configure-aws-credentials
+      # Set up GitHub OIDC using https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
+      - name: Configure AWS credentials 
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: eu-west-2
+          role-to-assume: arn:aws:iam::123456789100:role/my-github-actions-role
+          role-session-name: GitHubActions-CD-Front
+      - name: Checkout main
+        uses: actions/checkout@v3
+      - name: Setup Node 18
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 18
+      - name: Install dependencies
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install # yarn install
+      - name: Deploy
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: sst deploy --profile omnilog --stage staging # yarn sst ...
+
+  
