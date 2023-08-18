@@ -1,4 +1,7 @@
 # OmniLog 
+
+![Staging CD](https://github.com/Theodo-UK/OmniLog/actions/workflows/cd.yml/badge.svg)
+
 ## Understand your LLM prompts, Empowered by Generative AI
 
 <div align="center">
