@@ -1,10 +1,9 @@
 import os
 from dotenv import load_dotenv
+import openai
+from datetime import datetime
 
 load_dotenv()
-import openai
-from datetime import datetime, timezone
-
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 if not OPENAI_API_KEY:
