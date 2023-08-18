@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
+    "generate": "prisma generate",
     "db-push": "npx prisma db push"
   },
   "engines": {
