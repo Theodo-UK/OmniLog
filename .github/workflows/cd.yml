@@ -9,7 +9,7 @@ permissions:
 on:
   push: 
     branches:
-      - build/cd-front 
+      - build/cd-front
 
 defaults:
   run:
@@ -36,10 +36,10 @@ jobs:
       - name: Install dependencies
         uses: borales/actions-yarn@v4
         with:
-          cmd: install # yarn install
+          cmd: --cwd front install # yarn install
       - name: Deploy
         uses: borales/actions-yarn@v4
         with:
-          cmd: sst deploy --profile omnilog --stage staging # yarn sst ...
+          cmd: --cwd front sst deploy --profile omnilog --stage staging # yarn sst ...
 
   
