@@ -4,11 +4,16 @@ Welcome to the OmniLog Python Package! This document provides a step-by-step gui
 
 ## Table of Contents
 
-- [Requirement](#requirement)
-- [Managing Dependencies](#managing-dependencies)
-- [Running Tests](#running-tests)
-- [Configuring PyPI User](#configuring-pypi-user)
-- [Publishing to PyPI](#publishing-to-pypi)
+- [OmniLog Python Package](#omnilog-python-package)
+  - [Table of Contents](#table-of-contents)
+  - [Requirement](#requirement)
+  - [Managing Dependencies](#managing-dependencies)
+  - [Running Python Files](#running-python-files)
+    - [Tip](#tip)
+  - [Running Tests](#running-tests)
+  - [Configuring PyPI User](#configuring-pypi-user)
+  - [Generating prisma types](#generating-prisma-types)
+  - [Publishing to PyPI](#publishing-to-pypi)
 
 ## Requirement
 
@@ -72,6 +77,11 @@ Configure the PyPI user credentials using the following command (Replace <YOUR_P
 poetry config pypi-token.pypi <YOUR_PYPI_TOKEN>
 ```
 
+## Generating prisma types
+```sh
+poetry run prisma generate --schema ../prisma/schema.prisma --generator client_py
+```
+
 ## Publishing to PyPI
 
 1. Building: Use the following command to build the package:
@@ -85,3 +95,5 @@ poetry config pypi-token.pypi <YOUR_PYPI_TOKEN>
    poetry publish
    ```
    tip: Add the --build flag to do both steps at once.
+
+

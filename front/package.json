@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "generate": "yarn prisma generate",
+    "generate": "yarn prisma generate --generator client_js",
     "db-push": "npx prisma db push"
   },
   "prisma": {

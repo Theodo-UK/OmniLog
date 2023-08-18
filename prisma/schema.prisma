@@ -1,9 +1,14 @@
 // schema.prisma
 
-generator client {
+generator client_py {
+  provider = "prisma-client-py"
+  output = "../sdk-python/.venv/lib/python3.11/site-packages/prisma/"
+}
+
+generator client_js {
   provider = "prisma-client-js"
   binaryTargets = ["native", "linux-arm64-openssl-1.0.x"]
-  output   = "../front/node_modules/.prisma/client/"
+  output = "../front/node_modules/.prisma/client/"
 }
 
 datasource db {
