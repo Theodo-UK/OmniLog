@@ -12,7 +12,7 @@ authors = [
 ]
 description = "logger for LLM conversations"
 readme = "README.md"
-packages = [{include = "src/omnilog"}]
+packages = [{include = "omnilog"}]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -24,6 +24,7 @@ python = "^3.7"
 psycopg2-binary = "^2.9.7"
 
 [tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
 
 [project.urls]
 "Homepage" = "https://github.com/Theodo-UK/OmniLog"
