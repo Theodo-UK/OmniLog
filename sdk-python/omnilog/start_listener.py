@@ -11,8 +11,7 @@ def start_listener():
     )
 
     logHandler = logging.StreamHandler()
-    logFormatter = logging.Formatter(fmt="From Omnilog: %(message)s")
-    logHandler.setFormatter(logFormatter)
+    logHandler.addFilter(OpenAIFilter())
 
     logger = logging.getLogger()
     logger.handlers = [logHandler]
@@ -21,6 +20,14 @@ def start_listener():
     sys.stdout = sl
     sl = StreamToLogger(logger, logging.ERROR)
     sys.stderr = sl
+
+
+class OpenAIFilter(logging.Filter):
+    def filter(self, record):
+        msg = record.getMessage()
+        if "OpenAI" in msg and "response" in msg:
+            record.msg = f"\nThis message has been caught from OpenAI:\n{msg}\n"
+        return True
 
 
 class StreamToLogger(object):
