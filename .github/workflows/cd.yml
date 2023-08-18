@@ -33,6 +33,10 @@ jobs:
         uses: actions/setup-node@v3
         with: 
           node-version: 18
+      - name: Create env file
+        run: |
+          pwd
+          echo "${{ secrets.FRONT_ENV_FILE }}" > .env
       - name: Install dependencies
         uses: borales/actions-yarn@v4
         with:
