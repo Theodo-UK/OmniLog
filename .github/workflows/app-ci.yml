@@ -1,0 +1,38 @@
+name: app-ci
+run-name: ${{ github.actor }} is executing ${{ github.workflow }} on ${{ github.event_name }} at ${{ github.sha }}
+
+on:
+  pull_request:
+    branches:    
+      - main
+    paths:
+      - front/**
+
+defaults:
+  run:
+    working-directory: front
+
+jobs:
+  app-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v3
+      - name: Setup Node 18
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 18
+      - name: Install dependencies
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: --cwd front install # front/yarn install
+      - name: Check linting
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: --cwd front lint # front/yarn lint
+      - name: Check tests
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: --cwd front test # front/yarn test
+
+  

@@ -1,5 +1,5 @@
-name: cd-app
-run-name: ${{ github.actor }} is executing cd-app
+name: app-cd
+run-name: ${{ github.actor }} is executing ${{ github.workflow }} on ${{ github.event_name }} at ${{ github.sha }}
 
 permissions:
   id-token: write # This is required for requesting the JWT
@@ -10,13 +10,15 @@ on:
   push: 
     branches:
       - main
+    paths:
+      - front/**
 
 defaults:
   run:
     working-directory: front
 
 jobs:
-  cd-app:
+  app-cd:
     runs-on: ubuntu-latest
     steps:
       # Followed https://github.com/aws-actions/configure-aws-credentials
@@ -26,7 +28,7 @@ jobs:
         with:
           aws-region: eu-west-2
           role-to-assume: arn:aws:iam::111982095069:role/github-omnilog
-          role-session-name: GitHubActions-CD-App
+          role-session-name: GitHubActions-App-CD
       - name: Checkout main
         uses: actions/checkout@v3
       - name: Setup Node 18
