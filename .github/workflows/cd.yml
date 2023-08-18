@@ -1,5 +1,5 @@
-name: cd-front
-run-name: ${{ github.actor }} is executing cd-front
+name: cd-app
+run-name: ${{ github.actor }} is executing cd-app
 
 permissions:
   id-token: write # This is required for requesting the JWT
@@ -16,7 +16,7 @@ defaults:
     working-directory: front
 
 jobs:
-  cd-webapp:
+  cd-app:
     runs-on: ubuntu-latest
     steps:
       # Followed https://github.com/aws-actions/configure-aws-credentials
@@ -26,7 +26,7 @@ jobs:
         with:
           aws-region: eu-west-2
           role-to-assume: arn:aws:iam::111982095069:role/github-omnilog
-          role-session-name: GitHubActions-CD-Front
+          role-session-name: GitHubActions-CD-App
       - name: Checkout main
         uses: actions/checkout@v3
       - name: Setup Node 18
