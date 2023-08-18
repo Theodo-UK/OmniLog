@@ -1,3 +1,5 @@
 .env
 .venv_*
 *.pyc
+omnilog/*
+out.log
