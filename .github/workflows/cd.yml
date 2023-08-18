@@ -9,7 +9,7 @@ permissions:
 on:
   push: 
     branches:
-      - build/cd-front
+      - main
 
 defaults:
   run:
