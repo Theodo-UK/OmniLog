@@ -1,14 +1,8 @@
 import os
 from dotenv import load_dotenv
-from omnilog.send_to_db import send_to_db
+
 from omnilog.start_listener import start_listener
 from llm.get_openai_response import get_openai_response
-
-start_listener()
-
-prompt = "What is a proompt?"
-log = get_openai_response(prompt)
-log["input"] = prompt
 
 load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -17,4 +11,7 @@ if not DATABASE_URL:
         f"DATABASE_URL not found: {DATABASE_URL}\nMake sure that you have a DATABASE_URL value in the .env file."
     )
 
-send_to_db(DATABASE_URL, log)
+start_listener(DATABASE_URL)
+
+prompt = "What is a rubber duck?"
+log = get_openai_response(prompt)
