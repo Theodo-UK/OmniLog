@@ -20,11 +20,11 @@ def start_listener(url: str):
 
 class OpenAIFilter(logging.Filter):
     url: str
-    t_prompt: str
+    prompt: str
 
     def __init__(self, url):
         self.url = url
-        self.t_prompt = ""
+        self.prompt = ""
 
     def filter(self, record) -> bool:
         msg = record.getMessage()
@@ -51,7 +51,6 @@ class OpenAIFilter(logging.Filter):
                     record.msg = "JSONDecodeError for OpenAI response: " + msg
                     return True
                 return False
-        record.msg += record.levelname
         return True
 
     def handle_openai_response(self, data: str):
@@ -60,17 +59,16 @@ class OpenAIFilter(logging.Filter):
         output = json.loads(output)
 
         log = {
-            "input": self.t_prompt,
+            "input": self.prompt,
             "datetime_utc": datetime.utcfromtimestamp(output["created"]),
             "output": output["choices"][0]["text"],
             "total_tokens": output["usage"]["total_tokens"],
         }
-        self.t_prompt = ""
         send_to_db(self.url, log)
 
     def handle_openai_request(self, data: str):
-        t_data = data.split('"prompt": "')[1]
-        self.t_prompt = t_data.split('", "temperature"')[0]
+        self.prompt = data.split('"prompt": "')[1]
+        self.prompt = self.prompt.split('", "temperature"')[0]
 
 
 class StreamToLogger(object):
