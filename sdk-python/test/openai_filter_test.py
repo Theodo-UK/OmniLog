@@ -18,7 +18,9 @@ class TestOpenAIFilter(unittest.TestCase):
         handler_1.setLevel(logging.INFO)
         handler_2 = logging.StreamHandler(stream_2)
         handler_2.setLevel(logging.INFO)
-        handler_2.addFilter(OpenAIFilter())
+        handler_2.addFilter(
+            OpenAIFilter("postgres://testuser:1234qwer@host:5432/testdb")
+        )
         parent.addHandler(handler_1)
         child.addHandler(handler_2)
 
@@ -30,16 +32,43 @@ class TestOpenAIFilter(unittest.TestCase):
 
     def test_valid_filter(self):
         """
-        Given a record containing 'OpenAI' and 'response'
+        Given a record containing 'OpenAI' and "message='OpenAI API response'"
         When it is processed by the filter,
-        then the record is modified.
+        then the record is removed from the stream.
         """
         self.input = "message='OpenAI API response' path=http://api.openai.com"
         self.compute_result("test_valid_filter")
-        self.assertEqual(
-            self.result,
-            f"\nThis message has been caught from OpenAI:\n{self.input}\n\n",
-        )
+        self.assertEqual(self.result, "")
+
+    def test_filter_request(self):
+        """
+        Given a record containing "message='Request to OpenAI API'"
+        When it is processed by the filter,
+        then the record is removed from the stream.
+        """
+        self.input = "message='Request to OpenAI API' path=https://api.openai.com"
+        self.compute_result("test_filter_request")
+        self.assertEqual(self.result, "")
+
+    def test_filter_post_details(self):
+        """
+        Given a record containing "message='Post details'"
+        When it is processed by the filter,
+        then the record is removed from the stream.
+        """
+        self.input = "message='Post details' path=https://api.openai.com"
+        self.compute_result("test_filter_post_details")
+        self.assertEqual(self.result, "")
+
+    def test_filter_no_special_message(self):
+        """
+        Given a record from OpenAI not containing a specific message
+        When it is processed by the filter,
+        then the record is not modified.
+        """
+        self.input = "message='OpenAI random discussion' path=https://api.openai.com"
+        self.compute_result("test_filter_no_message")
+        self.assertEqual(self.result, f"{self.input}\n")
 
     def test_filter_no_openai(self):
         """
@@ -49,14 +78,4 @@ class TestOpenAIFilter(unittest.TestCase):
         """
         self.input = "message='Laama API response' path=https://api.llama.com"
         self.compute_result("test_filter_no_openai")
-        self.assertEqual(self.result, f"{self.input}\n")
-
-    def test_filter_no_response(self):
-        """
-        Given a record not containing 'response'
-        When it is processed by the filter,
-        then the record is not modified.
-        """
-        self.input = "message='OpenAI API request' path=https://api.openai.com"
-        self.compute_result("test_filter_no_response")
         self.assertEqual(self.result, f"{self.input}\n")
