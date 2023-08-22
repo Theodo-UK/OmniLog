@@ -35,7 +35,7 @@ class OpenAIFilter(logging.Filter):
 
             if "message='Post details'" in msg:
                 try:
-                    self.handle_openai_request(msg)
+                    self.extract_prompt_from_request(msg)
                 except IndexError:
                     record.msg = "Prompt not found in OpenAI request: " + msg
                     return True
@@ -53,7 +53,7 @@ class OpenAIFilter(logging.Filter):
                 return False
         return True
 
-    def handle_openai_response(self, data: str):
+    def extract_output_from_response(self, data: str):
         output = data.split("body='")[1].split("' headers=")[0]
         output = bytes(output, "utf-8").decode("unicode_escape")
         output = json.loads(output)
@@ -66,7 +66,7 @@ class OpenAIFilter(logging.Filter):
         }
         send_to_db(self.url, log)
 
-    def handle_openai_request(self, data: str):
+    def extract_prompt_from_request(self, data: str):
         self.prompt = data.split('"prompt": "')[1]
         self.prompt = self.prompt.split('", "temperature"')[0]
 
