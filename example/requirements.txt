@@ -14,4 +14,4 @@ requests==2.31.0
 tqdm==4.65.1
 urllib3==2.0.4
 yarl==1.9.2
-omnilogger==0.0.2
+omnilogger==0.0.4
