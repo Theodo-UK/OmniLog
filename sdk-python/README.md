@@ -4,7 +4,7 @@ Welcome to the OmniLogger Python Package!
 
 ## Table of Contents
 
-- [OmniLog Python Package](#omnilog-python-package)
+- [OmniLogger Python Package](#omnilog-python-package)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Usage](#usage)
@@ -66,7 +66,7 @@ Make sure you have Poetry installed on your local machine. If not, follow the in
    ```sh
    poetry add <package>
    ```
-2. Developmnt Dependencies: For development dependencies, add them to the group [tool.poetry.dev.dependencies] using:
+2. Development Dependencies: For development dependencies, add them to the group [tool.poetry.dev.dependencies] using:
 
    ```sh
    poetry add <dev-package> --group dev
