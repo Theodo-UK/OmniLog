@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-from omnilog.send_to_db import send_to_db
+from omnilogger import send_to_db
 from llm.get_openai_response import get_openai_response
 
 load_dotenv()

@@ -1,4 +1,4 @@
-from omnilog.send_to_db import check_url_type
+from omnilogger.input_validation import check_url_type
 import unittest
 
 
@@ -25,6 +25,7 @@ class TestURLType(unittest.TestCase):
             check_url_type,
             url,
         )
+
 
 if __name__ == "__main__":
     unittest.main()

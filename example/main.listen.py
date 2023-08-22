@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-from omnilog.start_listener import start_listener
+from omnilogger import start_listener
 from llm.get_openai_response import get_openai_response
 
 load_dotenv()

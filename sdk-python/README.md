@@ -1,20 +1,66 @@
-# OmniLog Python Package
+# OmniLogger Python Package
 
-Welcome to the OmniLog Python Package! This document provides a step-by-step guide to get you started with setting up, managing dependencies, running tests, and publishing the package to PyPI using Poetry.
+Welcome to the OmniLogger Python Package!
 
 ## Table of Contents
 
-- [Requirement](#requirement)
-- [Managing Dependencies](#managing-dependencies)
-- [Running Tests](#running-tests)
-- [Configuring PyPI User](#configuring-pypi-user)
-- [Publishing to PyPI](#publishing-to-pypi)
+- [OmniLogger Python Package](#omnilog-python-package)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Usage](#usage)
+  - [Contributing](#contributing)
+    - [Requirement](#requirement)
+    - [Managing Dependencies](#managing-dependencies)
+    - [Running Tests](#running-tests)
+    - [Configuring PyPI User](#configuring-pypi-user)
+    - [Publishing to PyPI](#publishing-to-pypi)
 
-## Requirement
+## Introduction
+
+This document will first describe how to use the package, and then provide a step-by-step guide for any developper that might want to help on the project.
+
+## Usage
+
+Run the following command to install the package:
+
+```sh
+pip install omnilogger
+```
+
+Import the package in your script:
+
+```python
+from omnilogger import start_listener
+```
+
+Start the listener:
+
+```python
+start_listener(database_url)
+```
+
+The listener will start listening to your logs to send those concerning openai to the database!
+
+You can also use the logger to log your own messages:
+
+```python
+from omnilogger import send_to_db
+log = {
+   "input": "What is a prompt?",
+   "output": "A prompt is a sentence that you give to the model to generate a text.",
+   "datetime_utc": "2021-08-31 14:00:00.00",
+   "total_tokens": 100,
+}
+send_to_db(database_url, log)
+```
+
+## Contributing
+
+##3 Requirement
 
 Make sure you have Poetry installed on your local machine. If not, follow the instruction on https://python-poetry.org/docs/.
 
-## Managing Dependencies
+### Managing Dependencies
 
 1. Adding Dependencies: Add any new project dependencies to [tool.poetry.dependencies] using:
    ```sh
@@ -31,7 +77,7 @@ Make sure you have Poetry installed on your local machine. If not, follow the in
    poetry install
    ```
 
-## Running Python Files
+### Running Python Files
 
 1. Activate Virtual Environment: The virtual environment ensures that the correct dependencies are available to your script.To activate it, run the command:
 
@@ -44,7 +90,7 @@ Make sure you have Poetry installed on your local machine. If not, follow the in
    poetry run python <filepath>
    ```
 
-### Tip
+#### Tip
 
 To avoid having to type poetry run every time you want to run a script, you can use the poetry run command once at the beginning of your terminal session. This sets up an environment where all subsequent python commands are run within the Poetry virtual environment.
 
@@ -54,7 +100,7 @@ poetry run
 
 Now you can simply use `python path/to/your/script.py` without the need for poetry run each time.
 
-## Running Tests
+### Running Tests
 
 1. Running Tests: Use the following command to run pytest:
 
@@ -64,7 +110,7 @@ Now you can simply use `python path/to/your/script.py` without the need for poet
 
 2. Writing Tests: Create test files in the test directory, e.g., test/send_to_db.test.py, and write your tests using pytest.
 
-## Configuring PyPI User
+### Configuring PyPI User
 
 Configure the PyPI user credentials using the following command (Replace <YOUR_PYPI_TOKEN> with the actual PyPI token):
 
@@ -72,7 +118,7 @@ Configure the PyPI user credentials using the following command (Replace <YOUR_P
 poetry config pypi-token.pypi <YOUR_PYPI_TOKEN>
 ```
 
-## Publishing to PyPI
+### Publishing to PyPI
 
 1. Building: Use the following command to build the package:
 
