@@ -1,3 +1,5 @@
 .venv_*
 .env
 **/*.pyc
+.pypirc
+dist*
