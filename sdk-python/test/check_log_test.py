@@ -1,10 +1,9 @@
-from omnilog.send_to_db import check_log_type
+from omnilogger.input_validation import check_log_type
 import unittest
 import datetime
 
 
 class TestLogType(unittest.TestCase):
-
     valid_log = {
         "datetime_utc": datetime.datetime.utcnow(),
         "input": "What is this?",

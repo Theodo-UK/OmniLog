@@ -1,5 +1,6 @@
 import datetime
 
+
 def check_url_type(url):
     if type(url) != str:
         raise TypeError("Have you checked your url connection string is correct?")

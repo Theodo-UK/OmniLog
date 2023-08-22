@@ -1,7 +1,7 @@
 import io
 import logging
 import unittest
-from omnilog.start_listener import OpenAIFilter
+from omnilogger.logger import OpenAIFilter
 
 
 class TestOpenAIFilter(unittest.TestCase):

@@ -3,7 +3,7 @@ import json
 import logging
 import sys
 import openai
-from omnilog.send_to_db import send_to_db
+from omnilogger import send_to_db
 
 
 def start_listener(url: str):
