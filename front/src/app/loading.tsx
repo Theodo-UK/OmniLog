@@ -1,5 +1,4 @@
-import { AnimatedPulseAtom } from "@/atomic/atoms/AnimatedPulseAtom";
-import { CardAtom } from "@/atomic/atoms/CardAtom";
+import { AnimatedPulseAtom, CardAtom } from "@/atomic/atoms";
 
 export default function Loading() {
     return (
