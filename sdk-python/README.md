@@ -4,16 +4,18 @@ Welcome to the OmniLogger Python Package!
 
 ## Table of Contents
 
-- [OmniLogger Python Package](#omnilog-python-package)
+- [OmniLogger Python Package](#omnilogger-python-package)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Usage](#usage)
   - [Contributing](#contributing)
-    - [Requirement](#requirement)
     - [Managing Dependencies](#managing-dependencies)
+    - [Running Python Files](#running-python-files)
+      - [Tip](#tip)
     - [Running Tests](#running-tests)
     - [Configuring PyPI User](#configuring-pypi-user)
     - [Publishing to PyPI](#publishing-to-pypi)
+  - [Generating prisma types](#generating-prisma-types)
 
 ## Introduction
 
@@ -131,3 +133,9 @@ poetry config pypi-token.pypi <YOUR_PYPI_TOKEN>
    poetry publish
    ```
    tip: Add the --build flag to do both steps at once.
+
+## Generating prisma types
+```sh
+poetry run prisma generate --schema ../prisma/schema.prisma --generator client_py
+```
+

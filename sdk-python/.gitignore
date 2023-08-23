@@ -1,4 +1,4 @@
-.venv_*
+.venv*
 .env
 **/*.pyc
 .pypirc
