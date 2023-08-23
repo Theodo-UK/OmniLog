@@ -11,9 +11,7 @@ export default function LogsTable({ logs }: Props) {
 
     return (
         <CardAtom>
-            <TextInput
-                placeholder="Search"
-                icon={<SearchIcon />}
+            <TextInput placeholder="Search" icon={<SearchIcon />}
             />
             <table className="table-fixed w-full">
                 <thead>
