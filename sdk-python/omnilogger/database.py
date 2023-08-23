@@ -1,5 +1,5 @@
 import psycopg2
-from omnilog.input_validation import check_log_type, check_url_type
+from .input_validation import check_log_type, check_url_type
 
 
 def send_to_db(url, log):
