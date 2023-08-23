@@ -1,5 +1,5 @@
 "use client";
-import { CardAtom } from "@/atomic/atoms/CardAtom";
+import { CardAtom, SearchIcon, TextInput } from "@/atomic/atoms";
 import { llm_logs } from "@prisma/client";
 import { useRouter } from "next/navigation";
 
@@ -11,6 +11,7 @@ export default function LogsTable({ logs }: Props) {
 
     return (
         <CardAtom>
+            <TextInput placeholder="Search" icon={<SearchIcon />} />
             <table className="table-fixed w-full">
                 <thead>
                     <tr className="bg-gray-100">
