@@ -3,8 +3,8 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "omnilog"
-version = "0.0.1"
+name = "omnilogger"
+version = "0.0.4"
 authors = [
     "Callum Hemsley <callumh@theodo.co.uk>",
     "Justin Kek <justink@theodo.co.uk>",
@@ -12,7 +12,7 @@ authors = [
 ]
 description = "logger for LLM conversations"
 readme = "README.md"
-packages = [{include = "omnilog"}]
+packages = [{include = "omnilogger"}]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -20,12 +20,14 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 psycopg2-binary = "^2.9.7"
 prisma = "^0.9.1"
+openai = "^0.27.8"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.0"
+python-dotenv = "^1.0.0"
 
 [project.urls]
 "Homepage" = "https://github.com/Theodo-UK/OmniLog"
