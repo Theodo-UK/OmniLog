@@ -28,7 +28,8 @@ class TestLogType(unittest.TestCase):
 
         self.assertRaisesRegex(
             TypeError,
-            r"Have you checked your log is a dictionary\?\nlog must be a dictionary with keys: datetime_utc, input, output, total_tokens",
+            r"Have you checked your log is a dictionary\?\nlog must be a dictionary"
+            r" with keys: datetime_utc, input, output, total_tokens",
             check_log_type,
             log,
         )
@@ -41,7 +42,8 @@ class TestLogType(unittest.TestCase):
 
         self.assertRaisesRegex(
             KeyError,
-            "log must be a dictionary with keys: datetime_utc, input, output, total_tokens",
+            "log must be a dictionary with keys: datetime_utc, input, output,"
+            " total_tokens",
             check_log_type,
             log,
         )
