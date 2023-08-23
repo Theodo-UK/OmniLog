@@ -11,7 +11,6 @@
       "error",
       { "max": 75, "skipBlankLines": true, "skipComments": true }
     ],
-    "complexity": ["error", 6],
-    "prettier/prettier": ["error", { "tabWidth": 4 }]
+    "complexity": ["error", 6]
   }
 }
