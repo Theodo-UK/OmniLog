@@ -28,7 +28,11 @@ If you completed these steps correctly, you should be able to run `aws sts get-c
 It should look like this, with `?pgbouncer=true` at the end ([see issue](https://github.com/prisma/prisma/issues/11643#issuecomment-1034078942)):
 `DATABASE_URL=<your_database_uri>?pgbouncer=true`
 
-### 4. Build Next.js app into Lambdas and deploy them locally
+### 4. Set up local database
+
+Generate prisma types with `yarn generate`
+
+### 5. Build Next.js app into Lambdas and deploy them locally
 
 -   `yarn sst dev --profile <aws_iam_access_key_profile_name> --stage <your_name>-dev` to start the Live Lambda Development environment.
     -   This command does the following:
@@ -36,7 +40,7 @@ It should look like this, with `?pgbouncer=true` at the end ([see issue](https:/
         -   Builds the Next.js app into lambda functions,
         -   and deploys them to the local Lambda environment
 
-### 5. Bind Next.js app to local Lambda environment so that it can invoke AWS resources
+### 6. Bind Next.js app to local Lambda environment so that it can invoke AWS resources
 
 -   `yarn dev --profile <aws_iam_access_key_profile_name> --stage <your_name>-dev` to bind the Next.js app to sst, which allows it to invoke AWS resources.
     -   This command does the following:
