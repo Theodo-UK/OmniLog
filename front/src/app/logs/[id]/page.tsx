@@ -1,4 +1,4 @@
-import { CardAtom } from "@/atomic/atoms";
+import { CardAtom } from "@/atomic/atoms/CardAtom";
 import { LogsData } from "@/data/LogsData";
 
 export default async function LogDetails({
