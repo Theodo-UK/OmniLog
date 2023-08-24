@@ -6,8 +6,8 @@ export const TimeDropdown = () => {
     const timeOptions = ["Last hour", "Last day", "Last week"];
     const searchParams = useSearchParams();
     const selectedTime = searchParams.get("dateTimeFilter") || "Last hour";
-    const onTimeSelect = () => {
-        router.push(`?dateTimeFilter=${selectedTime}`);
+    const onTimeSelect = (newValue: string) => {
+        router.push(`?dateTimeFilter=${newValue}`);
     };
     return (
         <Dropdown
