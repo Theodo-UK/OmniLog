@@ -1,4 +1,5 @@
 import psycopg2
+
 from .input_validation import check_log_type, check_url_type
 
 

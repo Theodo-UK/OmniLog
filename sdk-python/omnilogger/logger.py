@@ -1,8 +1,10 @@
-from datetime import datetime
 import json
 import logging
 import sys
+from datetime import datetime
+
 import openai
+
 from omnilogger import send_to_db
 
 
@@ -46,7 +48,7 @@ class OpenAIFilter(logging.Filter):
 
             if "message='API response body'" in msg:
                 try:
-                    self.handle_openai_response(msg)
+                    self.extract_output_from_response(msg)
                 except json.decoder.JSONDecodeError:
                     record.msg = "JSONDecodeError for OpenAI response: " + msg
                     return True
