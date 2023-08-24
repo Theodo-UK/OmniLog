@@ -24,6 +24,7 @@ python = "^3.8.1"
 psycopg2-binary = "^2.9.7"
 prisma = "^0.9.1"
 openai = "^0.27.8"
+pyright = "^1.1.324"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.0"
@@ -42,3 +43,10 @@ experimental-string-processing = true
 
 [tool.isort]
 profile = "black"
+
+[tool.pyright]
+include = [
+    "**/*.py",
+]
+
+typeCheckingMode = "strict"
