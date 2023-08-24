@@ -20,7 +20,8 @@ const config: Config = {
                 "theodo-light-blue": "#6CB4E6",
                 "theodo-turquoise": "#009DAC",
                 "theodo-blue": "#2D7FAE",
-            }
+                "theodo-dark-blue": "#17366e",
+            },
         },
     },
     plugins: [],
