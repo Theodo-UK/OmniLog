@@ -1,17 +1,15 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
-  ],
-  "rules": {
-    "max-lines": ["error", { "max": 200, "skipBlankLines": true }],
-    "max-lines-per-function": [
-      "error",
-      { "max": 75, "skipBlankLines": true, "skipComments": true }
+    "extends": [
+        "next/core-web-vitals",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
-    "complexity": ["error", 6],
-    "prettier/prettier": ["error", {"tabWidth": 4}]
-  }
+    "rules": {
+        "max-lines": ["error", { "max": 200, "skipBlankLines": true }],
+        "max-lines-per-function": [
+            "error",
+            { "max": 75, "skipBlankLines": true, "skipComments": true }
+        ],
+        "complexity": ["error", 6]
+    }
 }

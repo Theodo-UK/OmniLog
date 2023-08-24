@@ -1,52 +1,53 @@
 {
-  "name": "front",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "local": "next dev",
-    "dev": "sst bind next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "test": "jest",
-    "generate": "yarn prisma generate --generator client_js",
-    "db-push": "npx prisma db push"
-  },
-  "prisma": {
-    "schema": "../prisma/schema.prisma"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "dependencies": {
-    "@prisma/client": "5.1.1",
-    "@types/node": "20.4.8",
-    "@types/react": "18.2.18",
-    "@types/react-dom": "18.2.7",
-    "autoprefixer": "10.4.14",
-    "eslint": "8.46.0",
-    "eslint-config-next": "13.4.13",
-    "next": "13.4.13",
-    "postcss": "8.4.27",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "server-only": "^0.0.1",
-    "tailwindcss": "3.3.3",
-    "typescript": "5.1.6"
-  },
-  "devDependencies": {
-    "@testing-library/jest-dom": "^6.0.1",
-    "@testing-library/react": "^14.0.0",
-    "@types/jest": "^29.5.3",
-    "@typescript-eslint/eslint-plugin": "^6.3.0",
-    "aws-cdk-lib": "2.84.0",
-    "constructs": "10.1.156",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "jest": "^29.6.2",
-    "jest-environment-jsdom": "^29.6.2",
-    "prettier": "^3.0.1",
-    "prisma": "^5.1.1",
-    "sst": "^2.23.6"
-  }
+    "name": "front",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "local": "next dev",
+        "dev": "sst bind next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "test": "jest",
+        "generate": "yarn prisma generate --generator client_js",
+        "db-push": "npx prisma db push",
+        "format": "prettier --write ."
+    },
+    "prisma": {
+        "schema": "../prisma/schema.prisma"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "dependencies": {
+        "@prisma/client": "5.1.1",
+        "@types/node": "20.4.8",
+        "@types/react": "18.2.18",
+        "@types/react-dom": "18.2.7",
+        "autoprefixer": "10.4.14",
+        "eslint": "8.46.0",
+        "eslint-config-next": "13.4.13",
+        "next": "13.4.13",
+        "postcss": "8.4.27",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "server-only": "^0.0.1",
+        "tailwindcss": "3.3.3",
+        "typescript": "5.1.6"
+    },
+    "devDependencies": {
+        "@testing-library/jest-dom": "^6.0.1",
+        "@testing-library/react": "^14.0.0",
+        "@types/jest": "^29.5.3",
+        "@typescript-eslint/eslint-plugin": "^6.3.0",
+        "aws-cdk-lib": "2.84.0",
+        "constructs": "10.1.156",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-prettier": "^5.0.0",
+        "jest": "^29.6.2",
+        "jest-environment-jsdom": "^29.6.2",
+        "prettier": "^3.0.1",
+        "prisma": "^5.1.1",
+        "sst": "^2.23.6"
+    }
 }
