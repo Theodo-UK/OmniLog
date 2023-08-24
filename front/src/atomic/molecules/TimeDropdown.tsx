@@ -1,4 +1,3 @@
-"use client";
 import { useSearchParams } from "next/navigation";
 import { Dropdown } from "../atoms/Dropdown";
 
