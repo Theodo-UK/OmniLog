@@ -1,6 +1,7 @@
 import io
 import logging
 import unittest
+
 from omnilogger.logger import OpenAIFilter
 
 

@@ -1,6 +1,7 @@
-from omnilogger.input_validation import check_log_type
-import unittest
 import datetime
+import unittest
+
+from omnilogger.input_validation import check_log_type
 
 
 class TestLogType(unittest.TestCase):

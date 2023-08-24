@@ -1,8 +1,10 @@
-from datetime import datetime
 import json
 import logging
 import sys
+from datetime import datetime
+
 import openai
+
 from omnilogger import send_to_db
 
 
