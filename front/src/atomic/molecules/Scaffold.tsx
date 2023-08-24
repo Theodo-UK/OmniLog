@@ -1,4 +1,5 @@
-import { OmnilogLogo, TheodoLogo } from "../atoms";
+import { OmnilogLogo } from "../atoms/OmnilogLogo";
+import { TheodoLogo } from "../atoms/TheodoLogo";
 
 export const Scaffold = ({ children }: { children: React.ReactNode }) => {
     return (
