@@ -1,4 +1,4 @@
-import { CardAtom } from "@/atomic/atoms";
+import { CardAtom } from "@/atomic/atoms/CardAtom";
 import Link from "next/link";
 
 export default function EmptyLogs() {

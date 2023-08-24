@@ -1,5 +1,9 @@
 "use client";
-import { CardAtom, SearchIcon, TextInput } from "@/atomic/atoms";
+import { CardAtom } from "@/atomic/atoms/CardAtom";
+import { TextInput } from "@/atomic/atoms/TextInput";
+import { TimeDropdown } from "@/atomic/molecules/TimeDropdown";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { llm_logs } from "@prisma/client";
 import { useRouter } from "next/navigation";
 
@@ -11,7 +15,13 @@ export default function LogsTable({ logs }: Props) {
 
     return (
         <CardAtom>
-            <TextInput placeholder="Search" icon={<SearchIcon />} />
+            <div className="flex gap-4">
+                <TextInput
+                    placeholder="Search"
+                    icon={<FontAwesomeIcon icon={faMagnifyingGlass} />}
+                />
+                <TimeDropdown />
+            </div>
             <table className="table-fixed w-full">
                 <thead>
                     <tr className="bg-gray-100">
