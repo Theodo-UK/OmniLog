@@ -43,6 +43,10 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: --cwd front install # yarn install
+      - name: Generate prisma types
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: --cwd front generate # yarn generate
       - name: Deploy
         uses: borales/actions-yarn@v4
         with:
