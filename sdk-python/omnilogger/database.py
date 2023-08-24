@@ -1,44 +1,18 @@
-import psycopg2
+from prisma import Client
+from prisma.types import llm_logsCreateInput
 
-from .input_validation import check_log_type, check_url_type
+from .input_validation import check_log_type
 
 
-def send_to_db(url, log):
-    check_url_type(url)
+def send_to_db(log: llm_logsCreateInput) -> None:
     check_log_type(log)
 
-    connection, cursor = connect_to_db(url)
-
-    cursor.execute(
-        """
-    INSERT INTO llm_logs (datetime_utc, input_string, output_string, total_tokens)
-    VALUES (%s, %s, %s, %s);
-    """,
-        (log["datetime_utc"], log["input"], log["output"], log["total_tokens"]),
-    )
-
-    connection.commit()
-    cursor.close()
-    connection.close()
-
-
-def connect_to_db(url):
+    db = Client()
     try:
-        conn = psycopg2.connect(url)
-    except psycopg2.OperationalError:
-        print(f"Could not connect to database: {url}\n")
-        raise
+        db.connect()
+        db.llm_logs.create(log)
+        db.disconnect()
 
-    cur = conn.cursor()
-    cur.execute("SELECT NOW();")
-    time = cur.fetchone()[0]
-
-    cur.execute("SELECT version();")
-    version = cur.fetchone()[0]
-
-    if not time or not version:
-        raise ConnectionError(f"Could not connect to database: {url}")
-
-    print("Current time:", time)
-    print("PostgreSQL version:", version)
-    return conn, cur
+    except Exception as e:
+        print(e)
+        db.disconnect()
