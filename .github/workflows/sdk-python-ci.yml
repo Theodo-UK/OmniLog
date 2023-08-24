@@ -1,0 +1,40 @@
+name: sdk-python-ci
+run-name: ${{ github.actor }} is executing ${{ github.workflow }} on ${{ github.event_name }} at ${{ github.sha }}
+
+on:
+  pull_request:
+    branches:    
+      - main
+    paths:
+      - sdk-python/**
+
+defaults:
+  run:
+    working-directory: sdk-python
+
+jobs:
+  sdk-python-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v3
+      - name: Setup Python 3.8
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8' 
+      - name: Run image
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: '1.5.1'
+      - name: Install dependencies
+        run: poetry install
+      - name: Check import organisation
+        run: poetry run isort omnilogger test --check-only # check test and omnilogger folder
+      - name: Check flake8 linting
+        run: poetry run flake8
+      - name: Check pylint linting
+        run: poetry run pylint */**.py --errors-only
+      - name: Check tests
+        run: poetry run pytest
+
+  

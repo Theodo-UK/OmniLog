@@ -1,5 +1,6 @@
-from omnilogger.input_validation import check_url_type
 import unittest
+
+from omnilogger.input_validation import check_url_type
 
 
 class TestURLType(unittest.TestCase):

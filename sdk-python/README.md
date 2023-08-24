@@ -16,6 +16,7 @@ Welcome to the OmniLogger Python Package!
     - [Configuring PyPI User](#configuring-pypi-user)
     - [Publishing to PyPI](#publishing-to-pypi)
   - [Generating prisma types](#generating-prisma-types)
+  - [Linting](#linting)
 
 ## Introduction
 
@@ -139,3 +140,11 @@ poetry config pypi-token.pypi <YOUR_PYPI_TOKEN>
 poetry run prisma generate --schema ../prisma/schema.prisma --generator client_py
 ```
 
+## Linting
+This project uses:
+- [pylint](https://marketplace.visualstudio.com/items?itemName=ms-python.pylint)
+- [flake8](https://marketplace.visualstudio.com/items?itemName=ms-python.flake8) 
+- [black](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter) for code formatting
+- [isort](https://marketplace.visualstudio.com/items?itemName=ms-python.isort) for import sorting
+
+Make sure you have the extensions installed, and for pylint, ensure that the import strategy "fromEnvironment" is used, since it [cannot be configured in .vscode/settings.json at the moment.](https://github.com/microsoft/vscode-pylint/issues/377)

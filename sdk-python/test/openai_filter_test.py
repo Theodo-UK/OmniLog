@@ -1,6 +1,7 @@
 import io
 import logging
 import unittest
+
 from omnilogger.logger import OpenAIFilter
 
 
@@ -56,7 +57,10 @@ class TestOpenAIFilter(unittest.TestCase):
         When it is processed by the filter,
         then the record is removed from the stream.
         """
-        self.input = 'message=\'Post details\' path=https://api.openai.com body={"prompt": "This is a prompt"}'
+        self.input = (
+            'message=\'Post details\' path=https://api.openai.com body={"prompt": "This'
+            ' is a prompt"}'
+        )
         self.compute_result("test_filter_post_details")
         self.assertEqual(self.result, "")
 
