@@ -24,7 +24,7 @@ jobs:
       # Followed https://github.com/aws-actions/configure-aws-credentials
       # Set up GitHub OIDC using https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
       - name: Configure AWS credentials 
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v3
         with:
           aws-region: eu-west-2
           role-to-assume: arn:aws:iam::111982095069:role/github-omnilog
