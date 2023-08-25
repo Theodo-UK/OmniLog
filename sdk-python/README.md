@@ -9,11 +9,13 @@ Welcome to the OmniLogger Python Package!
   - [Introduction](#introduction)
   - [Usage](#usage)
   - [Contributing](#contributing)
+    - [Requirement](#requirement)
     - [Getting Started](#getting-started)
     - [Managing Dependencies](#managing-dependencies)
     - [Running Python Files](#running-python-files)
       - [Tip](#tip)
     - [Running Tests](#running-tests)
+    - [Running CI locally](#running-ci-locally)
     - [Configuring PyPI User](#configuring-pypi-user)
     - [Publishing to PyPI](#publishing-to-pypi)
   - [Generating prisma types](#generating-prisma-types)
@@ -60,7 +62,7 @@ send_to_db(log)
 
 ## Contributing
 
-##3 Requirement
+### Requirement
 
 Make sure you have Poetry installed on your local machine. If not, follow the instruction on https://python-poetry.org/docs/.
 
@@ -120,6 +122,9 @@ Now you can simply use `python path/to/your/script.py` without the need for poet
    ```
 
 2. Writing Tests: Create test files in the test directory, e.g., test/send_to_db.test.py, and write your tests using pytest.
+
+### Running CI locally
+Run `source local_ci.sh` to run the same CI checks as in the pipeline before pushing your code.
 
 ### Configuring PyPI User
 
