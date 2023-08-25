@@ -103,3 +103,8 @@ class StreamToLogger(object):
         if self.linebuf != "":
             self.logger.log(self.log_level, self.linebuf.rstrip())
         self.linebuf = ""
+
+    def fileno(self):
+        # File-like objects expect an attribute called
+        # fileno which returns the file descriptor number.
+        return 1  # return arbitrary number
