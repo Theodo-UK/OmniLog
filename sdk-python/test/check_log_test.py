@@ -1,16 +1,19 @@
 import datetime
 import unittest
 
+from prisma.types import llm_logsCreateInput
+
+from omnilogger.errors import LogDictKeyError
 from omnilogger.input_validation import check_log_type
 
 
 class TestLogType(unittest.TestCase):
-    valid_log = {
-        "datetime_utc": datetime.datetime.utcnow(),
-        "input": "What is this?",
-        "output": "This is a test log",
-        "total_tokens": 5,
-    }
+    valid_log = llm_logsCreateInput(
+        datetime_utc=datetime.datetime.utcnow(),
+        input_string="What is this?",
+        output_string="This is a test log",
+        total_tokens=5,
+    )
 
     def test_valid_log(self):
         """
@@ -27,10 +30,8 @@ class TestLogType(unittest.TestCase):
         """
         log = True
 
-        self.assertRaisesRegex(
-            TypeError,
-            r"Have you checked your log is a dictionary\?\nlog must be a dictionary"
-            r" with keys: datetime_utc, input, output, total_tokens",
+        self.assertRaises(
+            LogDictKeyError,
             check_log_type,
             log,
         )
@@ -39,14 +40,14 @@ class TestLogType(unittest.TestCase):
         """
         When log is missing a field, then KeyError is raised
         """
-        log = {"datetime_utc": datetime.datetime.utcnow()}
+        invalid_log = llm_logsCreateInput(
+            datetime_utc=datetime.datetime.utcnow(),
+        )
 
-        self.assertRaisesRegex(
-            KeyError,
-            "log must be a dictionary with keys: datetime_utc, input, output,"
-            " total_tokens",
+        self.assertRaises(
+            LogDictKeyError,
             check_log_type,
-            log,
+            invalid_log,
         )
 
     def test_log_datetime_type(self):
@@ -68,11 +69,11 @@ class TestLogType(unittest.TestCase):
         When log input is not a string, then TypeError is raised
         """
         log = self.valid_log.copy()
-        log["input"] = True
+        log["input_string"] = True
 
         self.assertRaisesRegex(
             TypeError,
-            "log.input must be a string",
+            "log.input_string must be a string",
             check_log_type,
             log,
         )
@@ -82,11 +83,11 @@ class TestLogType(unittest.TestCase):
         When log output is not a string, then TypeError is raised
         """
         log = self.valid_log.copy()
-        log["output"] = True
+        log["output_string"] = True
 
         self.assertRaisesRegex(
             TypeError,
-            "log.output must be a string",
+            "log.output_string must be a string",
             check_log_type,
             log,
         )
