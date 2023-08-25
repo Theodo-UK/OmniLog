@@ -4,6 +4,7 @@ import sys
 from datetime import datetime
 
 import openai
+from prisma.types import llm_logsCreateInput
 
 from omnilogger import send_to_db
 
@@ -60,13 +61,14 @@ class OpenAIFilter(logging.Filter):
         output = bytes(output, "utf-8").decode("unicode_escape")
         output = json.loads(output)
 
-        log = {
-            "input": self.prompt,
-            "datetime_utc": datetime.utcfromtimestamp(output["created"]),
-            "output": output["choices"][0]["text"],
-            "total_tokens": output["usage"]["total_tokens"],
-        }
-        send_to_db(self.url, log)
+        log = llm_logsCreateInput(
+            input_string=self.prompt,
+            output_string=output["choices"][0]["text"],
+            datetime_utc=datetime.utcfromtimestamp(output["created"]),
+            total_tokens=output["usage"]["total_tokens"],
+        )
+
+        send_to_db(log)
 
     def extract_prompt_from_request(self, data: str):
         self.prompt = data.split('"prompt": "')[1]
