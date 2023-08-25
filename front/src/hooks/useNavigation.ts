@@ -4,9 +4,9 @@ export const useNavigation = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const updateSearchParam = (
-        key1: string,
+        key1: "sortBy" | "dateTimeFilter",
         value1: string,
-        key2?: string,
+        key2?: "sortOrder",
         value2?: string,
     ) => {
         const params = new URLSearchParams(searchParams.toString());
