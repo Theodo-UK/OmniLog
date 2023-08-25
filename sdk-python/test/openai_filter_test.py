@@ -19,9 +19,7 @@ class TestOpenAIFilter(unittest.TestCase):
         handler_1.setLevel(logging.INFO)
         handler_2 = logging.StreamHandler(stream_2)
         handler_2.setLevel(logging.INFO)
-        handler_2.addFilter(
-            OpenAIFilter("postgres://testuser:1234qwer@host:5432/testdb")
-        )
+        handler_2.addFilter(OpenAIFilter())
         parent.addHandler(handler_1)
         child.addHandler(handler_2)
 

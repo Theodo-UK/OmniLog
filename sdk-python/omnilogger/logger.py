@@ -4,15 +4,16 @@ import sys
 from datetime import datetime
 
 import openai
+from prisma.types import llm_logsCreateInput
 
 from omnilogger import send_to_db
 
 
-def start_listener(url: str):
+def start_listener():
     openai.log = "debug"
 
     log_handler = logging.StreamHandler()
-    log_handler.addFilter(OpenAIFilter(url))
+    log_handler.addFilter(OpenAIFilter())
 
     logger = logging.getLogger("omnilog")
     logger.handlers = [log_handler]
@@ -21,11 +22,9 @@ def start_listener(url: str):
 
 
 class OpenAIFilter(logging.Filter):
-    url: str
     prompt: str
 
-    def __init__(self, url):
-        self.url = url
+    def __init__(self):
         self.prompt = ""
 
     def filter(self, record) -> bool:
@@ -60,13 +59,14 @@ class OpenAIFilter(logging.Filter):
         output = bytes(output, "utf-8").decode("unicode_escape")
         output = json.loads(output)
 
-        log = {
-            "input": self.prompt,
-            "datetime_utc": datetime.utcfromtimestamp(output["created"]),
-            "output": output["choices"][0]["text"],
-            "total_tokens": output["usage"]["total_tokens"],
-        }
-        send_to_db(self.url, log)
+        log = llm_logsCreateInput(
+            input_string=self.prompt,
+            output_string=output["choices"][0]["text"],
+            datetime_utc=datetime.utcfromtimestamp(output["created"]),
+            total_tokens=output["usage"]["total_tokens"],
+        )
+
+        send_to_db(log)
 
     def extract_prompt_from_request(self, data: str):
         self.prompt = data.split('"prompt": "')[1]
@@ -101,3 +101,8 @@ class StreamToLogger(object):
         if self.linebuf != "":
             self.logger.log(self.log_level, self.linebuf.rstrip())
         self.linebuf = ""
+
+    def fileno(self):
+        # File-like objects expect an attribute called
+        # fileno which returns the file descriptor number.
+        return 1  # return arbitrary number

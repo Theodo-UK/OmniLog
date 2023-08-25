@@ -9,10 +9,13 @@ Welcome to the OmniLogger Python Package!
   - [Introduction](#introduction)
   - [Usage](#usage)
   - [Contributing](#contributing)
+    - [Requirement](#requirement)
+    - [Getting Started](#getting-started)
     - [Managing Dependencies](#managing-dependencies)
     - [Running Python Files](#running-python-files)
       - [Tip](#tip)
     - [Running Tests](#running-tests)
+    - [Running CI locally](#running-ci-locally)
     - [Configuring PyPI User](#configuring-pypi-user)
     - [Publishing to PyPI](#publishing-to-pypi)
   - [Generating prisma types](#generating-prisma-types)
@@ -39,7 +42,7 @@ from omnilogger import start_listener
 Start the listener:
 
 ```python
-start_listener(database_url)
+start_listener()
 ```
 
 The listener will start listening to your logs to send those concerning openai to the database!
@@ -54,15 +57,22 @@ log = {
    "datetime_utc": "2021-08-31 14:00:00.00",
    "total_tokens": 100,
 }
-send_to_db(database_url, log)
+send_to_db(log)
 ```
 
 ## Contributing
 
-##3 Requirement
+### Requirement
 
 Make sure you have Poetry installed on your local machine. If not, follow the instruction on https://python-poetry.org/docs/.
 
+### Getting Started
+1. Create venv:
+   ```sh
+   pyenv install 3.11.3
+   poetry env use 3.11.3
+   poetry install
+   ```
 ### Managing Dependencies
 
 1. Adding Dependencies: Add any new project dependencies to [tool.poetry.dependencies] using:
@@ -112,6 +122,9 @@ Now you can simply use `python path/to/your/script.py` without the need for poet
    ```
 
 2. Writing Tests: Create test files in the test directory, e.g., test/send_to_db.test.py, and write your tests using pytest.
+
+### Running CI locally
+Run `source local_ci.sh` to run the same CI checks as in the pipeline before pushing your code.
 
 ### Configuring PyPI User
 
