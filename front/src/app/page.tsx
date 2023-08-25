@@ -8,10 +8,9 @@ export const revalidate = 0;
 export default async function Home({
     searchParams,
 }: {
-    searchParams?: { [key: string]: string | string[] | undefined };
+    searchParams?: URLSearchParams;
 }) {
-    const selectedTime = searchParams?.dateTimeFilter?.toString();
-    const logs = await LogsData.getLogs(selectedTime || "Last hour");
+    const logs = await LogsData.getLogs(searchParams);
 
     return (
         <div className="flex flex-col gap-4 w-full">
