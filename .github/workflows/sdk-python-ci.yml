@@ -28,6 +28,23 @@ jobs:
           poetry-version: '1.5.1'
       - name: Install dependencies
         run: poetry install
+      - name: Generate prisma types
+        run: poetry run prisma generate --schema ../prisma/schema.prisma --generator client_py
+      - name: Check cwd
+        run: pwd
+      - name: "Check existence of prisma package file"
+        uses: andstor/file-existence-action@v2
+        with:
+          files: "sdk-python/.venv/lib/python3.11/site-packages/prisma/__init__.py"
+          fail: true
+      - name: "Read prisma package file contents"
+        uses: andstor/file-reader-action@v1
+        with:
+          path: "sdk-python/.venv/lib/python3.11/site-packages/prisma/__init__.py"
+      - name: "Read client file contents"
+        uses: andstor/file-reader-action@v1
+        with:
+          path: "sdk-python/.venv/lib/python3.11/site-packages/prisma/client.py"
       - name: Check import organisation
         run: poetry run isort omnilogger test --check-only # check test and omnilogger folder
       - name: Check flake8 linting
