@@ -20,15 +20,12 @@ export const extractDataFromSearchParam = (searchParams?: URLSearchParams) => {
     const selectedTime = params.get("dateTimeFilter") || "Last hour";
     const timeframe = stringToTimeframeObject(selectedTime);
 
-    const sortBy = params.get("sortBy");
-    const sortOrder = params.get("sortOrder");
-    let sortObject = undefined;
-    if (sortBy && sortOrder) {
-        sortObject = stringsToSortObject(
-            sortBy as keyof llm_logs,
-            sortOrder as Order,
-        );
-    }
+    const sortBy = params.get("sortBy") || "datetime_utc";
+    const sortOrder = params.get("sortOrder") || "desc";
+    const sortObject = stringsToSortObject(
+        sortBy as keyof llm_logs,
+        sortOrder as Order,
+    );
     return { timeframe, sort: sortObject };
 };
 
