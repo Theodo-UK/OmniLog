@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { stringToTimeframeObject } from "../helpers/stringToTimeframeObject";
+import { stringToTimeframeObject } from "../helpers/formatSearchParamToPrismaQuery";
 
 describe("stringToTimeframeObject", () => {
     it(

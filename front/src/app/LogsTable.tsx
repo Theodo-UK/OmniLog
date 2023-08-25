@@ -1,13 +1,13 @@
 "use client";
 import { CardAtom } from "@/atomic/atoms/CardAtom";
+import { useNavigation } from "@/hooks/useNavigation";
 import { llm_logs } from "@prisma/client";
-import { useRouter } from "next/navigation";
 
 type Props = {
     logs: llm_logs[];
 };
 export default function LogsTable({ logs }: Props) {
-    const router = useRouter();
+    const { router } = useNavigation();
 
     return (
         <CardAtom>
@@ -18,7 +18,10 @@ export default function LogsTable({ logs }: Props) {
                             ID
                         </th>
                         <th className="px-4 py-2 text-left text-gray-600 w-1/6">
-                            Date/Time (UTC)
+                            <ClickableColHeader
+                                title="Date"
+                                sortKey="datetime_utc"
+                            />
                         </th>
                         <th className="px-4 py-2 text-left text-gray-600">
                             Input String
@@ -27,7 +30,10 @@ export default function LogsTable({ logs }: Props) {
                             Output String
                         </th>
                         <th className="px-4 py-2 text-left text-gray-600  w-1/12">
-                            Total Tokens
+                            <ClickableColHeader
+                                title="Total Tokens"
+                                sortKey="total_tokens"
+                            />
                         </th>
                     </tr>
                 </thead>
@@ -62,3 +68,28 @@ export default function LogsTable({ logs }: Props) {
         </CardAtom>
     );
 }
+
+const ClickableColHeader = ({
+    title,
+    sortKey,
+}: {
+    title: string;
+    sortKey: "datetime_utc" | "total_tokens" | "id";
+}) => {
+    const { searchParams, updateSearchParam } = useNavigation();
+    const sortBy = (key: keyof llm_logs) => {
+        const order = searchParams.get("sortOrder") === "asc" ? "desc" : "asc";
+        updateSearchParam("sortBy", key, "sortOrder", order);
+    };
+    return (
+        <div
+            className={sortKey ? "cursor-pointer" : ""}
+            onClick={() => {
+                console.log("clicked");
+                sortBy(sortKey);
+            }}
+        >
+            {title}
+        </div>
+    );
+};
