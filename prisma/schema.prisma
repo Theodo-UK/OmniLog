@@ -2,6 +2,7 @@
 
 generator client_py {
   provider = "prisma-client-py"
+  interface = "sync"
   output = "../sdk-python/.venv/lib/python3.11/site-packages/prisma/"
 }
 
