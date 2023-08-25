@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { extractDataFromSearchParam } from "../helpers/formatSearchParamToObject";
+import { extractDataFromSearchParam } from "../helpers/formatSearchParamToPrismaQuery";
 
 describe("extractDataFromSearchParam", () => {
     it("should return an object with the key as the property and the order as the value", () => {

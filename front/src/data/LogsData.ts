@@ -1,6 +1,6 @@
 import { llm_logs } from "@prisma/client";
 import { prisma } from "./PrismaClient";
-import { extractDataFromSearchParam } from "./helpers/formatSearchParamToObject";
+import { extractDataFromSearchParam } from "./helpers/formatSearchParamToPrismaQuery";
 
 export const LogsData = {
     getLogs: async (searchParams?: URLSearchParams): Promise<llm_logs[]> => {

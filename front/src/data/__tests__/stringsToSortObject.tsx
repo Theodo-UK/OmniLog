@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { stringsToSortObject } from "../helpers/formatSearchParamToObject";
+import { stringsToSortObject } from "../helpers/formatSearchParamToPrismaQuery";
 
 describe("stringsToSortObject", () => {
     it("should return an object with the key as the property and the order as the value", () => {
