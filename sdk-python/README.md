@@ -9,6 +9,7 @@ Welcome to the OmniLogger Python Package!
   - [Introduction](#introduction)
   - [Usage](#usage)
   - [Contributing](#contributing)
+    - [Getting Started](#getting-started)
     - [Managing Dependencies](#managing-dependencies)
     - [Running Python Files](#running-python-files)
       - [Tip](#tip)
@@ -63,6 +64,13 @@ send_to_db(database_url, log)
 
 Make sure you have Poetry installed on your local machine. If not, follow the instruction on https://python-poetry.org/docs/.
 
+### Getting Started
+1. Create venv:
+   ```sh
+   pyenv install 3.11.3
+   poetry env use 3.11.3
+   poetry install
+   ```
 ### Managing Dependencies
 
 1. Adding Dependencies: Add any new project dependencies to [tool.poetry.dependencies] using:
