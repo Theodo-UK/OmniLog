@@ -89,7 +89,8 @@ const ClickableColHeader = ({
     }
 
     const sortBy = (key: keyof llm_logs) => {
-        const newOrder = !!order && order === "asc" ? "desc" : "asc";
+        const newOrder =
+            order === undefined || order === "asc" ? "desc" : "asc";
         updateSearchParam("sortBy", key, "sortOrder", newOrder);
     };
     return (
