@@ -9,11 +9,11 @@ from prisma.types import llm_logsCreateInput
 from omnilogger import send_to_db
 
 
-def start_listener(url: str):
+def start_listener():
     openai.log = "debug"
 
     log_handler = logging.StreamHandler()
-    log_handler.addFilter(OpenAIFilter(url))
+    log_handler.addFilter(OpenAIFilter())
 
     logger = logging.getLogger("omnilog")
     logger.handlers = [log_handler]
@@ -22,11 +22,9 @@ def start_listener(url: str):
 
 
 class OpenAIFilter(logging.Filter):
-    url: str
     prompt: str
 
-    def __init__(self, url):
-        self.url = url
+    def __init__(self):
         self.prompt = ""
 
     def filter(self, record) -> bool:

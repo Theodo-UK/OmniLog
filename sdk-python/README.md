@@ -40,7 +40,7 @@ from omnilogger import start_listener
 Start the listener:
 
 ```python
-start_listener(database_url)
+start_listener()
 ```
 
 The listener will start listening to your logs to send those concerning openai to the database!
@@ -55,7 +55,7 @@ log = {
    "datetime_utc": "2021-08-31 14:00:00.00",
    "total_tokens": 100,
 }
-send_to_db(database_url, log)
+send_to_db(log)
 ```
 
 ## Contributing
