@@ -7,7 +7,9 @@ export const TimeDropdown = () => {
     const searchParams = useSearchParams();
     const selectedTime = searchParams.get("dateTimeFilter") || "Last hour";
     const onTimeSelect = (newValue: string) => {
-        router.push(`?dateTimeFilter=${newValue}`);
+        const params = new URLSearchParams(searchParams.toString());
+        params.set("dateTimeFilter", newValue);
+        router.push(`?${params.toString()}`);
     };
     return (
         <Dropdown
