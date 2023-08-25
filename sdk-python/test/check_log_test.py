@@ -30,8 +30,9 @@ class TestLogType(unittest.TestCase):
         """
         log = True
 
-        self.assertRaises(
-            LogDictKeyError,
+        self.assertRaisesRegex(
+            AssertionError,
+            LogDictKeyError().args[0],  # error message
             check_log_type,
             log,
         )
@@ -44,8 +45,9 @@ class TestLogType(unittest.TestCase):
             datetime_utc=datetime.datetime.utcnow(),
         )
 
-        self.assertRaises(
-            LogDictKeyError,
+        self.assertRaisesRegex(
+            AssertionError,
+            LogDictKeyError().args[0],  # error message
             check_log_type,
             invalid_log,
         )
@@ -58,7 +60,7 @@ class TestLogType(unittest.TestCase):
         log["datetime_utc"] = True
 
         self.assertRaisesRegex(
-            TypeError,
+            AssertionError,
             "log.datetime_utc must be a datetime object",
             check_log_type,
             log,
@@ -66,13 +68,13 @@ class TestLogType(unittest.TestCase):
 
     def test_log_input_type(self):
         """
-        When log input is not a string, then TypeError is raised
+        When log input is not a string, then AssertionError is raised
         """
         log = self.valid_log.copy()
         log["input_string"] = True
 
         self.assertRaisesRegex(
-            TypeError,
+            AssertionError,
             "log.input_string must be a string",
             check_log_type,
             log,
@@ -80,13 +82,13 @@ class TestLogType(unittest.TestCase):
 
     def test_log_output_type(self):
         """
-        When log output is not a string, then TypeError is raised
+        When log output is not a string, then AssertionError is raised
         """
         log = self.valid_log.copy()
         log["output_string"] = True
 
         self.assertRaisesRegex(
-            TypeError,
+            AssertionError,
             "log.output_string must be a string",
             check_log_type,
             log,
@@ -94,13 +96,13 @@ class TestLogType(unittest.TestCase):
 
     def test_log_total_tokens_type(self):
         """
-        When log total_tokens is not an integer, then TypeError is raised
+        When log total_tokens is not an integer, then AssertionError is raised
         """
         log = self.valid_log.copy()
         log["total_tokens"] = True
 
         self.assertRaisesRegex(
-            TypeError,
+            AssertionError,
             "log.total_tokens must be an integer",
             check_log_type,
             log,

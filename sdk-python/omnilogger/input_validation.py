@@ -11,25 +11,37 @@ def check_url_type(url):
 
 
 def check_log_type(log: llm_logsCreateInput):
-    if not isinstance(log, dict):
-        raise LogDictKeyError()
-    
-    if set(log.keys()) != {
-        "datetime_utc",
-        "input_string",
-        "output_string",
-        "total_tokens",
-    }:
-        raise LogDictKeyError()
-    
-    if not isinstance(log["datetime_utc"], datetime.datetime):
-        raise TypeError("log.datetime_utc must be a datetime object")
-    if not isinstance(log["input_string"], str):
-        raise TypeError("log.input_string must be a string")
-    if not isinstance(log["output_string"], str):
-        raise TypeError("log.output_string must be a string")
-    if type(log["total_tokens"]) is not int:
-        raise TypeError("log.total_tokens must be an integer")
+    assert isinstance(log, dict), LogDictKeyError()
+    assert set({**log.copy(), "id": -1}.keys()) == set(
+        llm_logsCreateInput.__annotations__.keys()
+    ), LogDictKeyError()
+
+    assert isinstance(log["datetime_utc"], datetime.datetime), TypeError(
+        "log.datetime_utc must be a datetime object"
+    )
+    assert isinstance(log["input_string"], str), TypeError(
+        "log.input_string must be a string"
+    )
+    assert isinstance(log["output_string"], str), TypeError(
+        "log.output_string must be a string"
+    )
+    assert type(log["total_tokens"]) is int, TypeError(
+        "log.total_tokens must be an integer"
+    )
+
 
 if __name__ == "__main__":
-    check_log_type(True)
+    log = llm_logsCreateInput(
+        datetime_utc=datetime.datetime.utcnow(),
+        input_string="What is this?",
+        output_string="This is a test log",
+        total_tokens=5,
+    )
+    mockLogWithId = {**log.copy(), "id": -1}
+    mockLogWithId["id"] = -1
+    print(set(log.keys()))
+    print(set(llm_logsCreateInput.__annotations__.keys()))
+    print(
+        set({**log.copy(), "id": -1}.keys())
+        == set(llm_logsCreateInput.__annotations__.keys())
+    )
