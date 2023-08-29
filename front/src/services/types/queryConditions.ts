@@ -1,4 +1,4 @@
-import { Order } from "./sort";
+import { Order } from "@/types/sort";
 
 export type Timeframe = {
     lte: Date;

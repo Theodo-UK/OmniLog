@@ -1,7 +1,7 @@
 import { TimeOption } from "@/types/filter";
-import { PrismaSort, Timeframe } from "@/types/prismaQueries";
 import { Order } from "@/types/sort";
 import { llm_logs } from "@prisma/client";
+import { PrismaSort, Timeframe } from "../types/queryConditions";
 
 const MS_PER_HOUR = 60 * 60 * 1000;
 const MS_PER_DAY = 24 * MS_PER_HOUR;
