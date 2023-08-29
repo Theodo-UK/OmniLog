@@ -1,7 +1,6 @@
 import { FilterHeader } from "@/features/filter/FilterHeader";
-import EmptyLogs from "../features/tables/EmptyLogs";
-import LogsTable from "../features/tables/LogsTable";
-import { LogsData } from "../services/LogsData";
+import { TableBody } from "@/features/tables/TableBody";
+import { LogsData } from "@/services/LogsData";
 
 export const revalidate = 0;
 
@@ -15,7 +14,7 @@ export default async function Home({
     return (
         <>
             <FilterHeader />
-            {logs.length === 0 ? <EmptyLogs /> : <LogsTable logs={logs} />}
+            <TableBody logs={logs} />
         </>
     );
 }

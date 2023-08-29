@@ -1,4 +1,4 @@
-import { TimeOptions } from "@/types/filter";
+import { TimeOption } from "@/types/filter";
 import { PrismaSort, Timeframe } from "@/types/prismaQueries";
 import { Order } from "@/types/sort";
 import { llm_logs } from "@prisma/client";
@@ -11,7 +11,7 @@ export const extractDataFromSearchParam = (searchParams?: URLSearchParams) => {
     const params = new URLSearchParams(searchParams);
 
     const selectedTime =
-        (params.get("dateTimeFilter") as TimeOptions) || "Last hour";
+        (params.get("dateTimeFilter") as TimeOption) || "Last hour";
     const timeframe = stringToTimeframeObject(selectedTime);
 
     const sortBy = params.get("sortBy") || "datetime_utc";
@@ -24,7 +24,7 @@ export const extractDataFromSearchParam = (searchParams?: URLSearchParams) => {
 };
 
 export const stringToTimeframeObject = (
-    stringTimeframe: TimeOptions,
+    stringTimeframe: TimeOption,
 ): Timeframe => {
     const now = new Date();
     let numberTimeframe;
