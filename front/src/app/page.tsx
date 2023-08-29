@@ -1,7 +1,7 @@
-import { FilterHeader } from "@/atomic/molecules/FilterHeader";
+import { FilterHeader } from "@/features/LogFilter/FilterHeader";
 import { LogsData } from "../data/LogsData";
-import EmptyLogs from "./EmptyLogs";
-import LogsTable from "./LogsTable";
+import EmptyLogs from "../features/LogTables/EmptyLogs";
+import LogsTable from "../features/LogTables/LogsTable";
 
 export const revalidate = 0;
 

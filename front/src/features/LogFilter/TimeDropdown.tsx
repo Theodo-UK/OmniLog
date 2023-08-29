@@ -1,5 +1,5 @@
 import { useNavigation } from "@/hooks/useNavigation";
-import { Dropdown } from "../atoms/Dropdown";
+import { Dropdown } from "../../atomic/molecules/Dropdown";
 
 export const TimeDropdown = () => {
     const { searchParams, updateSearchParam } = useNavigation();
