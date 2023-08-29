@@ -1,6 +1,6 @@
-import { FilterHeader } from "@/features/LogFilter/FilterHeader";
-import EmptyLogs from "../features/LogTables/EmptyLogs";
-import LogsTable from "../features/LogTables/LogsTable";
+import { FilterHeader } from "@/features/filter/FilterHeader";
+import EmptyLogs from "../features/tables/EmptyLogs";
+import LogsTable from "../features/tables/LogsTable";
 import { LogsData } from "../services/LogsData";
 
 export const revalidate = 0;
