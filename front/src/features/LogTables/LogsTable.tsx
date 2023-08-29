@@ -1,6 +1,7 @@
 "use client";
 import { CardAtom } from "@/components/atoms/CardAtom";
 import { useNavigation } from "@/hooks/useNavigation";
+import { SortOptions } from "@/types/sort";
 import {
     faSort,
     faSortDown,
@@ -80,7 +81,7 @@ const ClickableColHeader = ({
     sortKey,
 }: {
     title: string;
-    sortKey: "datetime_utc" | "total_tokens" | "id";
+    sortKey: SortOptions;
 }) => {
     const { searchParams, updateSearchParam } = useNavigation();
     let order: string | undefined = undefined;
@@ -88,10 +89,10 @@ const ClickableColHeader = ({
         order = searchParams.get("sortOrder") || undefined;
     }
 
-    const sortBy = (key: keyof llm_logs) => {
+    const sortBy = (key: SortOptions) => {
         const newOrder =
             order === undefined || order === "asc" ? "desc" : "asc";
-        updateSearchParam("sortBy", key, "sortOrder", newOrder);
+        updateSearchParam({ sortBy: key, sortOrder: newOrder });
     };
     return (
         <div
