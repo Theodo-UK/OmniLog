@@ -1,7 +1,6 @@
-import { FilterHeader } from "@/atomic/molecules/FilterHeader";
-import { LogsData } from "../data/LogsData";
-import EmptyLogs from "./EmptyLogs";
-import LogsTable from "./LogsTable";
+import { FilterHeader } from "@/features/filter/FilterHeader";
+import { TableBody } from "@/features/tables/TableBody";
+import { LogsData } from "@/services/LogsData";
 
 export const revalidate = 0;
 
@@ -13,9 +12,9 @@ export default async function Home({
     const logs = await LogsData.getLogs(searchParams);
 
     return (
-        <div className="flex flex-col gap-4 w-full">
+        <>
             <FilterHeader />
-            {logs.length === 0 ? <EmptyLogs /> : <LogsTable logs={logs} />}
-        </div>
+            <TableBody logs={logs} />
+        </>
     );
 }

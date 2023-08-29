@@ -1,9 +1,11 @@
 import type { Config } from "tailwindcss";
+import groupModifierPlugin from "tailwindcss-group-modifier-plugin";
 
 const config: Config = {
     content: [
         "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-        "./src/atomic/**/*.{js,ts,jsx,tsx,mdx}",
+        "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+        "./src/features/**/*.{js,ts,jsx,tsx,mdx}",
     ],
     theme: {
         extend: {
@@ -24,6 +26,6 @@ const config: Config = {
             },
         },
     },
-    plugins: [],
+    plugins: [groupModifierPlugin({ prefix: "gp" })],
 };
 export default config;

@@ -1,18 +1,15 @@
 "use client";
-import { CardAtom } from "@/atomic/atoms/CardAtom";
+import { CardAtom } from "@/components/atoms/CardAtom";
 import { useNavigation } from "@/hooks/useNavigation";
+import { LogDataArray, SortOptions } from "@/types/logDisplayOptions";
 import {
     faSort,
     faSortDown,
     faSortUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { llm_logs } from "@prisma/client";
 
-type Props = {
-    logs: llm_logs[];
-};
-export default function LogsTable({ logs }: Props) {
+export default function LogsTable({ logs }: { logs: LogDataArray }) {
     const { router } = useNavigation();
 
     return (
@@ -80,7 +77,7 @@ const ClickableColHeader = ({
     sortKey,
 }: {
     title: string;
-    sortKey: "datetime_utc" | "total_tokens" | "id";
+    sortKey: SortOptions;
 }) => {
     const { searchParams, updateSearchParam } = useNavigation();
     let order: string | undefined = undefined;
@@ -88,10 +85,10 @@ const ClickableColHeader = ({
         order = searchParams.get("sortOrder") || undefined;
     }
 
-    const sortBy = (key: keyof llm_logs) => {
+    const sortBy = (key: SortOptions) => {
         const newOrder =
             order === undefined || order === "asc" ? "desc" : "asc";
-        updateSearchParam("sortBy", key, "sortOrder", newOrder);
+        updateSearchParam({ sortBy: key, sortOrder: newOrder });
     };
     return (
         <div

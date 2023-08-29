@@ -1,23 +1,16 @@
+import { Order, TimeOption } from "@/types/logDisplayOptions";
 import { llm_logs } from "@prisma/client";
+import { PrismaSort, Timeframe } from "../types/queryConditions";
 
 const MS_PER_HOUR = 60 * 60 * 1000;
 const MS_PER_DAY = 24 * MS_PER_HOUR;
 const MS_PER_WEEK = 7 * MS_PER_DAY;
 
-type Timeframe = {
-    lte: Date;
-    gte: Date;
-};
-export type Order = "asc" | "desc";
-export type Sort =
-    | { id: Order }
-    | { datetime_utc: Order }
-    | { total_tokens: Order };
-
 export const extractDataFromSearchParam = (searchParams?: URLSearchParams) => {
     const params = new URLSearchParams(searchParams);
 
-    const selectedTime = params.get("dateTimeFilter") || "Last hour";
+    const selectedTime =
+        (params.get("dateTimeFilter") as TimeOption) || "Last hour";
     const timeframe = stringToTimeframeObject(selectedTime);
 
     const sortBy = params.get("sortBy") || "datetime_utc";
@@ -29,7 +22,9 @@ export const extractDataFromSearchParam = (searchParams?: URLSearchParams) => {
     return { timeframe, sort: sortObject };
 };
 
-export const stringToTimeframeObject = (stringTimeframe: string): Timeframe => {
+export const stringToTimeframeObject = (
+    stringTimeframe: TimeOption,
+): Timeframe => {
     const now = new Date();
     let numberTimeframe;
     switch (stringTimeframe) {
@@ -55,7 +50,7 @@ export const stringToTimeframeObject = (stringTimeframe: string): Timeframe => {
 export const stringsToSortObject = (
     key: keyof llm_logs,
     order: Order,
-): Sort => {
+): PrismaSort => {
     switch (key) {
         case "datetime_utc":
             return { datetime_utc: order };
