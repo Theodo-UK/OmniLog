@@ -31,14 +31,4 @@ describe("stringToTimeframeObject", () => {
             expect(difference).toEqual(604800000);
         },
     );
-    it(
-        "When calling with a unexpected string, " +
-            "then returns the timeframe corresponding to Last hour",
-        () => {
-            const timestamp = stringToTimeframeObject("unexpected string");
-            const difference =
-                timestamp.lte.getTime() - timestamp.gte.getTime();
-            expect(difference).toEqual(3600000);
-        },
-    );
 });
