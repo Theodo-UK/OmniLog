@@ -15,7 +15,7 @@ export const Dropdown = ({ options, selected, onSelect }: DropdownProps) => {
     return (
         <Listbox value={selected} onChange={onSelect}>
             <div className="relative w-full">
-                <Listbox.Button className="relative w-full border-2 border-gray-300 rounded-lg bg-white h-10 py-2 pl-3 pr-10 text-left hover:bg-gray-100 focus:border-theodo-blue focus:outline-none focus-visible:border-theodo-blue focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-theodo-grey sm:text-sm">
+                <Listbox.Button className="relative w-full border-2 border-gray-300 rounded-lg bg-white h-10 py-2 pl-3 pr-10 text-left hover:bg-gray-100 focus:gp-[border-theodo-blue,outline-none] focus-visible:gp-[border-theodo-blue,ring-2,ring-white,ring-opacity-75,ring-offset-2,ring-offset-theodo-grey] sm:text-sm">
                     <DropdownButton text={selected} faIcon={faCalendarDays} />
                 </Listbox.Button>
                 <Transition

@@ -8651,6 +8651,11 @@ table@^6.8.1:
     string-width "^4.2.3"
     strip-ansi "^6.0.1"
 
+tailwindcss-group-modifier-plugin@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/tailwindcss-group-modifier-plugin/-/tailwindcss-group-modifier-plugin-0.1.1.tgz#2163323b7010778816e3f28d14b40f47f5adcb16"
+  integrity sha512-3dO5rJydC9nmuzvCV8h7xcn2UPWaNdikTsFifBcDnSW37/kUsyMuc8+ifiDw84Fa+LCewmHc8+eWwrvRi9oLlg==
+
 tailwindcss@3.3.3:
   version "3.3.3"
   resolved "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.3.3.tgz"
