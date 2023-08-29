@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 
-jest.mock("../../data/LogsData.ts", () => ({
+jest.mock("@data/LogsData.ts", () => ({
     getLogs: jest.fn(() => Promise.resolve([])),
 }));
 

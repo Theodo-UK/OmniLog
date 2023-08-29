@@ -1,5 +1,5 @@
 "use client";
-import { CardAtom } from "@/atomic/atoms/CardAtom";
+import { CardAtom } from "@/components/atoms/CardAtom";
 import { useNavigation } from "@/hooks/useNavigation";
 import {
     faSort,

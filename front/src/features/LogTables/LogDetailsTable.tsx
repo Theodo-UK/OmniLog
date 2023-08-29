@@ -1,4 +1,4 @@
-import { CardAtom } from "@/atomic/atoms/CardAtom";
+import { CardAtom } from "@/components/atoms/CardAtom";
 import { llm_logs } from "@prisma/client";
 
 export const LogDetailsTable = ({ logDetails }: { logDetails: llm_logs }) => {

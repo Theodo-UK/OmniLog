@@ -1,5 +1,5 @@
-import { LogsData } from "@/data/LogsData";
 import { LogDetailsTable } from "@/features/LogTables/LogDetailsTable";
+import { LogsData } from "@/services/LogsData";
 
 export default async function LogDetails({
     params,

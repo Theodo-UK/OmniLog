@@ -1,4 +1,4 @@
-import { Scaffold } from "@/atomic/molecules/Scaffold";
+import { Scaffold } from "@/components/molecules/Scaffold";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../style/globals.css";
