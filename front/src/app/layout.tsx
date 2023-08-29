@@ -1,7 +1,7 @@
 import { Scaffold } from "@/atomic/molecules/Scaffold";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../style/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
