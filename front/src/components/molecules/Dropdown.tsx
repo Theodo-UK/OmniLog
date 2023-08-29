@@ -2,8 +2,8 @@ import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { Listbox, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-import { DropdownButton } from "../atoms/DropdownButton";
-import { DropdownOptionTile } from "../atoms/DropdownOptionTile";
+import { DropdownButton } from "../atoms/Dropdown/Button";
+import { DropdownOptionTile } from "../atoms/Dropdown/OptionTile";
 
 type DropdownProps = {
     options: string[];
