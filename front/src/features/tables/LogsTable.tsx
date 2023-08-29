@@ -1,19 +1,15 @@
 "use client";
 import { CardAtom } from "@/components/atoms/CardAtom";
 import { useNavigation } from "@/hooks/useNavigation";
-import { SortOptions } from "@/types/sort";
+import { LogDataArray, SortOptions } from "@/types/logDisplayOptions";
 import {
     faSort,
     faSortDown,
     faSortUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { llm_logs } from "@prisma/client";
 
-type Props = {
-    logs: llm_logs[];
-};
-export default function LogsTable({ logs }: Props) {
+export default function LogsTable({ logs }: { logs: LogDataArray }) {
     const { router } = useNavigation();
 
     return (

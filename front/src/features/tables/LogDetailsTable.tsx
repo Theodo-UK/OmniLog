@@ -1,7 +1,7 @@
 import { CardAtom } from "@/components/atoms/CardAtom";
-import { llm_logs } from "@prisma/client";
+import { LogData } from "@/types/logDisplayOptions";
 
-export const LogDetailsTable = ({ logDetails }: { logDetails: llm_logs }) => {
+export const LogDetailsTable = ({ logDetails }: { logDetails: LogData }) => {
     return (
         <CardAtom>
             <table className="table-auto w-full">

@@ -1,5 +1,4 @@
-import { TimeOption } from "@/types/filter";
-import { Order } from "@/types/sort";
+import { Order, TimeOption } from "@/types/logDisplayOptions";
 import { llm_logs } from "@prisma/client";
 import { PrismaSort, Timeframe } from "../types/queryConditions";
 

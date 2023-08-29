@@ -1,6 +1,6 @@
 import { Dropdown } from "@/components/molecules/Dropdown";
 import { useNavigation } from "@/hooks/useNavigation";
-import { TimeOption } from "@/types/filter";
+import { TimeOption } from "@/types/logDisplayOptions";
 
 export const TimeDropdown = () => {
     const { searchParams, updateSearchParam } = useNavigation();
