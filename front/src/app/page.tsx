@@ -13,9 +13,9 @@ export default async function Home({
     const logs = await LogsData.getLogs(searchParams);
 
     return (
-        <div className="flex flex-col gap-4 w-full">
+        <>
             <FilterHeader />
             {logs.length === 0 ? <EmptyLogs /> : <LogsTable logs={logs} />}
-        </div>
+        </>
     );
 }
