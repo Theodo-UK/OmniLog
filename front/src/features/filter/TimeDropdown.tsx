@@ -5,10 +5,9 @@ import { TimeOption } from "@/types/logDisplayOptions";
 export const TimeDropdown = () => {
     const { searchParams, updateSearchParam } = useNavigation();
     const timeOptions = ["Last hour", "Last day", "Last week"];
-    const selectedTime = searchParams.get("dateTimeFilter");
+    let selectedTime = searchParams.get("dateTimeFilter");
     if (!selectedTime || !timeOptions.includes(selectedTime)) {
-        updateSearchParam({ dateTimeFilter: "Last hour" });
-        return null;
+        selectedTime = "Last hour";
     }
     const onTimeSelect = (newValue: string) => {
         if (timeOptions.includes(newValue))
