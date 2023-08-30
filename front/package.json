@@ -11,10 +11,12 @@
     "test": "jest",
     "generate": "yarn prisma generate --generator client_js",
     "db-reset": "yarn prisma db push --force-reset --skip-generate",
+    "seed": "yarn prisma db seed",
     "format": "prettier --write ."
   },
   "prisma": {
-    "schema": "../prisma/schema.prisma"
+    "schema": "../prisma/schema.prisma",
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} ./prisma/seed.ts"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -26,7 +28,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@headlessui/react": "^1.7.17",
     "@prisma/client": "^5.2.0",
-    "@types/node": "20.4.8",
+    "@types/node": "^20.5.7",
     "@types/react": "18.2.18",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
@@ -57,6 +59,7 @@
     "jest-environment-jsdom": "^29.6.2",
     "prettier": "^3.0.1",
     "prisma": "^5.2.0",
-    "sst": "^2.23.6"
+    "sst": "^2.23.6",
+    "ts-node": "^10.9.1"
   }
 }
