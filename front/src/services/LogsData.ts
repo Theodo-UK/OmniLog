@@ -15,7 +15,7 @@ export const LogsData = {
     getLogDetails: async (id: string): Promise<llm_logs> => {
         const log = await prisma.llm_logs.findUnique({
             where: {
-                id: parseInt(id),
+                id,
             },
         });
 
