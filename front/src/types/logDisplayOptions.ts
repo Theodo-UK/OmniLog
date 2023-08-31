@@ -4,6 +4,7 @@ export type LogDisplayOptions = {
     sortBy?: SortOptions;
     sortOrder?: Order;
     dateTimeFilter?: TimeOption;
+    search?: string;
 };
 
 export type TimeOption = "Last hour" | "Last day" | "Last week";
