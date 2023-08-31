@@ -15,6 +15,15 @@ async function main() {
         },
     });
     console.log({ user });
+    const log = await prisma.llm_logs.create({
+        data: {
+            datetime_utc: new Date().toISOString(),
+            input_string: "Some string",
+            output_string: "Some result",
+            total_tokens: 1,
+        },
+    });
+    console.log({ log });
 }
 main()
     .then(() => prisma.$disconnect())
