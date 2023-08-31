@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 async function main() {
     const password = await hash("test", 12);
-    const user = await prisma.user.upsert({
+    const user = await prisma.omnilog_user.upsert({
         where: { email: "test@test.com" },
         update: {},
         create: {
