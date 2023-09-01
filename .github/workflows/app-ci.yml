@@ -38,4 +38,8 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: --cwd front test # front/yarn test
+      - name: Check build
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: --cwd front test # front/yarn build
 
