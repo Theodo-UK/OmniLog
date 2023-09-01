@@ -25,6 +25,14 @@ If you completed these steps correctly, you should be able to run `aws sts get-c
 
 ### 3. Add database URI to .env
 
+Copy `.env-template` into 
+- `.env.development`
+  - fill in DATABASE_URL 
+- `.env.production`
+  - fill in DATABASE_URL
+  - replace NEXTAUTH_SECRET and NEXTAUTH_URL
+
+
 It should look like this, with `?pgbouncer=true` at the end ([see issue](https://github.com/prisma/prisma/issues/11643#issuecomment-1034078942)):
 `DATABASE_URL=<your_database_uri>?pgbouncer=true`
 

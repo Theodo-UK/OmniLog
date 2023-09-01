@@ -27,7 +27,10 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.env
 .env*.local
+.env.production
+.env.development
 
 # vercel
 .vercel
@@ -44,4 +47,3 @@ next-env.d.ts
 .sst/
 /.sst/debug.log
 
-.env
