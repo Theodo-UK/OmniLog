@@ -2,7 +2,7 @@
 const nextConfig = {
     experimental: {
         typedRoutes: true,
-        serverComponentsExternalPackages: ['@prisma/client','bcrypt']
+        serverComponentsExternalPackages: ['@prisma/client','bcryptjs']
     },
 };
 
