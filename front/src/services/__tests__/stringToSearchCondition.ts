@@ -10,9 +10,11 @@ describe("stringToSearchCondition", () => {
         const expected = [
             {
                 input_string: { contains: searchString },
+                mode: "insensitive",
             },
             {
                 output_string: { contains: searchString },
+                mode: "insensitive",
             },
         ];
 
