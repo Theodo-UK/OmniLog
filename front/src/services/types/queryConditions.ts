@@ -13,10 +13,10 @@ export type PrismaSort =
 export type SearchCondition =
     | [
           {
-              input_string: { contains: string };
+              input_string: { contains: string; mode: "insensitive" };
           },
           {
-              output_string: { contains: string };
+              output_string: { contains: string; mode: "insensitive" };
           },
       ]
     | undefined;

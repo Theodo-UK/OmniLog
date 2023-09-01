@@ -75,10 +75,10 @@ export const stringToSearchCondition = (
     if (searchString)
         return [
             {
-                input_string: { contains: searchString },
+                input_string: { contains: searchString, mode: "insensitive" },
             },
             {
-                output_string: { contains: searchString },
+                output_string: { contains: searchString, mode: "insensitive" },
             },
         ];
     else return undefined;
