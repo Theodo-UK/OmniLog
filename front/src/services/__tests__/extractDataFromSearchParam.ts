@@ -26,11 +26,13 @@ describe("extractDataFromSearchParam", () => {
             {
                 input_string: {
                     contains: "first",
+                    mode: "insensitive",
                 },
             },
             {
                 output_string: {
                     contains: "first",
+                    mode: "insensitive",
                 },
             },
         ]);
