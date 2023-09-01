@@ -10,11 +10,13 @@ export type PrismaSort =
     | { datetime_utc: Order }
     | { total_tokens: Order };
 
-export type SearchCondition = [
-    {
-        input_string: { contains: string };
-    },
-    {
-        output_string: { contains: string };
-    },
-];
+export type SearchCondition =
+    | [
+          {
+              input_string: { contains: string };
+          },
+          {
+              output_string: { contains: string };
+          },
+      ]
+    | undefined;

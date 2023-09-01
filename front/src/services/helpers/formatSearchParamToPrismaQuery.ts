@@ -24,7 +24,7 @@ export const extractDataFromSearchParam = (searchParams?: URLSearchParams) => {
         sortOrder as Order,
     );
 
-    const searchString = params.get("search") || "";
+    const searchString = params.get("search") || undefined;
     const searchCondition = stringToSearchCondition(searchString);
 
     return { timeframe, sort: sortObject, searchCondition };
@@ -70,14 +70,16 @@ export const stringsToSortObject = (
 };
 
 export const stringToSearchCondition = (
-    searchString: string,
+    searchString?: string,
 ): SearchCondition => {
-    return [
-        {
-            input_string: { contains: searchString },
-        },
-        {
-            output_string: { contains: searchString },
-        },
-    ];
+    if (searchString)
+        return [
+            {
+                input_string: { contains: searchString },
+            },
+            {
+                output_string: { contains: searchString },
+            },
+        ];
+    else return undefined;
 };

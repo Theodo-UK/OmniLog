@@ -9,18 +9,7 @@ describe("extractDataFromSearchParam", () => {
         const difference = timeframe.lte.getTime() - timeframe.gte.getTime();
         expect(difference).toEqual(3600000);
         expect(sort).toEqual({ datetime_utc: "desc" });
-        expect(searchCondition).toEqual([
-            {
-                input_string: {
-                    contains: "",
-                },
-            },
-            {
-                output_string: {
-                    contains: "",
-                },
-            },
-        ]);
+        expect(searchCondition).toEqual(undefined);
     });
 
     it("should return three non-default objects if parameters are defined", () => {

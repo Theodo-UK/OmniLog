@@ -4,9 +4,11 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const SearchBar = () => {
-    const { updateSearchParam } = useNavigation();
+    const { updateSearchParam, removeSearchParam } = useNavigation();
     const triggerSearch = (text: string) => {
-        updateSearchParam({ search: text });
+        if (text === "") {
+            removeSearchParam("search");
+        } else updateSearchParam({ search: text });
     };
     return (
         <TextInput
