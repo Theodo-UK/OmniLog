@@ -4,10 +4,12 @@ import { extractDataFromSearchParam } from "./helpers/formatSearchParamToPrismaQ
 
 export const LogsData = {
     getLogs: async (searchParams?: URLSearchParams): Promise<llm_logs[]> => {
-        const { timeframe, sort } = extractDataFromSearchParam(searchParams);
+        const { timeframe, sort, searchCondition } =
+            extractDataFromSearchParam(searchParams);
         return await prisma.llm_logs.findMany({
             where: {
                 datetime_utc: timeframe,
+                OR: searchCondition,
             },
             orderBy: sort,
         });

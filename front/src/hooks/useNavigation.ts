@@ -11,5 +11,10 @@ export const useNavigation = () => {
         }
         router.push(`?${params.toString()}`);
     };
-    return { router, searchParams, updateSearchParam };
+    const removeSearchParam = (key: keyof LogDisplayOptions) => {
+        const params = new URLSearchParams(searchParams.toString());
+        params.delete(key);
+        router.push(`?${params.toString()}`);
+    };
+    return { router, searchParams, updateSearchParam, removeSearchParam };
 };

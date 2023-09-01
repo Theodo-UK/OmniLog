@@ -1,6 +1,10 @@
 import { Order, TimeOption } from "@/types/logDisplayOptions";
 import { llm_logs } from "@prisma/client";
-import { PrismaSort, Timeframe } from "../types/queryConditions";
+import {
+    PrismaSort,
+    SearchCondition,
+    Timeframe,
+} from "../types/queryConditions";
 
 const MS_PER_HOUR = 60 * 60 * 1000;
 const MS_PER_DAY = 24 * MS_PER_HOUR;
@@ -19,7 +23,11 @@ export const extractDataFromSearchParam = (searchParams?: URLSearchParams) => {
         sortBy as keyof llm_logs,
         sortOrder as Order,
     );
-    return { timeframe, sort: sortObject };
+
+    const searchString = params.get("search") || undefined;
+    const searchCondition = stringToSearchCondition(searchString);
+
+    return { timeframe, sort: sortObject, searchCondition };
 };
 
 export const stringToTimeframeObject = (
@@ -59,4 +67,19 @@ export const stringsToSortObject = (
         default:
             return { id: order };
     }
+};
+
+export const stringToSearchCondition = (
+    searchString?: string,
+): SearchCondition => {
+    if (searchString)
+        return [
+            {
+                input_string: { contains: searchString },
+            },
+            {
+                output_string: { contains: searchString },
+            },
+        ];
+    else return undefined;
 };
