@@ -18,6 +18,12 @@ jobs:
     steps:
       - name: Checkout main
         uses: actions/checkout@v3
+      - name: Ensure npm is not used
+        run: |
+          if [ -f "package-lock.json" ] ; then
+            echo "package-lock.json found! Make sure you are using yarn to manage dependencies, not npm."
+            exit 1
+          fi
       - name: Setup Node 18
         uses: actions/setup-node@v3
         with:
@@ -38,4 +44,8 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: --cwd front test # front/yarn test
+      - name: Check build
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: --cwd front test # front/yarn build
 
