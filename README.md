@@ -54,3 +54,4 @@ By default, AWS does not remove resources like S3 buckets or DynamoDB tables. Yo
 ### Table of Contents
 1. [Front docs](/front/README.md)
 2. [Python SDK](/sdk-python/README.md)
+3. [Adding new users](/docs/create_user.md)

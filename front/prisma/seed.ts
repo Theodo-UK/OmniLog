@@ -1,17 +1,28 @@
 import { PrismaClient } from "@prisma/client";
 import { hash } from "bcryptjs";
 
+const name = process.argv[2];
+const email = process.argv[3];
+const password = process.argv[4];
+
+if (!name || !email || !password) {
+    console.error(
+        `Missing argument:\nname: '${name}'\nemail: '${email}'\npassword: '${password}`,
+    );
+    process.exit(1);
+}
+
 const prisma = new PrismaClient();
 
 async function main() {
-    const password = await hash("test", 12);
+    const hashed = await hash(password!, 12);
     const user = await prisma.omnilog_user.upsert({
-        where: { email: "test@test.com" },
+        where: { email: email },
         update: {},
         create: {
-            email: "test@test.com",
-            name: "Test User",
-            password,
+            email: email!,
+            name: name!,
+            password: hashed,
         },
     });
     console.log({ user });
@@ -25,6 +36,7 @@ async function main() {
     });
     console.log({ log });
 }
+
 main()
     .then(() => prisma.$disconnect())
     .catch(async (e) => {
