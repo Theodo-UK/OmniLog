@@ -10,6 +10,9 @@ from omnilogger import send_to_db
 
 
 def start_listener():
+    """
+    Starts the listener for OpenAI logs.
+    """
     openai.log = "debug"
 
     log_handler = logging.StreamHandler()
