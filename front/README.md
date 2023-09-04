@@ -26,11 +26,16 @@ If you completed these steps correctly, you should be able to run `aws sts get-c
 ### 3. Add database URI to .env
 
 Copy `.env-template` into 
-- `.env.development`
+- `.env`
   - fill in DATABASE_URL 
+  - (used for yarn seed)
+- `.env.development`
+  - fill in DATABASE_URL
+  - (used for yarn sst dev)
 - `.env.production`
   - fill in DATABASE_URL
   - replace NEXTAUTH_SECRET and NEXTAUTH_URL
+  - (used for yarn sst deploy)
 
 
 It should look like this, with `?pgbouncer=true` at the end ([see issue](https://github.com/prisma/prisma/issues/11643#issuecomment-1034078942)):
