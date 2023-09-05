@@ -3,16 +3,24 @@
 # CONNECTION_STRING="USER INPUT"
 read -rp "Enter connection string from the database (including password): " connection_string
 
+source ./create_user.sh
+
+# Get the current working directory
+current_dir=$(pwd)
+
 # Move into the front directory
-cd front
+cd front || exit 1
 
 # Create the .env file
-echo "DATABASE_URL=$connection_string" > .env
+# echo "DATABASE_URL=$connection_string" > .env
 
-npx prisma db push
+# npx prisma db push
 
-echo "Tables successfully created in database."
+# echo "Tables successfully created in database."
 
-echo "Deploying aws lambda with OpenNext and SST.."
+# echo "Deploying aws lambda with OpenNext and SST.."
 
-npx sst deploy
+# npx sst deploy
+
+# Return to the original directory
+cd "$current_dir" || exit 1

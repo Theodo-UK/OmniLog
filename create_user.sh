@@ -21,8 +21,15 @@ if [ -z "$name" ] || [ -z "$email" ] || [ -z "$password" ]; then
     echo "Error: Please provide valid inputs for all fields."
     exit 1
 fi
+echo "create.sh pwd"
+
+# Get the current working directory
+current_dir=$(pwd)
 
 # Move into the front directory
-cd front
+cd front || exit 1
 
 yarn seed "$name" "$email" "$password"
+
+# Return to the original directory
+cd "$current_dir" || exit 1
