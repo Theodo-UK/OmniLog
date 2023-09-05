@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # CONNECTION_STRING="USER INPUT"
-read -p "Enter connection string from the database (including password): " connection_string
+read -rp "Enter connection string from the database (including password): " connection_string
 
 # Move into the front directory
 cd front
