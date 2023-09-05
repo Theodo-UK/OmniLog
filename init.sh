@@ -12,15 +12,15 @@ current_dir=$(pwd)
 cd front || exit 1
 
 # Create the .env file
-# echo "DATABASE_URL=$connection_string" > .env
+echo "DATABASE_URL=${connection_string}?pgbouncer=true" > .env
 
 # npx prisma db push
 
-# echo "Tables successfully created in database."
+echo "Tables successfully created in database."
 
-# echo "Deploying aws lambda with OpenNext and SST.."
+echo "Deploying aws lambda with OpenNext and SST.."
 
-# npx sst deploy
+npx sst deploy
 
 # Return to the original directory
 cd "$current_dir" || exit 1
