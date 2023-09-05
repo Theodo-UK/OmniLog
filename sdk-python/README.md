@@ -67,12 +67,21 @@ send_to_db(log)
 Make sure you have Poetry installed on your local machine. If not, follow the instruction on https://python-poetry.org/docs/.
 
 ### Getting Started
+
 1. Create venv:
+
    ```sh
    pyenv install 3.11.3
    poetry env use 3.11.3
    poetry install
    ```
+
+2. Generate prisma types
+
+```sh
+poetry run prisma generate --schema ../prisma/schema.prisma --generator client_py
+```
+
 ### Managing Dependencies
 
 1. Adding Dependencies: Add any new project dependencies to [tool.poetry.dependencies] using:
@@ -124,6 +133,7 @@ Now you can simply use `python path/to/your/script.py` without the need for poet
 2. Writing Tests: Create test files in the test directory, e.g., test/send_to_db.test.py, and write your tests using pytest.
 
 ### Running CI locally
+
 Run `source local_ci.sh` to run the same CI checks as in the pipeline before pushing your code.
 
 ### Configuring PyPI User
@@ -148,15 +158,12 @@ poetry config pypi-token.pypi <YOUR_PYPI_TOKEN>
    ```
    tip: Add the --build flag to do both steps at once.
 
-## Generating prisma types
-```sh
-poetry run prisma generate --schema ../prisma/schema.prisma --generator client_py
-```
-
 ## Linting
+
 This project uses:
+
 - [pylint](https://marketplace.visualstudio.com/items?itemName=ms-python.pylint)
-- [flake8](https://marketplace.visualstudio.com/items?itemName=ms-python.flake8) 
+- [flake8](https://marketplace.visualstudio.com/items?itemName=ms-python.flake8)
 - [black](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter) for code formatting
 - [isort](https://marketplace.visualstudio.com/items?itemName=ms-python.isort) for import sorting
 

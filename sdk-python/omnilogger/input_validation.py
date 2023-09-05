@@ -2,7 +2,7 @@ import datetime
 
 from prisma.types import llm_logsCreateInput
 
-from omnilogger.errors import LogDictKeyError
+from .errors import LogDictKeyError
 
 
 def check_url_type(url):
