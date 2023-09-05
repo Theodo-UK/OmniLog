@@ -1,7 +1,9 @@
 from datetime import datetime
-from .database import send_to_db
+
 import openai
 from prisma.types import llm_logsCreateInput
+
+from .database import send_to_db
 
 
 class CustomCompletion(openai.Completion):
