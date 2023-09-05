@@ -2,7 +2,15 @@
 
 echo "Enter details of user to be created."
 
-read -rp "Enter user name: " name
+# Loop until a non-blank name is provided
+while true; do
+    read -rp "Enter user name: " name
+    if [ -n "$name" ]; then
+        break
+    else
+        echo "Error: User name cannot be blank. Please enter a valid user name."
+    fi
+done
 
 # Email validation loop
 while true; do
@@ -14,7 +22,15 @@ while true; do
     fi
 done
 
-read -rp "Enter user password: " password
+# Loop until a non-blank password is provided
+while true; do
+    read -rp "Enter user password: " password
+    if [ -n "$password" ]; then
+        break
+    else
+        echo "Error: Password cannot be blank. Please enter a valid password."
+    fi
+done
 
 # Check all values are provided
 if [ -z "$name" ] || [ -z "$email" ] || [ -z "$password" ]; then
