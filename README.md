@@ -6,6 +6,15 @@
     <img src="./images/logo.png" alt="LLM-Ops-logo" width="50%"  style="border-radius: 50%; padding-bottom: 20px"/>
 </div>
 
+# Overview
+
+Omnilog allows you to easily monitor your LLM project! 
+1. Simply run our initialisation script on your AWS account
+2. Start our listener in our python project, 
+3. View your logs and analytics in your privately deployed web app! 
+
+![image](https://github.com/Theodo-UK/OmniLog/assets/57725347/a494d81d-dab1-4836-8922-efec380c5812)
+
 # Quickstart
 
 Get started with OmniLog in five easy steps:
