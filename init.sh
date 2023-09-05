@@ -14,7 +14,7 @@ cd front || exit 1
 # Create the .env file
 echo "DATABASE_URL=${connection_string}?pgbouncer=true" > .env
 
-# npx prisma db push
+npx prisma db push
 
 echo "Tables successfully created in database."
 
