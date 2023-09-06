@@ -9,7 +9,7 @@ export type LogDisplayOptions = {
     endDateTime?: string
 };
 
-export type TimeOption = "Last hour" | "Last day" | "Last week";
+export type TimeOption = "Last hour" | "Last day" | "Last week" | "Custom range";
 
 export type Order = "asc" | "desc";
 export type SortOptions = "datetime_utc" | "total_tokens" | "id";
