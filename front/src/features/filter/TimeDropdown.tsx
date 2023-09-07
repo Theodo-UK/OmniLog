@@ -23,10 +23,6 @@ export const TimeDropdown = () => {
         }
     };
 
-    const cancelCustomRangePicker = () => {
-        setIsPopupOpen(false);
-    };
-
     return (
         <>
             <Dropdown
@@ -36,7 +32,7 @@ export const TimeDropdown = () => {
             />
             <DatePickerPopup
                 open={isPopupOpen}
-                handleClose={cancelCustomRangePicker}
+                handleClose={() => setIsPopupOpen(false)}
             />
         </>
     );
