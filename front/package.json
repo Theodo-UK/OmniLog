@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "local": "next dev",
-    "dev": "sst bind next dev",
+    "dev_sst": "bash ./scripts/yarn_dev_sst.sh",
+    "dev": "bash ./scripts/yarn_dev.sh",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 This project uses [sst](https://docs.sst.dev/what-is-sst), so we're using the SST local development flow [described here](https://docs.sst.dev/live-lambda-development).
 
-SST is a tool that makes it easy for us to build, run and deploy our NextJS web app with AWS.
+These steps are for devs who want to contribute to Omnilog, if you want to use Omnilog, follow the instructions [here](https://github.com/Theodo-UK/OmniLog#quickstart).
 
 ### 1. Get Next.js app running locally
 
@@ -13,7 +13,7 @@ If you are developing the website without the external resources, e.g using dumm
 -   `yarn` to install dependencies.
 -   `yarn local` to start the next web app locally.
 
-If you click the localhost URL in the console, you should see the Next.js app running.
+If you click the localhost URL in the console, you should see the Next.js app running. If you are on a route which relies on external resources, you will encounter errors because it is not hooked up to your AWS lambdas; follow the next steps to get that set up!
 
 ### 2. Set up local AWS credentials
 
@@ -21,33 +21,37 @@ Having AWS credentials on your local machine is required to use SST.
 
 You can see the [steps required to add AWS credentials here.](/docs/aws_setup.md)
 
-If you completed these steps correctly, you should be able to run `aws sts get-caller-identity --profile <aws_iam_access_key_profile_name>` and see your AWS account ID.
-
 ### 3. Add database URI to .env
 
-Copy `.env-template` into 
-- `.env`
-  - fill in DATABASE_URL 
-  - (used for yarn seed)
-- `.env.development`
-  - fill in DATABASE_URL
-  - (used for yarn sst dev)
-- `.env.production`
-  - fill in DATABASE_URL
-  - replace NEXTAUTH_SECRET and NEXTAUTH_URL
-  - (used for yarn sst deploy)
+Create the following env files:
+```
+// .env (used for yarn seed)
+DATABASE_URL=<your_database_uri>?pgbouncer=true
+NEXTAUTH_SECRET=secret
+NEXTAUTH_URL=http://localhost:3000
+```
+```
+// .env.development (used for yarn sst dev)
+AWS_PROFILE_NAME=<your_aws_profile_name>
+SST_STAGE_NAME=<your_name>-dev
+DATABASE_URL=<your_database_uri>?pgbouncer=true
+NEXTAUTH_SECRET=secret
+NEXTAUTH_URL=http://localhost:3000
+```
+```
+// .env.production (used for yarn sst deploy)
+AWS_PROFILE_NAME=<your_aws_profile_name>
+SST_STAGE_NAME=staging
+DATABASE_URL=<your_database_uri>?pgbouncer=true
+NEXTAUTH_SECRET=<>
+NEXTAUTH_URL=<>
+```
 
+Note that `?pgbouncer=true` is required at the end of DATABASE_URL ([see issue](https://github.com/prisma/prisma/issues/11643#issuecomment-1034078942)):
 
-It should look like this, with `?pgbouncer=true` at the end ([see issue](https://github.com/prisma/prisma/issues/11643#issuecomment-1034078942)):
-`DATABASE_URL=<your_database_uri>?pgbouncer=true`
+### 4. Build Next.js app into Lambdas and deploy them locally
 
-### 4. Set up local database
-
-Generate prisma types with `yarn generate`
-
-### 5. Build Next.js app into Lambdas and deploy them locally
-
--   `yarn sst dev --profile <aws_iam_access_key_profile_name> --stage <your_name>-dev` to start the Live Lambda Development environment.
+-   `yarn dev_sst` to start the Live Lambda Development environment.
     -   This command does the following:
         -   Starts a local Lambda environment
         -   Builds the Next.js app into lambda functions,
@@ -55,7 +59,7 @@ Generate prisma types with `yarn generate`
 
 ### 6. Bind Next.js app to local Lambda environment so that it can invoke AWS resources
 
--   `yarn dev --profile <aws_iam_access_key_profile_name> --stage <your_name>-dev` to bind the Next.js app to sst, which allows it to invoke AWS resources.
+-   `yarn dev` to bind the Next.js app to sst, which allows it to invoke AWS resources.
     -   This command does the following:
         -   Starts the Next.js app at localhost
         -   Binds the Next.js app to the local Lambda environment (therefore allowing it to use AWS resources)
