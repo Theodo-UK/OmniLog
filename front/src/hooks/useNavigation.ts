@@ -9,6 +9,10 @@ export const useNavigation = () => {
         for (const [key, value] of Object.entries(FilterBy)) {
             params.set(key, value);
         }
+        if (params.get("dateTimeFilter") !== "Filter by time") {
+            params.delete("startDateTime");
+            params.delete("endDateTime");
+        }
         router.push(`?${params.toString()}`);
     };
     const removeSearchParam = (key: keyof LogDisplayOptions) => {
