@@ -66,4 +66,4 @@ Note that `?pgbouncer=true` is required at the end of DATABASE_URL ([see issue](
 
 ## Deploying to staging
 
--   `yarn sst deploy --profile <aws_iam_access_key_profile_name> --stage staging`
+-   `yarn deploy`
