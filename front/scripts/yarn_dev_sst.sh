@@ -31,6 +31,4 @@ if ! error_output=$(yarn sst dev --profile "$AWS_PROFILE_NAME" --stage "$SST_STA
     fi
     echo "================================"
     exit 1
-else
-    echo "yarn sst dev succeeded."
 fi

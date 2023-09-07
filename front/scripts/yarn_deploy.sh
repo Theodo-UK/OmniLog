@@ -42,6 +42,4 @@ if ! error_output=$(yarn sst deploy --profile "$AWS_PROFILE_NAME" --stage "$SST_
     fi
     echo "================================"
     exit 1
-else
-    echo "yarn sst deploy succeeded."
 fi

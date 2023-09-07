@@ -42,6 +42,4 @@ if ! error_output=$(yarn sst bind next dev --verbose --profile "$AWS_PROFILE_NAM
     fi
     echo "================================"
     exit 1
-else
-    echo "yarn sst bind next dev succeeded."
 fi
