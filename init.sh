@@ -14,20 +14,18 @@ read -rp "Enter NEXTAUTH_SECRET (e.g. using openssl rand -hex 32): " NEXTAUTH_SE
 read -rp "Enter the target URI where the omnilog web app will deploy: " NEXTAUTH_URL
 
 
-
 # Create .env files
 create_env_file ".env" "$DATABASE_URI"
 create_env_file ".env.development" "$DATABASE_URI" "$AWS_PROFILE_NAME" "$AWS_REGION" "$SST_STAGE_NAME"
 create_env_file ".env.production" "$DATABASE_URI" "$AWS_PROFILE_NAME" "$AWS_REGION" "$SST_STAGE_NAME" "$NEXTAUTH_SECRET" "$NEXTAUTH_URL"
 
+yarn
 
-npx prisma db push
+yarn prisma db push --skip-generate
 
 echo "Tables successfully created in database."
 
 echo "Installing dependencies for web app..."
-
-yarn
 
 echo "Deploying web app..."
 
