@@ -12,6 +12,7 @@ def extract_reference(full_data: str) -> str:
 
 def fetch_api_format() -> str:
     result = os.popen(
-        "curl https://raw.githubusercontent.com/openai/openai-openapi/master/openapi.yaml"
+        "curl https://raw.githubusercontent.com/"
+        + "openai/openai-openapi/master/openapi.yaml"
     ).read()
     return result
