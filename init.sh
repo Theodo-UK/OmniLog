@@ -26,6 +26,10 @@ yarn prisma db push --skip-generate
 
 echo "Tables successfully created in database."
 
+echo "Deploying web app..."
+
+yarn deploy
+
 read -rp "Would you like to create your user to log in to the web app now? (y/N): " CREATEUSER
 if [[ $CREATEUSER =~ ^[Yy]$ ]]; then
   cd "$current_dir" || exit 1 # Return to the original directory
@@ -34,10 +38,5 @@ if [[ $CREATEUSER =~ ^[Yy]$ ]]; then
 else
   echo "Skipping user creation..."
 fi
-
-echo "Deploying web app..."
-
-
-yarn deploy
 
 cd "$current_dir" || exit 1 # Return to the original directory
