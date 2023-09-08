@@ -45,11 +45,15 @@ bash ./init.sh
 
 7. Use the Python SDK inside your LLM project:
 ```python
-from omnilog import init, log
+from omnilogger import start_openai_listener
 
-...TBD
+start_openai_listener()
+
+# write your code after calling the listener
+...
+
 ```
-That's it! You should now be able to see your logs at the AWS URI given from `init.sh`.
+That's it! You should now be able to see your logs at the AWS URI given from `init.sh`. See the [sdk-python docs](/sdk-python/README.md) for more details.
 
 # Removing the AWS resources
 
