@@ -7,6 +7,7 @@
     "dev_sst": "bash ./scripts/yarn_dev_sst.sh",
     "dev": "bash ./scripts/yarn_dev.sh",
     "deploy": "bash ./scripts/yarn_deploy.sh",
+    "teardown": "bash ./scripts/yarn_teardown.sh",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

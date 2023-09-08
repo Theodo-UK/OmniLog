@@ -10,26 +10,25 @@ source ./source_if_file_exists.sh
 source ./handle_errors.sh
 source ./check_var.sh
 
-ENV_FILE_NAME=".env.development"
+ENV_FILE_NAME=".env.production"
 source_if_file_exists "../$ENV_FILE_NAME"
-
 
 check_var "AWS_REGION" "$ENV_FILE_NAME"
 check_var "AWS_PROFILE_NAME" "$ENV_FILE_NAME"
 check_var "SST_STAGE_NAME" "$ENV_FILE_NAME"
-check_var "DATABASE_URL" "$ENV_FILE_NAME"
-check_var "NEXTAUTH_SECRET" "$ENV_FILE_NAME"
-check_var "NEXTAUTH_URL" "$ENV_FILE_NAME"
 
 # cd back to root to run commands
 cd "$project_path" || exit 1 
 
-echo "Generating prisma types..."
+echo "Warning: You are about to remove the SST stack. This action is irreversible and will delete all the resources managed by the stack."
+read -rp "Are you sure you want to continue? (y/N) " response
+if [[ "$response" != "y" ]]; then
+    echo "Operation cancelled by the user."
+    exit 1
+fi
 
-yarn generate
-
-echo "Running yarn sst bind next dev..."
+echo "Running yarn sst remove..."
 # try catch 
-if ! error_output=$(yarn sst bind next dev --verbose --profile "$AWS_PROFILE_NAME" --stage "$SST_STAGE_NAME" --region "$AWS_REGION" 2>&1 1>/dev/tty); then
+if ! error_output=$(yarn sst remove --profile "$AWS_PROFILE_NAME" --stage "$SST_STAGE_NAME" --region "$AWS_REGION" 2>&1 1>/dev/tty); then
     handle_errors "$error_output"
 fi
