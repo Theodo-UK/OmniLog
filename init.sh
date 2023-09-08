@@ -13,6 +13,6 @@ npx prisma db push
 
 echo "Tables successfully created in database."
 
-echo "Deploying aws lambda with OpenNext and SST.."
+echo "Deploying web app..."
 
-npx sst deploy
+yarn deploy
