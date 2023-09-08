@@ -13,6 +13,10 @@ npx prisma db push
 
 echo "Tables successfully created in database."
 
+echo "Installing dependencies for web app..."
+
+yarn
+
 echo "Deploying web app..."
 
 yarn deploy
