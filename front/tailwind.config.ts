@@ -23,6 +23,7 @@ const config: Config = {
                 "theodo-turquoise": "#009DAC",
                 "theodo-blue": "#2D7FAE",
                 "theodo-dark-blue": "#17366e",
+                "omnilog-clear-blue": "#02D6FB",
             },
         },
     },

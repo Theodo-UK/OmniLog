@@ -1,3 +1,6 @@
+import logo from "@/assets/theodo_logo.png";
+import Image from "next/image";
+
 export const TheodoLogo = () => {
     return (
         <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
@@ -7,7 +10,13 @@ export const TheodoLogo = () => {
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                By Theodo UK
+
+                <Image
+                    src={logo.src}
+                    alt="Theodo logo"
+                    height={120}
+                    width={120}
+                />
             </a>
         </div>
     );
