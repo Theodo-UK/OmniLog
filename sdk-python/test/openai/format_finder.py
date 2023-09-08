@@ -1,7 +1,7 @@
 import os
 
 
-def extract_reference(full_data: str) -> str:
+def extract_chatcompletion_ref(full_data: str) -> str:
     start_index = full_data.find("chat_completion_example |")
     result = full_data[start_index:]
     result = result.replace("chat_completion_example |", "")
