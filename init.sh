@@ -7,7 +7,7 @@ read -p "Enter connection string from the database (including password): " conne
 cd front
 
 # Create the .env file
-echo "DATABASE_URL=$connection_string" > .env
+echo "DATABASE_URL=${connection_string}?pgbouncer=true" > .env
 
 npx prisma db push
 
