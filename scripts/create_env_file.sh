@@ -7,7 +7,6 @@ create_env_file() {
     local AWS_REGION=$4
     local SST_STAGE_NAME=$5
     local NEXTAUTH_SECRET=$6
-    local NEXTAUTH_URL=$7
 
     local DATABASE_URI_CONFIG="${CONNECTION_STRING}?pgbouncer=true"
 
@@ -35,7 +34,7 @@ create_env_file() {
                 echo "AWS_REGION=${AWS_REGION}";
                 echo "DATABASE_URL=${DATABASE_URI_CONFIG}";
                 echo "NEXTAUTH_SECRET=${NEXTAUTH_SECRET}";
-                echo "NEXTAUTH_URL=${NEXTAUTH_URL}";
+                echo "NEXTAUTH_URL=http://replace-me-with-your-prod-url.com";
                 echo "SST_STAGE_NAME=${SST_STAGE_NAME}";
             } > "$FILE_NAME"
         fi
