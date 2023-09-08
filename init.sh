@@ -16,13 +16,13 @@ else
   configure_env_files
 fi
 
-yarn
+echo "Installing dependencies for web app in $(pwd)"
+
+yarn install
 
 yarn prisma db push --skip-generate
 
 echo "Tables successfully created in database."
-
-echo "Installing dependencies for web app..."
 
 echo "Deploying web app..."
 
