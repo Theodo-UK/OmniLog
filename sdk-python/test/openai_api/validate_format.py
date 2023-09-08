@@ -9,7 +9,7 @@ print(
 )
 result = fetch_api_format()
 
-reference_path = os.path.abspath("./test/openai/chatcompletion_ref.json")
+reference_path = os.path.abspath("./test/openai_api/chatcompletion_ref.json")
 with open(reference_path, "r") as f:
     reference = json.load(f)
     if result.find(reference) != -1:
