@@ -5,7 +5,6 @@ export default {
     config(_input) {
         return {
             name: "front",
-            region: "eu-west-2",
         };
     },
     stacks(app) {

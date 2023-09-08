@@ -5,9 +5,11 @@ export type LogDisplayOptions = {
     sortOrder?: Order;
     dateTimeFilter?: TimeOption;
     search?: string;
+    startDateTime?: string;
+    endDateTime?: string
 };
 
-export type TimeOption = "Last hour" | "Last day" | "Last week";
+export type TimeOption = "Last hour" | "Last day" | "Last week" | "Filter by time";
 
 export type Order = "asc" | "desc";
 export type SortOptions = "datetime_utc" | "total_tokens" | "id";

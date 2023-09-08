@@ -38,3 +38,5 @@ jobs:
         run: poetry run pylint */**.py --errors-only
       - name: Check tests
         run: poetry run pytest
+      - name: Check OpenAI API format
+        run: poetry run python test/openai_api/validate_format.py

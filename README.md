@@ -34,20 +34,26 @@ Get started with OmniLog in five easy steps:
 git clone https://github.com/Theodo-UK/OmniLog.git
 ```
 
-4. Bootstrap the project onto your AWS:
-
+4. Bootstrap the project onto your AWS by running the following script:
 ```bash
-./init.sh
+bash ./init.sh
 ```
-And follow the prompts within the script.
 
-5. Use the Python SDK inside your LLM project:
+5. Once finished, you should see a `SiteUrl` in your terminal. Copy it, navigate to ./front/.env.production and paste it in the NEXTAUTH_URL property.
+
+6. Run the `init.sh` script again, and skip the configuring of the .env files to deploy your web app properly.
+
+7. Use the Python SDK inside your LLM project:
 ```python
-from omnilog import init, log
+from omnilogger import start_openai_listener
 
-...TBD
+start_openai_listener()
+
+# write your code after calling the listener
+...
+
 ```
-That's it! You should now be able to navigate to Navigate to the AWS uri given from `init.sh` and see your prompts via the log explorer.
+That's it! You should now be able to see your logs at the AWS URI given from `init.sh`. See the [sdk-python docs](/sdk-python/README.md) for more details.
 
 # Removing the AWS resources
 
