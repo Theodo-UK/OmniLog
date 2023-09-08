@@ -28,7 +28,9 @@ echo "Tables successfully created in database."
 
 read -rp "Would you like to create your user to log in to the web app now? (y/N): " CREATEUSER
 if [[ $CREATEUSER =~ ^[Yy]$ ]]; then
+  cd "$current_dir" || exit 1 # Return to the original directory
   source ./create_user.sh
+  cd front || exit 1
 else
   echo "Skipping user creation..."
 fi
@@ -38,5 +40,4 @@ echo "Deploying web app..."
 
 yarn deploy
 
-# Return to the original directory
-cd "$current_dir" || exit 1
+cd "$current_dir" || exit 1 # Return to the original directory
