@@ -9,7 +9,7 @@ describe("extractDataFromSearchParam", () => {
 
         const difference = timeframe.lte.getTime() - timeframe.gte.getTime();
         expect(difference).toEqual(MS_PER_HOUR);
-        expect(sort).toEqual({ datetime_utc: "desc" });
+        expect(sort).toEqual({ id: "desc" });
         expect(searchCondition).toEqual(undefined);
     });
 
