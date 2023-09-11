@@ -2,9 +2,9 @@ import React from "react";
 import { Modal } from "@mui/material";
 import { CardAtom } from "@/components/atoms/CardAtom";
 import { useDateTimePicker } from "./hooks/useDateTimePicker";
-import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import 'dayjs/locale/en';
+import { DateTimePicker } from "@/components/atoms/DateTimePicker";
+import { Button } from "@/components/atoms/Button";
 
 type DatePickerPopupProps = {
     open: boolean;
@@ -36,41 +36,26 @@ export const DatePickerPopup = (
         >
             <div className="lg:w-3/6">
                 <CardAtom>
-                    <h2
-                        id="modal-custom-datetime-picker"
-                        className="text-lg font-semibold text-theodo-dark-blue text-center"
-                    >
+                    <h2 className="text-lg font-semibold text-theodo-blue-dark text-center">
                         Enter a custom date range
                     </h2>
-                    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
-                        <p id="modal-startdate-picker">Start date:</p>
-                        <DateTimePicker
-                            label="Controlled picker"
-                            value={startDateTime}
-                            onChange={handleStartDateTimeChange}
-                            format="DD/MM/YYYY HH:mm"
-                        />
-                        <p id="modal-enddate-picker">End date:</p>
-                        <DateTimePicker
-                            label="Controlled picker"
-                            value={endDateTime}
-                            onChange={handleEndDateTimeChange}
-                            format="DD/MM/YYYY HH:mm"
-                        />
-                    </LocalizationProvider>
+                    <DateTimePicker
+                        label="Start date"
+                        dateTime={startDateTime}
+                        handleDateTimeChange={handleStartDateTimeChange}
+                    />
+                    <DateTimePicker
+                        label="End date"
+                        dateTime={endDateTime}
+                        handleDateTimeChange={handleEndDateTimeChange}
+                    />
                     <div className=" flex gap-4">
-                        <button
-                            onClick={handleClose}
-                            className=" bg-theodo-grey text-white rounded-md px-4 py-2 text-sm font-medium"
-                        >
+                        <Button onClick={handleClose} colour="grey">
                             Cancel
-                        </button>
-                        <button
-                            onClick={triggerFilter}
-                            className=" bg-theodo-dark-green text-white rounded-md px-4 py-2 text-sm font-medium"
-                        >
+                        </Button>
+                        <Button onClick={triggerFilter} colour="green">
                             Filter Logs
-                        </button>
+                        </Button>
                     </div>
                 </CardAtom>
             </div>
