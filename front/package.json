@@ -12,6 +12,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
+    "test:watch": "jest --watch",
     "generate": "yarn prisma generate --generator client_js",
     "db-reset": "yarn prisma db push --force-reset --skip-generate",
     "seed": "yarn prisma db seed",

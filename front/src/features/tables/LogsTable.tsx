@@ -79,21 +79,21 @@ const ClickableColHeader = ({
     title: string;
     sortKey: SortOptions;
 }) => {
-    const { searchParams, updateSearchParam } = useNavigation();
+    const { sortBy, sortOrder, updateSearchParam } = useNavigation();
     let order: string | undefined = undefined;
-    if (searchParams.get("sortBy") === sortKey) {
-        order = searchParams.get("sortOrder") || undefined;
+    if (sortBy === sortKey) {
+        order = sortOrder;
     }
 
-    const sortBy = (key: SortOptions) => {
+    const updateSort = (key: SortOptions) => {
         const newOrder =
-            order === undefined || order === "asc" ? "desc" : "asc";
+            (order === undefined || order === "asc") ? "desc" : "asc";
         updateSearchParam({ sortBy: key, sortOrder: newOrder });
     };
     return (
         <div
             className="flex gap-2 cursor-pointer items-center justify-between"
-            onClick={() => sortBy(sortKey)}
+            onClick={() => updateSort(sortKey)}
         >
             {title}
             <SortIcon order={order} />

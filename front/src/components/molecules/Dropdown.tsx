@@ -15,7 +15,7 @@ export const Dropdown = ({ options, selected, onSelect }: DropdownProps) => {
     return (
         <Listbox value={selected} onChange={onSelect}>
             <div className="relative w-full">
-                <Listbox.Button className="relative w-full border-2 border-gray-300 rounded-lg bg-white h-10 py-2 pl-3 pr-10 text-left hover:bg-gray-100 focus:gp-[border-theodo-blue,outline-none] focus-visible:gp-[border-theodo-blue,ring-2,ring-white,ring-opacity-75,ring-offset-2,ring-offset-theodo-grey] sm:text-sm">
+                <Listbox.Button className="relative w-full border-2 border-gray-300 rounded-lg bg-white h-10 py-2 pl-3 pr-10 text-left hover:bg-gray-100 focus:gp-[border-theodo-blue-regular,outline-none] focus-visible:gp-[border-theodo-blue-regular,ring-2,ring-white,ring-opacity-75,ring-offset-2,ring-offset-theodo-grey-regular] sm:text-sm">
                     <DropdownButton text={selected} faIcon={faCalendarDays} />
                 </Listbox.Button>
                 <Transition
@@ -28,7 +28,7 @@ export const Dropdown = ({ options, selected, onSelect }: DropdownProps) => {
                         {options.map((option, optionIdx) => (
                             <Listbox.Option
                                 key={optionIdx}
-                                className="relative cursor-default select-none py-2 pl-10 pr-4 text-gray-900 hover:bg-theodo-grey"
+                                className="relative cursor-default select-none py-2 pl-10 pr-4 text-gray-900 hover:bg-theodo-grey-regular"
                                 value={option}
                             >
                                 <DropdownOptionTile

@@ -15,7 +15,7 @@ export const useDateTimePicker = () => {
             setStartDateTime(endDateTime);
             setEndDateTime(startDateTime);
         }
-        updateSearchParam({ dateTimeFilter: "Filter by time", startDateTime: startDateTime.toISOString(), endDateTime: endDateTime.toISOString() });
+        updateSearchParam({ startDateTime: startDateTime.toISOString(), endDateTime: endDateTime.toISOString() });
 
     };
 

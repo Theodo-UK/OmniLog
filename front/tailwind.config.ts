@@ -15,18 +15,32 @@ const config: Config = {
                     "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
             },
             colors: {
-                "theodo-green": "#6CBC9C",
-                "theodo-dark-green": "#374B42",
-                "theodo-grey": "#9AB0A6",
-                "theodo-sharp-blue": "#0062AD",
-                "theodo-light-blue": "#6CB4E6",
-                "theodo-turquoise": "#009DAC",
-                "theodo-blue": "#2D7FAE",
-                "theodo-dark-blue": "#17366e",
+                theodo: {
+                    green: {
+                        regular: "#6CBC9C",
+                        dark: "#374B42",
+                    },
+                    grey: {
+                        regular: "#9AB0A6",
+                    },
+                    blue: {
+                        sharp: "#0062AD",
+                        light: "#6CB4E6",
+                        regular: "#2D7FAE",
+                        dark: "#17366e",
+                    },
+                    turquoise: "#009DAC",
+                },
                 "omnilog-clear-blue": "#02D6FB",
             },
         },
     },
     plugins: [groupModifierPlugin({ prefix: "gp" })],
+    safelist: [
+        {
+            pattern: /theodo-(green|grey|blue)-[a-z]+/,
+            variants: ["hover"],
+        },
+    ],
 };
 export default config;
