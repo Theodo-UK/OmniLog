@@ -9,7 +9,7 @@ export const useNavigation = () => {
         for (const [key, value] of Object.entries(FilterBy)) {
             params.set(key, value);
         }
-        if (params.get("dateTimeFilter") !== "Filter by time") {
+        if (params.get("dateTimeFilter") !== "Custom interval") {
             params.delete("startDateTime");
             params.delete("endDateTime");
         }

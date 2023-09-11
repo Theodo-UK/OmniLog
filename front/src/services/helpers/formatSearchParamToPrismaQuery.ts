@@ -11,7 +11,7 @@ export const convertSearchParamToObjects = (searchParams?: URLSearchParams) => {
     const data = extractDataFromSearchParams(searchParams);
 
     let timeframe: Timeframe;
-    if (data.dateTimeFilter === "Filter by time" && data.startDateTime && data.endDateTime)
+    if (data.dateTimeFilter === "Custom interval" && data.startDateTime && data.endDateTime)
         timeframe = intervalToTimeframeObject(data.startDateTime, data.endDateTime);
     else timeframe = stringToTimeframeObject(data.dateTimeFilter);
 

@@ -9,14 +9,14 @@ export const TimeDropdown = () => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [selectedTime, setSelectedTime] = useState<string | null>(searchParams.get("dateTimeFilter"));
 
-    const timeOptions = ["Last hour", "Last day", "Last week", "Filter by time"];
-    if (selectedTime == null || !timeOptions.includes(selectedTime)) {
-        setSelectedTime("Last hour");
+    const timeOptions = ["Last hour", "Last day", "Last week", "Custom interval"];
+    if (selectedTime !== "Filter by time" && !timeOptions.includes(selectedTime ?? "")) {
+        setSelectedTime("Filter by time");
     }
 
     const onSelectTime = (newValue: string) => {
         setSelectedTime(newValue);
-        if (newValue !== "Filter by time") {
+        if (newValue !== "Custom interval") {
             updateSearchParam({ dateTimeFilter: newValue as TimeOption });
         } else {
             setIsPopupOpen(true);
@@ -27,7 +27,7 @@ export const TimeDropdown = () => {
         <>
             <Dropdown
                 options={timeOptions}
-                selected={selectedTime ?? "Last hour"}
+                selected={selectedTime ?? "Filter by time"}
                 onSelect={onSelectTime}
             />
             <DatePickerPopup
