@@ -15,10 +15,7 @@ export const convertSearchParamToPrismaConditions = (searchParams?: URLSearchPar
         timeframe = intervalToTimeframeObject(data.startDateTime, data.endDateTime);
     else timeframe = stringToTimeframeObject(data.dateTimeFilter);
 
-    const sortObject = stringsToSortObject(
-        data.sortBy || "datetime_utc",
-        data.sortOrder || "desc",
-    );
+    const sortObject = stringsToSortObject(data.sortBy, data.sortOrder);
 
     const searchCondition = stringToSearchCondition(data.search);
 
@@ -89,9 +86,13 @@ export const intervalToTimeframeObject = (startDateString: string, endDateString
 };
 
 export const stringsToSortObject = (
-    key: keyof llm_logs,
-    order: Order,
+    key?: keyof llm_logs,
+    order?: Order,
 ): PrismaSort => {
+
+    key = key || "datetime_utc";
+    order = order || "desc";
+
     switch (key) {
         case "datetime_utc":
             return { datetime_utc: order };
