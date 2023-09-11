@@ -10,7 +10,6 @@ export type LogDisplayOptions = {
 };
 
 export type TimeOption = "Last hour" | "Last day" | "Last week"
-export const timeOptionArry: string[] = ["Last hour", "Last day", "Last week"];
 
 export type Order = "asc" | "desc";
 export type SortOptions = "datetime_utc" | "total_tokens" | "id";

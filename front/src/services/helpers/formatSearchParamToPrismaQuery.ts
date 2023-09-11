@@ -1,4 +1,4 @@
-import { LogDisplayOptions, Order, SortOptions, TimeOption } from "@/types/logDisplayOptions";
+import { LogDisplayOptions, Order, TimeOption } from "@/types/logDisplayOptions";
 import { llm_logs } from "@prisma/client";
 import {
     PrismaSort,
@@ -6,6 +6,7 @@ import {
     Timeframe,
 } from "../types/queryConditions";
 import { MS_PER_DAY, MS_PER_HOUR, MS_PER_WEEK } from "./timeConstants";
+import { safeCastToOrder, safeCastToSortOptions, safeCastToTimeOption } from "@/types/safeCast";
 
 export const convertSearchParamToPrismaConditions = (searchParams?: URLSearchParams) => {
     const data = extractDataFromSearchParams(searchParams);
@@ -25,11 +26,11 @@ export const convertSearchParamToPrismaConditions = (searchParams?: URLSearchPar
 const extractDataFromSearchParams = (searchParams?: URLSearchParams): LogDisplayOptions => {
     const params = new URLSearchParams(searchParams);
     const data: LogDisplayOptions = {
-        dateTimeFilter: (params.get("dateTimeFilter") as TimeOption),
+        dateTimeFilter: safeCastToTimeOption(params.get("dateTimeFilter")),
         startDateTime: params.get("startDateTime") || undefined,
         endDateTime: params.get("endDateTime") || undefined,
-        sortBy: params.get("sortBy") as SortOptions || undefined,
-        sortOrder: params.get("sortOrder") as Order || undefined,
+        sortBy: safeCastToSortOptions(params.get("sortBy")),
+        sortOrder: safeCastToOrder(params.get("sortOrder")),
         search: params.get("search") || undefined,
     };
     return data;
