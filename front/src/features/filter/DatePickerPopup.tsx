@@ -37,12 +37,14 @@ export const DatePickerPopup = (
                         label="Controlled picker"
                         value={startDateTime}
                         onChange={handleStartDateTimeChange}
+                        format="DD/MM/YYYY HH:mm"
                     />
                     <p id="modal-enddate-picker">End date:</p>
                     <DateTimePicker
                         label="Controlled picker"
                         value={endDateTime}
                         onChange={handleEndDateTimeChange}
+                        format="DD/MM/YYYY HH:mm"
                     />
                 </LocalizationProvider>
                 <div className=" flex gap-4">
