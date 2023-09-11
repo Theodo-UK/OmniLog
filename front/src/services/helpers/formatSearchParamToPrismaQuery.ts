@@ -67,6 +67,15 @@ export const stringToTimeframeObject = (
 export const intervalToTimeframeObject = (startDateString: string, endDateString: string): Timeframe => {
     const startDate = new Date(startDateString);
     const endDate = new Date(endDateString);
+
+    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+        const now = new Date();
+        return {
+            lte: now,
+            gte: new Date(now.getTime() - MS_PER_HOUR),
+        };
+    }
+
     if (startDate > endDate) {
         return {
             lte: startDate,
