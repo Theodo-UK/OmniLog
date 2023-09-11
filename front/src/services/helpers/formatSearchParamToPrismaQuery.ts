@@ -7,7 +7,7 @@ import {
 } from "../types/queryConditions";
 import { MS_PER_DAY, MS_PER_HOUR, MS_PER_WEEK } from "./timeConstants";
 
-export const convertSearchParamToObjects = (searchParams?: URLSearchParams) => {
+export const convertSearchParamToPrismaConditions = (searchParams?: URLSearchParams) => {
     const data = extractDataFromSearchParams(searchParams);
 
     let timeframe: Timeframe;

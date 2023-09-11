@@ -1,11 +1,11 @@
 import "@testing-library/jest-dom";
-import { convertSearchParamToObjects } from "../helpers/formatSearchParamToPrismaQuery";
+import { convertSearchParamToPrismaConditions } from "../helpers/formatSearchParamToPrismaQuery";
 import { MS_PER_WEEK, MS_PER_HOUR } from "../helpers/timeConstants";
 
 describe("extractDataFromSearchParam", () => {
     it("should return an object with the default values if no search params are passed", () => {
         const { timeframe, sort, searchCondition } =
-            convertSearchParamToObjects();
+            convertSearchParamToPrismaConditions();
 
         const difference = timeframe.lte.getTime() - timeframe.gte.getTime();
         expect(difference).toEqual(MS_PER_HOUR);
@@ -18,7 +18,7 @@ describe("extractDataFromSearchParam", () => {
             "sortBy=total_tokens&sortOrder=asc&search=first&dateTimeFilter=Last+week",
         );
         const { timeframe, sort, searchCondition } =
-            convertSearchParamToObjects(searchParamsString);
+            convertSearchParamToPrismaConditions(searchParamsString);
 
         const difference = timeframe.lte.getTime() - timeframe.gte.getTime();
         expect(difference).toEqual(MS_PER_WEEK);
