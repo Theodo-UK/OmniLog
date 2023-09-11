@@ -5,6 +5,6 @@ import { Button } from "../../components/atoms/Button";
 
 export const SignOutButton = () => {
     return (
-        <Button onClick={() => signOut()}>Sign out</Button>
+        <Button onClick={() => signOut()} colour="blue">Sign out</Button>
     );
 }

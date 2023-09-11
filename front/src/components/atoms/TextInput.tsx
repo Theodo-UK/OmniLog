@@ -19,13 +19,13 @@ export const TextInput = ({
         <div className="relative w-full">
             <input
                 type="text"
-                className="w-full border-2 border-gray-300 bg-white h-10 pl-3 pr-10 rounded-lg focus:border-theodo-blue focus:outline-none"
+                className="w-full border-2 border-gray-300 bg-white h-10 pl-3 pr-10 rounded-lg focus:border-theodo-blue-regular focus:outline-none"
                 placeholder={placeholder}
                 onKeyDown={handleKeyDown}
                 onInput={(e) => setText(e.currentTarget.value)}
             />
             <div
-                className=" cursor-pointer absolute inset-y-0 right-0 flex items-center px-3 text-theodo-dark-blue"
+                className=" cursor-pointer absolute inset-y-0 right-0 flex items-center px-3 text-theodo-blue-dark"
                 onClick={() => onSubmit(text)}
             >
                 {icon}
