@@ -1,11 +1,11 @@
 import { llm_logs } from "@prisma/client";
 import { prisma } from "./PrismaClient";
-import { extractDataFromSearchParam } from "./helpers/formatSearchParamToPrismaQuery";
+import { convertSearchParamToObjects } from "./helpers/formatSearchParamToPrismaQuery";
 
 export const LogsData = {
     getLogs: async (searchParams?: URLSearchParams): Promise<llm_logs[]> => {
         const { timeframe, sort, searchCondition } =
-            extractDataFromSearchParam(searchParams);
+            convertSearchParamToObjects(searchParams);
         return await prisma.llm_logs.findMany({
             where: {
                 datetime_utc: timeframe,

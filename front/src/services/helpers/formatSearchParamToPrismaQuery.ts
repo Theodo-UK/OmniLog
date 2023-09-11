@@ -1,41 +1,50 @@
-import { Order, TimeOption } from "@/types/logDisplayOptions";
+import { LogDisplayOptions, Order, SortOptions, TimeOption } from "@/types/logDisplayOptions";
 import { llm_logs } from "@prisma/client";
 import {
     PrismaSort,
     SearchCondition,
     Timeframe,
 } from "../types/queryConditions";
+import { MS_PER_DAY, MS_PER_HOUR, MS_PER_WEEK } from "./timeConstants";
 
-const MS_PER_HOUR = 60 * 60 * 1000;
-const MS_PER_DAY = 24 * MS_PER_HOUR;
-const MS_PER_WEEK = 7 * MS_PER_DAY;
+export const convertSearchParamToObjects = (searchParams?: URLSearchParams) => {
+    const data = extractDataFromSearchParams(searchParams);
 
-export const extractDataFromSearchParam = (searchParams?: URLSearchParams) => {
-    const params = new URLSearchParams(searchParams);
+    let timeframe: Timeframe;
+    if (data.dateTimeFilter === "Filter by time" && data.startDateTime && data.endDateTime)
+        timeframe = intervalToTimeframeObject(data.startDateTime, data.endDateTime);
+    else timeframe = stringToTimeframeObject(data.dateTimeFilter);
 
-    const selectedTime =
-        (params.get("dateTimeFilter") as TimeOption) || "Last hour";
-    const timeframe = stringToTimeframeObject(selectedTime);
-
-    const sortBy = params.get("sortBy") || "datetime_utc";
-    const sortOrder = params.get("sortOrder") || "desc";
     const sortObject = stringsToSortObject(
-        sortBy as keyof llm_logs,
-        sortOrder as Order,
+        data.sortBy || "datetime_utc",
+        data.sortOrder || "desc",
     );
 
-    const searchString = params.get("search") || undefined;
-    const searchCondition = stringToSearchCondition(searchString);
+    const searchCondition = stringToSearchCondition(data.search);
 
     return { timeframe, sort: sortObject, searchCondition };
 };
 
+const extractDataFromSearchParams = (searchParams?: URLSearchParams): LogDisplayOptions => {
+    const params = new URLSearchParams(searchParams);
+    const data: LogDisplayOptions = {
+        dateTimeFilter: (params.get("dateTimeFilter") as TimeOption),
+        startDateTime: params.get("startDateTime") || undefined,
+        endDateTime: params.get("endDateTime") || undefined,
+        sortBy: params.get("sortBy") as SortOptions || undefined,
+        sortOrder: params.get("sortOrder") as Order || undefined,
+        search: params.get("search") || undefined,
+    };
+    return data;
+}
+
+
 export const stringToTimeframeObject = (
-    stringTimeframe: TimeOption,
+    stringTimeOption?: TimeOption,
 ): Timeframe => {
     const now = new Date();
     let numberTimeframe;
-    switch (stringTimeframe) {
+    switch (stringTimeOption) {
         case "Last hour":
             numberTimeframe = MS_PER_HOUR;
             break;
@@ -52,6 +61,21 @@ export const stringToTimeframeObject = (
     return {
         lte: now,
         gte: new Date(now.getTime() - numberTimeframe),
+    };
+};
+
+export const intervalToTimeframeObject = (startDateString: string, endDateString: string): Timeframe => {
+    const startDate = new Date(startDateString);
+    const endDate = new Date(endDateString);
+    if (startDate > endDate) {
+        return {
+            lte: startDate,
+            gte: endDate,
+        };
+    }
+    return {
+        lte: endDate,
+        gte: startDate,
     };
 };
 
