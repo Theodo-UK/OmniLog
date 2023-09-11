@@ -1,4 +1,4 @@
-import { LogDisplayOptions } from "@/types/logDisplayOptions";
+import { LogDisplayOptions, timeOptionArry } from "@/types/logDisplayOptions";
 import { useRouter, useSearchParams } from "next/navigation";
 
 export const useNavigation = () => {
@@ -9,9 +9,12 @@ export const useNavigation = () => {
         for (const [key, value] of Object.entries(FilterBy)) {
             params.set(key, value);
         }
-        if (params.get("dateTimeFilter") !== "Custom interval") {
+        if (timeOptionArry.includes(params.get("dateTimeFilter") ?? "")) {
             params.delete("startDateTime");
             params.delete("endDateTime");
+        }
+        else {
+            params.delete("dateTimeFilter");
         }
         router.push(`?${params.toString()}`);
     };

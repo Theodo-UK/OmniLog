@@ -11,7 +11,7 @@ export const convertSearchParamToPrismaConditions = (searchParams?: URLSearchPar
     const data = extractDataFromSearchParams(searchParams);
 
     let timeframe: Timeframe;
-    if (data.dateTimeFilter === "Custom interval" && data.startDateTime && data.endDateTime)
+    if (data.startDateTime && data.endDateTime)
         timeframe = intervalToTimeframeObject(data.startDateTime, data.endDateTime);
     else timeframe = stringToTimeframeObject(data.dateTimeFilter);
 
