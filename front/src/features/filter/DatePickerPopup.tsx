@@ -32,40 +32,48 @@ export const DatePickerPopup = (
             onClose={handleClose}
             aria-labelledby="modal-custom-datetime-picker"
             aria-describedby="modal-datetime-picker"
+            className="flex items-center justify-center min-h-screen sm:px-6 lg:px-16"
         >
-            <CardAtom>
-                <h2 id="modal-custom-datetime-picker">Enter a custom date range</h2>
-                <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
-                    <p id="modal-startdate-picker">Start date:</p>
-                    <DateTimePicker
-                        label="Controlled picker"
-                        value={startDateTime}
-                        onChange={handleStartDateTimeChange}
-                        format="DD/MM/YYYY HH:mm"
-                    />
-                    <p id="modal-enddate-picker">End date:</p>
-                    <DateTimePicker
-                        label="Controlled picker"
-                        value={endDateTime}
-                        onChange={handleEndDateTimeChange}
-                        format="DD/MM/YYYY HH:mm"
-                    />
-                </LocalizationProvider>
-                <div className=" flex gap-4">
-                    <button
-                        onClick={handleClose}
-                        className=" bg-theodo-grey text-white rounded-md px-4 py-2 text-sm font-medium"
+            <div className="lg:w-3/6">
+                <CardAtom>
+                    <h2
+                        id="modal-custom-datetime-picker"
+                        className="text-lg font-semibold text-theodo-dark-blue text-center"
                     >
-                        Cancel
-                    </button>
-                    <button
-                        onClick={triggerFilter}
-                        className=" bg-theodo-dark-green text-white rounded-md px-4 py-2 text-sm font-medium"
-                    >
-                        Filter Logs
-                    </button>
-                </div>
-            </CardAtom>
+                        Enter a custom date range
+                    </h2>
+                    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
+                        <p id="modal-startdate-picker">Start date:</p>
+                        <DateTimePicker
+                            label="Controlled picker"
+                            value={startDateTime}
+                            onChange={handleStartDateTimeChange}
+                            format="DD/MM/YYYY HH:mm"
+                        />
+                        <p id="modal-enddate-picker">End date:</p>
+                        <DateTimePicker
+                            label="Controlled picker"
+                            value={endDateTime}
+                            onChange={handleEndDateTimeChange}
+                            format="DD/MM/YYYY HH:mm"
+                        />
+                    </LocalizationProvider>
+                    <div className=" flex gap-4">
+                        <button
+                            onClick={handleClose}
+                            className=" bg-theodo-grey text-white rounded-md px-4 py-2 text-sm font-medium"
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            onClick={triggerFilter}
+                            className=" bg-theodo-dark-green text-white rounded-md px-4 py-2 text-sm font-medium"
+                        >
+                            Filter Logs
+                        </button>
+                    </div>
+                </CardAtom>
+            </div>
         </Modal >
     );
 }
