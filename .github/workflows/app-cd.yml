@@ -39,10 +39,6 @@ jobs:
         run: |
           pwd
           echo "${{ secrets.FRONT_ENV_PRODUCTION }}" > .env.production
-      - name: Install dependencies
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: --cwd front install # yarn install
       - name: Deploy
         uses: borales/actions-yarn@v4
         with:

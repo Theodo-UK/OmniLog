@@ -23,6 +23,10 @@ check_var "NEXTAUTH_URL" "$ENV_FILE_NAME"
 # cd back to root to run commands
 cd "$project_path" || exit 1 
 
+echo "Installing dependencies..."
+
+yarn install
+
 echo "Generating prisma types..."
 
 yarn generate
