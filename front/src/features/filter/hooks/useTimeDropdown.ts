@@ -14,8 +14,8 @@ export const useTimeDropdown = () => {
     const isCustomInterval = startDateTime && endDateTime;
 
     const isTimeFiltered = timeOptions.includes(selectedTime ?? "") || isCustomInterval;
-    if (!isTimeFiltered && selectedTime !== "Filter by time") {
-        setSelectedTime("Filter by time");
+    if (!isTimeFiltered) {
+        setSelectedTime("Last hour");
     }
 
     const onSelectTime = (newValue: string) => {
