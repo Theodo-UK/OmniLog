@@ -20,13 +20,15 @@ export const useNavigation = () => {
         for (const [key, value] of Object.entries(FilterBy)) {
             params.set(key, value);
         }
-        if (safeCastToTimeOption(params.get("dateTimeFilter"))) {
+
+        const isCustomInterval = FilterBy.endDateTime && FilterBy.startDateTime;
+        if (isCustomInterval)
+            params.delete("dateTimeFilter");
+        else {
             params.delete("startDateTime");
             params.delete("endDateTime");
         }
-        else {
-            params.delete("dateTimeFilter");
-        }
+
         router.push(`?${params.toString()}`);
     };
     const removeSearchParam = (key: keyof LogDisplayOptions) => {
