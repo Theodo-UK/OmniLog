@@ -15,7 +15,7 @@ export const TimeDropdown = () => {
         <>
             <Dropdown
                 options={timeOptions}
-                selected={selectedTime ?? "Filter by time"}
+                selected={selectedTime ?? "Last hour"}
                 onSelect={onSelectTime}
             />
             <DatePickerPopup
