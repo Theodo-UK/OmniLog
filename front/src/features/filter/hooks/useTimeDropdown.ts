@@ -13,8 +13,8 @@ export const useTimeDropdown = () => {
     const [startDateTime, endDateTime] = [getStringParam("startDateTime"), getStringParam("endDateTime")];
 
     const isCustomInterval = startDateTime && endDateTime;
-    const isValidFilter = timeOptions.includes(dateTimeFilter ?? "");
-    if (isCustomInterval) setSelectedTime("Custom interval");
+    const isValidFilter = timeOptions.includes(selectedTime ?? "");
+    if (isCustomInterval && selectedTime !== "Custom interval") setSelectedTime("Custom interval");
     else if (!isValidFilter) setSelectedTime("Last hour");
 
     const onSelectTime = (newValue: string) => {
