@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
 
+GITHUB_ACTIONS=false
+
+# Argument parsing
+while (( "$#" )); do
+  case "$1" in
+    --githubactions)
+      GITHUB_ACTIONS=true
+      echo "Deploying on GitHub Actions..."
+      shift
+      ;;
+    *)
+      shift
+      ;;
+  esac
+done
+
 project_path=$(pwd)
 
 # cd to path of script for relative path resolution
@@ -14,7 +30,10 @@ ENV_FILE_NAME=".env.production"
 source_if_file_exists "../$ENV_FILE_NAME"
 
 check_var "AWS_REGION" "$ENV_FILE_NAME"
-check_var "AWS_PROFILE_NAME" "$ENV_FILE_NAME"
+if [ "$GITHUB_ACTIONS" = false ]; then
+    # do not check profile name for CD
+    check_var "AWS_PROFILE_NAME" "$ENV_FILE_NAME"
+fi
 check_var "SST_STAGE_NAME" "$ENV_FILE_NAME"
 check_var "DATABASE_URL" "$ENV_FILE_NAME"
 check_var "NEXTAUTH_SECRET" "$ENV_FILE_NAME"
@@ -32,7 +51,13 @@ echo "Generating prisma types..."
 yarn generate
 
 echo "Running yarn sst deploy..."
+
+PROFILE_OPTION=""
+if [ "$GITHUB_ACTIONS" = false ]; then
+    PROFILE_OPTION=(--profile "$AWS_PROFILE_NAME")
+fi
+
 # try catch 
-if ! error_output=$(yarn sst deploy --profile "$AWS_PROFILE_NAME" --stage "$SST_STAGE_NAME" --region "$AWS_REGION" 2>&1 1>/dev/tty); then
+if ! error_output=$(yarn sst deploy "${PROFILE_OPTION[@]}" --stage "$SST_STAGE_NAME" --region "$AWS_REGION" 2>&1 1>/dev/tty); then
     handle_errors "$error_output"
 fi

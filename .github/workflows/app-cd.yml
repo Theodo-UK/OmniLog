@@ -42,6 +42,6 @@ jobs:
       - name: Deploy
         uses: borales/actions-yarn@v4
         with:
-          cmd: --cwd front deploy # yarn deploy
+          cmd: --cwd front deploy --githubactions # yarn deploy --githubactions
 
   
