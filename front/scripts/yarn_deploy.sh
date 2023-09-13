@@ -56,12 +56,11 @@ yarn generate
 
 echo "Running yarn sst deploy..."
 
-PROFILE_OPTION=""
-if [ "$GITHUB_ACTIONS" = false ]; then
-    PROFILE_OPTION=(--profile "$AWS_PROFILE_NAME")
-fi
-
-# try catch 
-if ! error_output=$(yarn sst deploy "${PROFILE_OPTION[@]}" --stage "$SST_STAGE_NAME" --region "$AWS_REGION" 2>&1 1>/dev/tty); then
+if [ "$GITHUB_ACTIONS" = true ]; then
+    yarn sst deploy --stage "$SST_STAGE_NAME" --region "$AWS_REGION"
+else
+    # try catch 
+    if ! error_output=$(yarn sst deploy --profile "$AWS_PROFILE_NAME" --stage "$SST_STAGE_NAME" --region "$AWS_REGION" 2>&1 1>/dev/tty); then
     handle_errors "$error_output"
+    fi
 fi
