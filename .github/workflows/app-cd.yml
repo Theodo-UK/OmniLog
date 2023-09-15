@@ -43,5 +43,15 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: --cwd front deploy --githubactions # yarn deploy --githubactions
-
+      - name: Notify slack if any of the previous steps have failed
+        if: ${{ failure() }}
+        uses: slackapi/slack-github-action@v1.24.0
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          payload: |
+            {
+              "message": "CD has failed",
+              "runUrl": "https://github.com/Theodo-UK/OmniLog/actions/runs/${{ github.run_id }}"
+            }      
   
