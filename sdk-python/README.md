@@ -8,6 +8,9 @@ Welcome to the OmniLogger Python Package!
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Usage](#usage)
+    - [Installing](#installing)
+    - [Calling functions](#calling-functions)
+    - [Editing the pricing](#editing-the-pricing)
   - [Contributing](#contributing)
     - [Requirement](#requirement)
     - [Getting Started](#getting-started)
@@ -27,11 +30,15 @@ This document will first describe how to use the package, and then provide a ste
 
 ## Usage
 
+### Installing
+
 Run the following command to install the package:
 
 ```sh
 pip install omnilogger
 ```
+
+### Calling functions
 
 Import the package in your script:
 
@@ -59,6 +66,25 @@ log = {
 }
 send_to_db(log)
 ```
+
+### Editing the prices
+
+The price of each model will sometimes be updated when we publish a new version of the package to take into account the new pricing used by OpenAI. However, you can also edit the prices yourself to reflect the exact prices that you are paying.
+
+Once you have called the pricing function once (directly or via the listener function), a pricing file will be created in your local storage. You can edit it to change the pricing of the different models. Each operating system has a different path for the local storage:
+
+if you are running on macOS, you should use:
+`~/Library/Application Support/omnilogger`
+
+If you are running on Windows (at least English Win) that should be:
+`C:\Documents and Settings\<User>\Application Data\Local Settings\theodo_uk\omnilogger`
+or possibly:
+`C:\Documents and Settings\<User>\Application Data\theodo_uk\omnilogger`
+
+for roaming profiles but that is another story.
+
+On Linux (and other Unices), according to the XDG Basedir Spec, it should be:
+`~/.local/share/omnilogger`
 
 ## Contributing
 
