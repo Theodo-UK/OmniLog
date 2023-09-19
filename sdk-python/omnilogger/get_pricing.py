@@ -3,11 +3,23 @@ import json
 import platformdirs
 
 
+def get_pricing(llm: str, model: str) -> dict:
+    pricing = load_llm_pricing()
+
+    if llm not in pricing:
+        return None
+
+    if model not in pricing[llm]:
+        return None
+
+    return pricing[llm][model]
+
+
 def load_llm_pricing():
     app_name = "omnilogger"
     app_author = "theodo_uk"
 
-    config_dir = platformdirs.user_config_dir(app_name, app_author)
+    config_dir = platformdirs.user_data_dir(app_name, app_author)
     pricing_path = os.path.join(config_dir, "pricing.json")
 
     if not os.path.exists(config_dir):
