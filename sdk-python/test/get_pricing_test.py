@@ -1,6 +1,6 @@
 import unittest
 
-from omnilogger import get_pricing
+from omnilogger.get_pricing import get_pricing
 
 
 class TestURLType(unittest.TestCase):
