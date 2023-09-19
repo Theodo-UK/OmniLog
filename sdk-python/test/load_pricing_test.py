@@ -5,8 +5,8 @@ from omnilogger.get_pricing import write_default_json_to, read_json_at, load_llm
 
 class TestURLType(unittest.TestCase):
     test_path = os.path.dirname(__file__)
-    test_pricing_path = os.path.join(test_path, "mock/pricing.json")
-    test_pricing = {
+    mock_pricing_path = os.path.join(test_path, "mock/pricing.json")
+    expected_pricing = {
         "updated_at": "2023-09-20T12:00:00.000Z",
         "openai": {
             "davinci-003": {"input": 0.02, "output": 0.02},
@@ -26,15 +26,15 @@ class TestURLType(unittest.TestCase):
     }
 
     def test_read_write_json(self):
-        write_default_json_to(self.test_pricing_path)
+        write_default_json_to(self.mock_pricing_path)
 
-        test_json_content = read_json_at(self.test_pricing_path)
+        test_json_content = read_json_at(self.mock_pricing_path)
 
-        self.assertDictEqual(test_json_content, self.test_pricing)
+        self.assertDictEqual(test_json_content, self.expected_pricing)
 
-        os.remove(self.test_pricing_path)
+        os.remove(self.mock_pricing_path)
 
     def test_loader(self):
         pricing = load_llm_pricing()
 
-        self.assertDictEqual(pricing, self.test_pricing)
+        self.assertDictEqual(pricing, self.expected_pricing)
