@@ -27,6 +27,10 @@ class TestURLType(unittest.TestCase):
     }
 
     def test_read_write_json(self):
+        mock_dir_path = os.path.join(self.test_path, "mock")
+        if not os.path.exists(mock_dir_path):
+            os.makedirs(mock_dir_path)
+
         write_default_json_to(self.mock_pricing_path)
 
         test_json_content = read_json_at(self.mock_pricing_path)
