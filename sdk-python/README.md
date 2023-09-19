@@ -69,7 +69,9 @@ send_to_db(log)
 
 ### Editing the prices
 
-Once you have called the listener function once, a pricing file will be created in your local storage. You can edit it to change the pricing of the different models. Each operating system has a different path for the local storage:
+The price of each model will sometimes be updated when we publish a new version of the package to take into account the new pricing used by OpenAI. However, you can also edit the prices yourself to reflect the exact prices that you are paying.
+
+Once you have called the pricing function once (directly or via the listener function), a pricing file will be created in your local storage. You can edit it to change the pricing of the different models. Each operating system has a different path for the local storage:
 
 if you are running on macOS, you should use:
 `~/Library/Application Support/omnilogger`
