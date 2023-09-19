@@ -8,6 +8,9 @@ Welcome to the OmniLogger Python Package!
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Usage](#usage)
+    - [Installing](#installing)
+    - [Calling functions](#calling-functions)
+    - [Editing the pricing](#editing-the-pricing)
   - [Contributing](#contributing)
     - [Requirement](#requirement)
     - [Getting Started](#getting-started)
@@ -27,11 +30,15 @@ This document will first describe how to use the package, and then provide a ste
 
 ## Usage
 
+### Installing
+
 Run the following command to install the package:
 
 ```sh
 pip install omnilogger
 ```
+
+### Calling functions
 
 Import the package in your script:
 
@@ -59,6 +66,23 @@ log = {
 }
 send_to_db(log)
 ```
+
+### Editing the pricing
+
+Once you have called the listener function once, a pricing file will be created in your local storage. You can edit it to change the pricing of the different models. Each operating system has a different path for the local storage:
+
+if you are running on macOS, you should use:
+`~/Library/Application Support/<AppName>`
+
+If you are running on Windows (at least English Win) that should be:
+
+`C:\Documents and Settings\<User>\Application Data\Local Settings\<AppAuthor>\<AppName>`
+or possibly:
+`C:\Documents and Settings\<User>\Application Data\<AppAuthor>\<AppName>`
+for roaming profiles but that is another story.
+
+On Linux (and other Unices), according to the XDG Basedir Spec, it should be:
+`~/.local/share/<AppName>`
 
 ## Contributing
 
