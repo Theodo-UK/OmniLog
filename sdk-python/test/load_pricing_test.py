@@ -1,6 +1,7 @@
-import unittest
 import os
-from omnilogger.get_pricing import write_default_json_to, read_json_at, load_llm_pricing
+import unittest
+
+from omnilogger.get_pricing import load_llm_pricing, read_json_at, write_default_json_to
 
 
 class TestURLType(unittest.TestCase):
