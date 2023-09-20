@@ -21,7 +21,7 @@ datasource db {
   // shadowDatabaseUrl = env(“SHADOW_DATABASE_URL”)
 }
 
-model llm_logs {
+model llmLogs {
   id            String   @id @default(uuid())
   datetime_utc  DateTime
   input_string  String
@@ -30,7 +30,7 @@ model llm_logs {
   cost          Float?
 }
 
-model omnilog_user {
+model omnilogUser {
   id       String @id @default(uuid())
   email    String @unique
   password String

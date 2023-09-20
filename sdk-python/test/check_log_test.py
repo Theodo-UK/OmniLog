@@ -1,14 +1,14 @@
 import datetime
 import unittest
 
-from prisma.types import llm_logsCreateInput
+from prisma.types import llmLogsCreateInput
 
 from omnilogger.errors import LogDictKeyError
 from omnilogger.input_validation import check_log_type
 
 
 class TestLogType(unittest.TestCase):
-    valid_log = llm_logsCreateInput(
+    valid_log = llmLogsCreateInput(
         datetime_utc=datetime.datetime.utcnow(),
         input_string="What is this?",
         output_string="This is a test log",
@@ -42,7 +42,7 @@ class TestLogType(unittest.TestCase):
         """
         When log is missing a field, then KeyError is raised
         """
-        invalid_log = llm_logsCreateInput(
+        invalid_log = llmLogsCreateInput(
             datetime_utc=datetime.datetime.utcnow(),
         )
 

@@ -1,6 +1,6 @@
 import datetime
 
-from prisma.types import llm_logsCreateInput
+from prisma.types import llmLogsCreateInput
 
 from .errors import LogDictKeyError
 
@@ -10,10 +10,10 @@ def check_url_type(url):
         raise TypeError("Have you checked your url connection string is correct?")
 
 
-def check_log_type(log: llm_logsCreateInput):
+def check_log_type(log: llmLogsCreateInput):
     assert isinstance(log, dict), LogDictKeyError()
     assert set({**log.copy(), "id": -1}.keys()) == set(
-        llm_logsCreateInput.__annotations__.keys()
+        llmLogsCreateInput.__annotations__.keys()
     ), LogDictKeyError()
 
     assert isinstance(log["datetime_utc"], datetime.datetime), TypeError(

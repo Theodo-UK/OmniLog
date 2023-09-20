@@ -1,5 +1,5 @@
 import { LogDisplayOptions, Order, TimeOption } from "@/types/logDisplayOptions";
-import { llm_logs } from "@prisma/client";
+import { llmLogs } from "@prisma/client";
 import {
     PrismaSort,
     SearchCondition,
@@ -87,7 +87,7 @@ export const intervalToTimeframeObject = (startDateString: string, endDateString
 };
 
 export const stringsToSortObject = (
-    key?: keyof llm_logs,
+    key?: keyof llmLogs,
     order?: Order,
 ): PrismaSort => {
 

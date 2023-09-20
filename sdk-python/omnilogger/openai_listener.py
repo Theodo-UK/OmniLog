@@ -1,7 +1,7 @@
 from datetime import datetime
 
 import openai
-from prisma.types import llm_logsCreateInput
+from prisma.types import llmLogsCreateInput
 
 from .calculator import cost_calculator
 from .database import send_to_db
@@ -17,7 +17,7 @@ class CustomCompletion(openai.Completion):
         try:
             cost = cost_calculator("openai", model, input_tokens, output_tokens)
         finally:
-            log = llm_logsCreateInput(
+            log = llmLogsCreateInput(
                 input_string=prompt,
                 output_string=result["choices"][0]["text"],
                 datetime_utc=datetime.utcfromtimestamp(result["created"]),
