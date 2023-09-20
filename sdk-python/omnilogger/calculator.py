@@ -3,7 +3,7 @@ from omnilogger.get_pricing import get_pricing
 
 def cost_calculator(
     llm: str, model: str, input_tokens: int, output_tokens: int
-) -> float:
+) -> float | None:
     pricing = get_pricing(llm, model)
     if pricing is None:
         return None
