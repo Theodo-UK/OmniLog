@@ -1,5 +1,6 @@
 import json
 import os
+from typing import Any
 
 import platformdirs
 
@@ -34,8 +35,8 @@ def load_llm_pricing():
     return pricing
 
 
-def read_json_at(path: str) -> dict:
-    with open(path, "r") as json_file:
+def read_json_at(path: str) -> dict[str, Any]:
+    with open(path, "r", encoding="utf-8") as json_file:
         return json.load(json_file)
 
 
