@@ -38,6 +38,9 @@ export default function LogsTable({ logs }: { logs: LogDataArray }) {
                                 sortKey="total_tokens"
                             />
                         </th>
+                        <th className="px-4 py-2 text-left text-gray-600 w-1/12 border-gray-300 border-x">
+                            Cost
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,6 +66,9 @@ export default function LogsTable({ logs }: { logs: LogDataArray }) {
                             </td>
                             <td className="px-4 py-2 text-gray-800">
                                 {log.total_tokens}
+                            </td>
+                            <td className="px-4 py-2 text-gray-800">
+                                {log.cost || "-"}
                             </td>
                         </tr>
                     ))}
