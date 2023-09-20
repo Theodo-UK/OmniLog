@@ -1,7 +1,7 @@
 {
   "updated_at": "2023-09-20T12:00:00.000Z",
   "openai": {
-    "davinci-003": {
+    "text-davinci-003": {
       "input": 0.02,
       "output": 0.02
     },

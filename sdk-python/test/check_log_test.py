@@ -1,18 +1,19 @@
 import datetime
 import unittest
 
-from prisma.types import llm_logsCreateInput
+from prisma.types import llmLogsCreateInput
 
 from omnilogger.errors import LogDictKeyError
 from omnilogger.input_validation import check_log_type
 
 
 class TestLogType(unittest.TestCase):
-    valid_log = llm_logsCreateInput(
+    valid_log = llmLogsCreateInput(
         datetime_utc=datetime.datetime.utcnow(),
         input_string="What is this?",
         output_string="This is a test log",
         total_tokens=5,
+        cost=0.1,
     )
 
     def test_valid_log(self):
@@ -41,7 +42,7 @@ class TestLogType(unittest.TestCase):
         """
         When log is missing a field, then KeyError is raised
         """
-        invalid_log = llm_logsCreateInput(
+        invalid_log = llmLogsCreateInput(
             # type: ignore
             datetime_utc=datetime.datetime.utcnow(),
         )
@@ -105,6 +106,20 @@ class TestLogType(unittest.TestCase):
         self.assertRaisesRegex(
             AssertionError,
             "log.total_tokens must be an integer",
+            check_log_type,
+            log,
+        )
+
+    def test_log_cost_type(self):
+        """
+        When log cost is not a float, then AssertionError is raised
+        """
+        log = self.valid_log.copy()
+        log["cost"] = True
+
+        self.assertRaisesRegex(
+            AssertionError,
+            "log.cost must be a float",
             check_log_type,
             log,
         )

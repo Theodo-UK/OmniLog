@@ -1,4 +1,4 @@
-from prisma.types import llm_logsCreateInput
+from prisma.types import llmLogsCreateInput
 
 
 class LogDictKeyError(KeyError):
@@ -6,5 +6,5 @@ class LogDictKeyError(KeyError):
         # Call the base class constructor with the parameters it needs
         super().__init__(
             "log must be a dictionary with keys:"
-            f" {set(llm_logsCreateInput.__annotations__.keys())}"
+            f" {set(llmLogsCreateInput.__annotations__.keys())}"
         )
