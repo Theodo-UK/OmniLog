@@ -1,8 +1,9 @@
 from datetime import datetime
 
 import openai
-from prisma.types import llm_logsCreateInput
+from prisma.types import llmLogsCreateInput
 
+from .calculator import cost_calculator
 from .database import send_to_db
 
 
@@ -10,12 +11,19 @@ class CustomCompletion(openai.Completion):
     @classmethod
     def create(cls, model: str, prompt: str, **kwargs):
         result = super().create(model=model, prompt=prompt, **kwargs)
-        log = llm_logsCreateInput(
-            input_string=prompt,
-            output_string=result["choices"][0]["text"],
-            datetime_utc=datetime.utcfromtimestamp(result["created"]),
-            total_tokens=result["usage"]["total_tokens"],
-        )
+        input_tokens = result["usage"]["prompt_tokens"]
+        output_tokens = result["usage"]["completion_tokens"]
+        cost = None
+        try:
+            cost = cost_calculator("openai", model, input_tokens, output_tokens)
+        finally:
+            log = llmLogsCreateInput(
+                input_string=prompt,
+                output_string=result["choices"][0]["text"],
+                datetime_utc=datetime.utcfromtimestamp(result["created"]),
+                total_tokens=result["usage"]["total_tokens"],
+                cost=cost,
+            )
 
         send_to_db(log)
         return result

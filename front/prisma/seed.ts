@@ -16,7 +16,7 @@ const prisma = new PrismaClient();
 
 async function main() {
     const hashed = await hash(password!, 12);
-    const user = await prisma.omnilog_user.upsert({
+    await prisma.omnilogUser.upsert({
         where: { email: email },
         update: {},
         create: {
@@ -25,16 +25,15 @@ async function main() {
             password: hashed,
         },
     });
-    console.log({ user });
-    const log = await prisma.llm_logs.create({
+    await prisma.llmLogs.create({
         data: {
             datetime_utc: new Date().toISOString(),
             input_string: "Some string",
             output_string: "Some result",
             total_tokens: 1,
+            cost: 0.11,
         },
     });
-    console.log({ log });
 }
 
 main()

@@ -23,7 +23,7 @@ const authOptions: NextAuthOptions = {
                     return null; // invalidate form
                 }
 
-                const user = await prisma.omnilog_user.findUnique({
+                const user = await prisma.omnilogUser.findUnique({
                     where: {
                         email: credentials.email,
                     },

@@ -9,4 +9,4 @@ def cost_calculator(
         return None
     if input_tokens < 0 or output_tokens < 0:
         return None
-    return input_tokens * pricing["input"] + output_tokens * pricing["output"]
+    return (input_tokens * pricing["input"] + output_tokens * pricing["output"]) / 1000

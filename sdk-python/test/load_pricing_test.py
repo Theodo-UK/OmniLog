@@ -10,7 +10,7 @@ class TestURLType(unittest.TestCase):
     expected_pricing = {
         "updated_at": "2023-09-20T12:00:00.000Z",
         "openai": {
-            "davinci-003": {"input": 0.02, "output": 0.02},
+            "text-davinci-003": {"input": 0.02, "output": 0.02},
             "gpt-3.5-turbo": {"input": 0.0015, "output": 0.002},
             "gpt-3.5-turbo-16k": {
                 "training": 0.008,
