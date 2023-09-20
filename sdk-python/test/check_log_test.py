@@ -13,6 +13,7 @@ class TestLogType(unittest.TestCase):
         input_string="What is this?",
         output_string="This is a test log",
         total_tokens=5,
+        cost=0.1,
     )
 
     def test_valid_log(self):
@@ -104,6 +105,20 @@ class TestLogType(unittest.TestCase):
         self.assertRaisesRegex(
             AssertionError,
             "log.total_tokens must be an integer",
+            check_log_type,
+            log,
+        )
+
+    def test_log_cost_type(self):
+        """
+        When log cost is not a float, then AssertionError is raised
+        """
+        log = self.valid_log.copy()
+        log["cost"] = True
+
+        self.assertRaisesRegex(
+            AssertionError,
+            "log.cost must be a float",
             check_log_type,
             log,
         )
