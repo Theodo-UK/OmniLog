@@ -27,6 +27,7 @@ model llm_logs {
   input_string  String
   output_string String
   total_tokens  Int
+  cost          Float?
 }
 
 model omnilog_user {

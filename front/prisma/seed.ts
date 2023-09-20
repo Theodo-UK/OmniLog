@@ -32,6 +32,7 @@ async function main() {
             input_string: "Some string",
             output_string: "Some result",
             total_tokens: 1,
+            cost: 0.11,
         },
     });
     console.log({ log });
