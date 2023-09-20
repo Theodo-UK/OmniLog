@@ -40,3 +40,5 @@ jobs:
         run: poetry run pytest
       - name: Check OpenAI API format
         run: poetry run python test/openai_api/validate_format.py
+      - name: Check typing
+        run: poetry run pyright

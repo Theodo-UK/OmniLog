@@ -11,8 +11,9 @@ class TestURLType(unittest.TestCase):
             "input": 0.02,
             "output": 0.02,
         }
-
-        self.assertDictEqual(davinci_003, expected_davinci_003)
+        self.assertIsNotNone(davinci_003)
+        if davinci_003 is not None:
+            self.assertDictEqual(davinci_003, expected_davinci_003)
 
     def test_llm_not_found(self):
         open_ai_api = get_pricing("open_ai_api", "text-davinci-003")

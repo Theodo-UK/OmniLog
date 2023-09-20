@@ -15,7 +15,7 @@ if __name__ == "__main__":
     start_openai_listener()
 
     openai.api_key = OPENAI_API_KEY
-    openai.Completion.create(
+    openai.Completion.create(  # type: ignore
         model="text-davinci-003",
         prompt="To be or not to be?",
         temperature=0.6,

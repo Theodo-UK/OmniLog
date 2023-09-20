@@ -43,6 +43,7 @@ class TestLogType(unittest.TestCase):
         When log is missing a field, then KeyError is raised
         """
         invalid_log = llmLogsCreateInput(
+            # type: ignore
             datetime_utc=datetime.datetime.utcnow(),
         )
 
@@ -58,7 +59,7 @@ class TestLogType(unittest.TestCase):
         When log datetime_utc is not a datetime, then TypeError is raised
         """
         log = self.valid_log.copy()
-        log["datetime_utc"] = True
+        log["datetime_utc"] = True  # type: ignore
 
         self.assertRaisesRegex(
             AssertionError,
@@ -72,7 +73,7 @@ class TestLogType(unittest.TestCase):
         When log input is not a string, then AssertionError is raised
         """
         log = self.valid_log.copy()
-        log["input_string"] = True
+        log["input_string"] = True  # type: ignore
 
         self.assertRaisesRegex(
             AssertionError,
@@ -86,7 +87,7 @@ class TestLogType(unittest.TestCase):
         When log output is not a string, then AssertionError is raised
         """
         log = self.valid_log.copy()
-        log["output_string"] = True
+        log["output_string"] = True  # type: ignore
 
         self.assertRaisesRegex(
             AssertionError,

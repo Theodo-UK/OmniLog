@@ -1,10 +1,11 @@
 import json
 import os
+from typing import Any
 
 import platformdirs
 
 
-def get_pricing(llm: str, model: str) -> dict:
+def get_pricing(llm: str, model: str) -> dict[str, Any] | None:
     """
     Returns a dictionary containing the pricing for
     the given LLM and model, in dollar per 1000 tokens.
@@ -38,8 +39,8 @@ def load_llm_pricing():
     return pricing
 
 
-def read_json_at(path: str) -> dict:
-    with open(path, "r") as json_file:
+def read_json_at(path: str) -> dict[str, Any]:
+    with open(path, "r", encoding="utf-8") as json_file:
         return json.load(json_file)
 
 
@@ -48,5 +49,5 @@ def write_default_json_to(target_path: str) -> None:
     default_json_path = os.path.join(omnilogger_path, "data/pricing.json")
     default_json_content = read_json_at(default_json_path)
 
-    with open(target_path, "w") as json_file:
+    with open(target_path, "w", encoding="utf-8") as json_file:
         json.dump(default_json_content, json_file, indent=4)
