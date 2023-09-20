@@ -41,7 +41,7 @@ export default function LogsTable({ logs }: { logs: LogDataArray }) {
                             />
                         </th>
                         <th className="px-4 py-2 text-left text-gray-600 w-1/12 border-gray-300 border-x">
-                            Cost
+                            Estimated cost (USD)
                         </th>
                     </tr>
                 </thead>
