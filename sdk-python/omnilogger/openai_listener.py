@@ -16,7 +16,9 @@ class CustomCompletion(openai.Completion):
         output_tokens = result["usage"]["completion_tokens"]
         cost = None
         try:
-            cost = cost_calculator("openai", model, input_tokens, output_tokens)
+            cost = cost_calculator(
+                "openai", kwargs["model"], input_tokens, output_tokens
+            )
         finally:
             log = llmLogsCreateInput(
                 input_string=kwargs["prompt"],
