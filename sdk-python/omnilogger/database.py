@@ -10,7 +10,7 @@ def send_to_db(log: llmLogsCreateInput) -> None:
     db = Client()
     try:
         db.connect()
-        db.llmLogs.create(log)
+        db.llmlogs.create(log)
         db.disconnect()
 
     except Exception as e:
