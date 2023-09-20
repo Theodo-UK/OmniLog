@@ -1,5 +1,5 @@
-export const formatCostToString = (cost: number | undefined): string => {
-    if (cost === undefined) {
+export const formatCostToString = (cost: number | null): string => {
+    if (cost === null) {
         return "-";
     }
     if (cost >= 1000) {

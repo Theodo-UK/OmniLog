@@ -38,8 +38,8 @@ describe("formatCostToString", () => {
         expect(costString).toEqual("0.00*");
     }
     );
-    it("should return a dash if the cost is undefined", () => {
-        const cost = undefined;
+    it("should return a dash if the cost is null", () => {
+        const cost = null;
         const costString = formatCostToString(cost);
         expect(costString).toEqual("-");
     }
