@@ -40,7 +40,7 @@ pyright = "^1.1.324"
 "Bug Tracker" = "https://github.com/Theodo-UK/OmniLog/issues"
 
 [tool.black]
-experimental-string-processing = true
+preview = true
 
 [tool.isort]
 profile = "black"
