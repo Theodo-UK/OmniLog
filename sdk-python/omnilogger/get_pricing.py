@@ -5,7 +5,7 @@ from typing import Any
 import platformdirs
 
 
-def get_pricing(llm: str, model: str) -> dict:
+def get_pricing(llm: str, model: str) -> dict[str, Any] | None:
     pricing = load_llm_pricing()
 
     if llm not in pricing:
