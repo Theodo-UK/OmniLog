@@ -5,6 +5,10 @@ import platformdirs
 
 
 def get_pricing(llm: str, model: str) -> dict:
+    """
+    Returns a dictionary containing the pricing for
+    the given LLM and model, in dollar per 1000 tokens.
+    """
     pricing = load_llm_pricing()
 
     if llm not in pricing:
