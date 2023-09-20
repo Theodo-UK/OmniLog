@@ -13,14 +13,17 @@ class CustomCompletion(openai.Completion):
         result = super().create(model=model, prompt=prompt, **kwargs)
         input_tokens = result["usage"]["prompt_tokens"]
         output_tokens = result["usage"]["completion_tokens"]
-        cost = cost_calculator("openai", model, input_tokens, output_tokens)
-        log = llm_logsCreateInput(
-            input_string=prompt,
-            output_string=result["choices"][0]["text"],
-            datetime_utc=datetime.utcfromtimestamp(result["created"]),
-            total_tokens=result["usage"]["total_tokens"],
-            cost=cost,
-        )
+        cost = None
+        try:
+            cost = cost_calculator("openai", model, input_tokens, output_tokens)
+        finally:
+            log = llm_logsCreateInput(
+                input_string=prompt,
+                output_string=result["choices"][0]["text"],
+                datetime_utc=datetime.utcfromtimestamp(result["created"]),
+                total_tokens=result["usage"]["total_tokens"],
+                cost=cost,
+            )
 
         send_to_db(log)
         return result
