@@ -3,8 +3,8 @@ from datetime import datetime
 import openai
 from prisma.types import llm_logsCreateInput
 
-from .database import send_to_db
 from .calculator import cost_calculator
+from .database import send_to_db
 
 
 class CustomCompletion(openai.Completion):
