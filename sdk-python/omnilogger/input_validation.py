@@ -5,11 +5,6 @@ from prisma.types import llm_logsCreateInput
 from .errors import LogDictKeyError
 
 
-def check_url_type(url):
-    if not isinstance(url, str):
-        raise TypeError("Have you checked your url connection string is correct?")
-
-
 def check_log_type(log: llm_logsCreateInput):
     assert isinstance(log, dict), LogDictKeyError()
     assert set({**log.copy(), "id": -1}.keys()) == set(
