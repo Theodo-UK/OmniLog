@@ -28,3 +28,4 @@ def check_log_type(log: llm_logsCreateInput):
     assert type(log["total_tokens"]) is int, TypeError(
         "log.total_tokens must be an integer"
     )
+    assert isinstance(log["cost"], float), TypeError("log.cost must be a float")
