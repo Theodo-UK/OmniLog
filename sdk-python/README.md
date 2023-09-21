@@ -10,7 +10,7 @@ Welcome to the OmniLogger Python Package!
   - [Usage](#usage)
     - [Installing](#installing)
     - [Calling functions](#calling-functions)
-    - [Editing the pricing](#editing-the-pricing)
+    - [Editing the prices](#editing-the-prices)
   - [Contributing](#contributing)
     - [Requirement](#requirement)
     - [Getting Started](#getting-started)

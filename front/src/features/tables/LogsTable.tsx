@@ -1,5 +1,6 @@
 "use client";
 import { CardAtom } from "@/components/atoms/CardAtom";
+import { Tooltip } from "@/components/atoms/Tooltip";
 import { useNavigation } from "@/hooks/useNavigation";
 import { LogDataArray, SortOptions } from "@/types/logDisplayOptions";
 import {
@@ -8,6 +9,7 @@ import {
     faSortUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { formatCostToString } from "./helpers/formatCost";
 
 export default function LogsTable({ logs }: { logs: LogDataArray }) {
     const { router } = useNavigation();
@@ -39,7 +41,7 @@ export default function LogsTable({ logs }: { logs: LogDataArray }) {
                             />
                         </th>
                         <th className="px-4 py-2 text-left text-gray-600 w-1/12 border-gray-300 border-x">
-                            Cost
+                            Estimated cost (USD)
                         </th>
                     </tr>
                 </thead>
@@ -50,7 +52,7 @@ export default function LogsTable({ logs }: { logs: LogDataArray }) {
                             className="hover:bg-gray-200 cursor-pointer"
                             onClick={() => router.push(`/logs/${log.id}`)}
                         >
-                            <td className="px-4 py-2 text-gray-800">
+                            <td className="px-4 py-2 text-gray-800 truncate">
                                 {log.id}
                             </td>
                             <td className="px-4 py-2 text-gray-800">
@@ -68,7 +70,11 @@ export default function LogsTable({ logs }: { logs: LogDataArray }) {
                                 {log.total_tokens}
                             </td>
                             <td className="px-4 py-2 text-gray-800">
-                                {log.cost || "-"}
+                                <Tooltip
+                                    text={log.cost?.toString() ?? "undefined: an error occurred"}
+                                >
+                                    {formatCostToString(log.cost)}
+                                </Tooltip>
                             </td>
                         </tr>
                     ))}
