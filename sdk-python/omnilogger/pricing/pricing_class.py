@@ -2,60 +2,48 @@ import logging
 import os
 
 from omnilogger.pricing.storage_manager import (
-    config_path_of,
     copy_json,
-    mock_path_of,
+    pricing_config_path,
+    pricing_reference_path,
     read_json_at,
 )
 from omnilogger.pricing.typedDicts import ModelData
 
 
 class Pricing:
-    updated_at: str
     data: dict[str, dict[str, ModelData]]
-    __reference_pricing_path: str
     help_edit_msg: str
 
     def __init__(self, is_test: bool = False):
-        try:
-            self.__init_reference_pricing_path()
-            self.__init_pricing_storage_path(is_test)
-            self.__warn(
-                "Pricing data is stored at "
-                + self.local_path
-                + ". You can edit it to change the prices."
-            )
-            self.__init_llm_pricing_data()
-            self.help_edit_msg: str = (
-                f"You can navigate to {self.local_path} to edit the pricing data."
-            )
-        except Exception as err:  # pylint: disable=broad-except
-            self.__warn("Failed to load pricing: " + err.__str__())
-
-    def __init_reference_pricing_path(self) -> None:
-        self.__reference_pricing_path = os.path.join(
-            os.path.dirname(__file__), "pricing.json"
+        local_path = self.__init_pricing_storage_path(is_test)
+        self.__init_llm_pricing_data(local_path)
+        self.help_edit_msg: str = (
+            f"You can navigate to {local_path} to edit the pricing data."
         )
 
-    def __init_pricing_storage_path(self, is_test: bool) -> None:
-        pricing_path = (config_path_of if not is_test else mock_path_of)("pricing.json")
-        self.local_path = pricing_path
+    def __init_pricing_storage_path(self, is_test: bool) -> str:
+        if is_test:
+            return pricing_reference_path()
+        else:
+            return pricing_config_path()
 
-    def __init_llm_pricing_data(self):
-        if not os.path.exists(self.local_path):
-            copy_json(self.__reference_pricing_path, self.local_path)
-
-        temp_data = read_json_at(self.local_path)
+    def __init_llm_pricing_data(self, local_path: str):
+        reference_pricing_path = pricing_reference_path()
+        try:
+            if not os.path.exists(local_path):
+                copy_json(reference_pricing_path, local_path)
+            temp_data = read_json_at(local_path)
+        except Exception as err:  # pylint: disable=broad-except
+            self.__warn("Failed to load pricing.json: " + err.__str__() + "\n")
+            return
         if temp_data is None:
-            raise ValueError("pricing data is None")
+            self.__warn("Loaded pricing.json is empty")
+            return
         self.data = temp_data
 
     def __warn(self, message: str) -> None:
         logger = logging.getLogger("omnilogger pricing")
         logger.warning(message)
-
-    def get_data(self) -> dict[str, dict[str, ModelData]]:
-        return self.data
 
     def get_llms(self) -> list[str]:
         return list(self.data.keys())
@@ -68,12 +56,7 @@ class Pricing:
             temp_data = self.data[llm][model]
             if self.is_model_data_valid(temp_data):
                 return temp_data
-
         return None
-
-    def reset_pricing_to_default(self) -> None:
-        copy_json(self.__reference_pricing_path, self.local_path)
-        self.__init_llm_pricing_data()
 
     def are_keys_valid(self, llm: str, model: str) -> bool:
         not_found_in = " was not found in pricing dict. Pick one of the following: "

@@ -5,7 +5,11 @@ from typing import Any
 import platformdirs
 
 
-def config_path_of(path: str) -> str:
+def pricing_reference_path() -> str:
+    return os.path.join(os.path.dirname(__file__), "pricing.json")
+
+
+def pricing_config_path() -> str:
     app_name = "omnilogger"
     app_author = "theodo_uk"
 
@@ -14,12 +18,7 @@ def config_path_of(path: str) -> str:
     if not os.path.exists(config_dir):
         os.makedirs(config_dir)
 
-    return os.path.join(config_dir, path)
-
-
-def mock_path_of(path: str) -> str:
-    mock_dir = os.path.dirname(__file__)
-    return os.path.join(mock_dir, path)
+    return os.path.join(config_dir, "pricing.json")
 
 
 def read_json_at(path: str) -> Any:
