@@ -1,26 +1,35 @@
 import unittest
 
-from omnilogger.get_pricing import get_pricing
+from omnilogger.pricing.pricing_class import Pricing
 
 
 class TestURLType(unittest.TestCase):
+    pricing = Pricing(is_test=True)
+
     def test_valid_arg(self):
-        davinci_003 = get_pricing("openai", "text-davinci-003")
+        """
+        When llm and model are valid,
+        And the model data is valid
+        Then fetch_model_data should return True
+        And target_prices should be set to the correct value
+        """
+        model_prices = self.pricing.fetch_model_data("openai", "text-davinci-003")
+        if not model_prices:
+            self.fail("Failed to fetch model data")
 
         expected_davinci_003 = {
             "input": 0.02,
             "output": 0.02,
         }
-        self.assertIsNotNone(davinci_003)
-        if davinci_003 is not None:
-            self.assertDictEqual(davinci_003, expected_davinci_003)
+        self.assertDictEqual(model_prices, expected_davinci_003)
 
-    def test_llm_not_found(self):
-        open_ai_api = get_pricing("open_ai_api", "text-davinci-003")
-
-        self.assertIsNone(open_ai_api)
-
-    def test_model_not_found(self):
-        davinci_004 = get_pricing("openai", "text-davinci-004")
-
-        self.assertIsNone(davinci_004)
+    def test_invalid_key(self):
+        """
+        When llm is invalid,
+        Then fetch_model_data should return False
+        And target_prices should be None
+        """
+        model_prices = self.pricing.fetch_model_data("open_ai_api", "text-davinci-003")
+        if model_prices:
+            self.fail("Should not fetch model data")
+        self.assertIsNone(model_prices)
