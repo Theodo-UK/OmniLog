@@ -3,7 +3,7 @@ import unittest
 
 from prisma.types import llmLogsCreateInput
 
-from omnilogger.errors import LogDictKeyError
+from omnilogger.helpers.errors import LogDictKeyError
 from omnilogger.input_validation import check_log_type
 
 

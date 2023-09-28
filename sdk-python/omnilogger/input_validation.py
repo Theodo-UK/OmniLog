@@ -2,7 +2,7 @@ import datetime
 
 from prisma.types import llmLogsCreateInput
 
-from .errors import LogDictKeyError
+from omnilogger.helpers.errors import LogDictKeyError
 
 
 def check_log_type(log: llmLogsCreateInput):

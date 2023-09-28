@@ -13,6 +13,6 @@ def send_to_db(log: llmLogsCreateInput) -> None:
         db.llmlogs.create(log)
         db.disconnect()
 
-    except Exception as e:
+    except Exception as e:  # pylint: disable=broad-except
         print(e)
         db.disconnect()

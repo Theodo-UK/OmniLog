@@ -1,12 +1,15 @@
 import os
 import unittest
 
-from omnilogger.get_pricing import load_llm_pricing, read_json_at, write_default_json_to
+from omnilogger.pricing.storage_manager import copy_json, read_json_at
 
 
-class TestURLType(unittest.TestCase):
+class TestPriceGetter(unittest.TestCase):
     test_path = os.path.dirname(__file__)
     mock_pricing_path = os.path.join(test_path, "mock/pricing.json")
+    default_pricing_path: str = os.path.join(
+        os.path.dirname(__file__), "../omnilogger/pricing/pricing.json"
+    )
     expected_pricing = {
         "updated_at": "2023-09-20T12:00:00.000Z",
         "openai": {
@@ -26,20 +29,29 @@ class TestURLType(unittest.TestCase):
         },
     }
 
-    def test_read_write_json(self):
+    def test_read_default_json(self):
+        """
+        Read function should extract data from the given path
+        """
+        test_json_content = read_json_at(self.default_pricing_path)
+
+        self.assertIsNotNone(test_json_content)
+        self.assertEqual(test_json_content, self.expected_pricing)
+
+    def test_copy_json(self):
+        """
+        When copying a json file to a given path,
+        Then the file should be copied to the given path
+        """
         mock_dir_path = os.path.join(self.test_path, "mock")
         if not os.path.exists(mock_dir_path):
             os.makedirs(mock_dir_path)
 
-        write_default_json_to(self.mock_pricing_path)
+        copy_json(self.default_pricing_path, self.mock_pricing_path)
 
         test_json_content = read_json_at(self.mock_pricing_path)
 
-        self.assertDictEqual(test_json_content, self.expected_pricing)
+        self.assertIsNotNone(test_json_content)
+        self.assertEqual(test_json_content, self.expected_pricing)
 
         os.remove(self.mock_pricing_path)
-
-    def test_loader(self):
-        pricing = load_llm_pricing()
-
-        self.assertDictEqual(pricing, self.expected_pricing)
