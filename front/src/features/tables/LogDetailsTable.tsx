@@ -2,9 +2,10 @@ import { CardAtom } from "@/components/atoms/CardAtom";
 import { LogData } from "@/types/logDisplayOptions";
 
 export const LogDetailsTable = ({ logDetails }: { logDetails: LogData }) => {
-    const cost_text: string = logDetails.cost
-        ? logDetails.cost?.toString()
-        : "undefined: an error occurred";
+    const cost_text: string =
+        logDetails.cost !== null
+            ? logDetails.cost?.toString()
+            : "undefined: an error occurred";
     return (
         <CardAtom>
             <table className="table-auto w-full">
