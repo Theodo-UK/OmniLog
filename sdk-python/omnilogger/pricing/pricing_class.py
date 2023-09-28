@@ -14,18 +14,12 @@ class Pricing:
     data: dict[str, dict[str, ModelData]]
     help_edit_msg: str
 
-    def __init__(self, is_test: bool = False):
-        local_path = self.__init_pricing_storage_path(is_test)
+    def __init__(self):
+        local_path = pricing_config_path()
         self.__init_llm_pricing_data(local_path)
         self.help_edit_msg: str = (
             f"You can navigate to {local_path} to edit the pricing data."
         )
-
-    def __init_pricing_storage_path(self, is_test: bool) -> str:
-        if is_test:
-            return pricing_reference_path()
-        else:
-            return pricing_config_path()
 
     def __init_llm_pricing_data(self, local_path: str):
         reference_pricing_path = pricing_reference_path()

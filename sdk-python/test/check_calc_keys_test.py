@@ -1,16 +1,23 @@
 import unittest
 from typing import Any
+from unittest.mock import patch
 
 import pytest
 
 from omnilogger.pricing.pricing_class import Pricing
+from omnilogger.pricing.storage_manager import pricing_reference_path
 
 
 class TestPriceKeys(unittest.TestCase):
     llm = "openai"
     model = "text-davinci-003"
-    ref_pricing = Pricing(is_test=True)
+    pricing: Pricing
     not_found_in = "was not found in pricing dict. Pick one of the following:"
+
+    @patch("omnilogger.pricing.pricing_class.pricing_config_path")
+    def setUp(self, mock_pricing_path: Any):  # pylint: disable=arguments-differ
+        mock_pricing_path.return_value = pricing_reference_path()
+        self.pricing = Pricing()
 
     @pytest.fixture(autouse=True)
     def inject_fixture(self, caplog: Any):
@@ -23,7 +30,7 @@ class TestPriceKeys(unittest.TestCase):
         When valid args are given,
         then True is returned and no warning is logged
         """
-        res = self.ref_pricing.are_keys_valid(self.llm, self.model)
+        res = self.pricing.are_keys_valid(self.llm, self.model)
         self.assertTrue(res)
         for record in self.caplog.records:
             self.fail(record.message)
@@ -35,7 +42,7 @@ class TestPriceKeys(unittest.TestCase):
         """
         llm = True
 
-        check_keys = self.ref_pricing.are_keys_valid(llm, self.model)  # type: ignore
+        check_keys = self.pricing.are_keys_valid(llm, self.model)  # type: ignore
 
         self.assertFalse(check_keys)
         self.assertIn("llm must be a string", self.caplog.text)
@@ -47,7 +54,7 @@ class TestPriceKeys(unittest.TestCase):
         """
         model = True
 
-        check_keys = self.ref_pricing.are_keys_valid(self.llm, model)  # type: ignore
+        check_keys = self.pricing.are_keys_valid(self.llm, model)  # type: ignore
 
         self.assertFalse(check_keys)
         self.assertIn("model must be a string", self.caplog.text)
@@ -59,9 +66,9 @@ class TestPriceKeys(unittest.TestCase):
         """
         llm = "invalid_llm"
 
-        self.assertFalse(self.ref_pricing.are_keys_valid(llm, self.model))
+        self.assertFalse(self.pricing.are_keys_valid(llm, self.model))
 
-        available_keys = ", ".join(self.ref_pricing.get_llms())
+        available_keys = ", ".join(self.pricing.get_llms())
         expected_msg = f"{llm} {self.not_found_in} {available_keys}"
         self.assertIn(expected_msg, self.caplog.text)
 
@@ -72,9 +79,9 @@ class TestPriceKeys(unittest.TestCase):
         """
         model = "invalid_model"
 
-        self.assertFalse(self.ref_pricing.are_keys_valid(self.llm, model))
+        self.assertFalse(self.pricing.are_keys_valid(self.llm, model))
 
-        available_keys = ", ".join(self.ref_pricing.get_models(self.llm))
+        available_keys = ", ".join(self.pricing.get_models(self.llm))
         expected_msg = f"{model} {self.not_found_in} {available_keys}"
         self.assertIn(
             expected_msg,

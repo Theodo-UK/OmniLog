@@ -1,10 +1,18 @@
 import unittest
+from typing import Any
+from unittest.mock import patch
 
 from omnilogger.pricing.pricing_class import Pricing
+from omnilogger.pricing.storage_manager import pricing_reference_path
 
 
-class TestURLType(unittest.TestCase):
-    pricing = Pricing(is_test=True)
+class TestGetPricing(unittest.TestCase):
+    pricing: Pricing
+
+    @patch("omnilogger.pricing.pricing_class.pricing_config_path")
+    def setUp(self, mock_pricing_path: Any):  # pylint: disable=arguments-differ
+        mock_pricing_path.return_value = pricing_reference_path()
+        self.pricing = Pricing()
 
     def test_valid_arg(self):
         """

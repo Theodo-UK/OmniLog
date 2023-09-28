@@ -1,19 +1,24 @@
 import unittest
 from typing import Any
+from unittest.mock import patch
 
 import pytest
 
 from omnilogger.pricing.pricing_class import Pricing
+from omnilogger.pricing.storage_manager import pricing_reference_path
 
 
 class TestPriceModelData(unittest.TestCase):
     llm = "openai"
     model = "text-davinci-003"
+    pricing: Pricing
+    dict_msg: str
+    price_msg: str
 
-    def __init__(self, methodName: str = "runTest") -> None:
-        super().__init__(methodName)
-
-        self.pricing = Pricing(is_test=True)
+    @patch("omnilogger.pricing.pricing_class.pricing_config_path")
+    def setUp(self, mock_pricing_path: Any):  # pylint: disable=arguments-differ
+        mock_pricing_path.return_value = pricing_reference_path()
+        self.pricing = Pricing()
         self.dict_msg = (
             "The price of the model must be a dictionary containing"
             f" input and output properties. {self.pricing.help_edit_msg}"
@@ -24,7 +29,7 @@ class TestPriceModelData(unittest.TestCase):
         )
 
     @pytest.fixture(autouse=True)
-    def inject_fixtures(self, caplog: Any):
+    def inject_fixture(self, caplog: Any):
         self.caplog = caplog  # pylint: disable=attribute-defined-outside-init
         yield
         self.caplog.clear()
