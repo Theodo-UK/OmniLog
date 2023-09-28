@@ -1,6 +1,7 @@
-import logging
 import os
+from typing import Callable
 
+from omnilogger.helpers.logger import create_logger
 from omnilogger.pricing.storage_manager import (
     copy_json,
     pricing_config_path,
@@ -13,8 +14,10 @@ from omnilogger.pricing.typedDicts import ModelData
 class Pricing:
     data: dict[str, dict[str, ModelData]]
     help_edit_msg: str
+    __warn: Callable[[str], None]
 
     def __init__(self):
+        self.__warn = create_logger("pricing")
         local_path = pricing_config_path()
         self.__init_llm_pricing_data(local_path)
         self.help_edit_msg: str = (
@@ -34,10 +37,6 @@ class Pricing:
             self.__warn("Loaded pricing.json is empty")
             return
         self.data = temp_data
-
-    def __warn(self, message: str) -> None:
-        logger = logging.getLogger("omnilogger pricing")
-        logger.warning(message)
 
     def get_llms(self) -> list[str]:
         return list(self.data.keys())
