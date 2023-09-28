@@ -21,13 +21,17 @@ export const ColumnHeader = ({ title, sortKey, width }: ColumnHeaderProps) => {
         updateSearchParam({ sortBy: key, sortOrder: newOrder });
     };
 
+    const thClassSmall =
+        "px-4 py-2 text-left text-gray-600 border-gray-300 border-x w-1/12";
+    const thClassMedium =
+        "px-4 py-2 text-left text-gray-600 border-gray-300 border-x w-1/6";
     let thClass = "px-4 py-2 text-left text-gray-600 border-gray-300 border-x";
     switch (width) {
         case "small":
-            thClass += " w-1/6";
+            thClass = thClassSmall;
             break;
         case "medium":
-            thClass += " w-1/4";
+            thClass = thClassMedium;
             break;
     }
 
