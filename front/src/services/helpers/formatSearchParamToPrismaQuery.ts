@@ -115,6 +115,8 @@ export const stringsToSortObject = (
             return { datetime_utc: order };
         case "total_tokens":
             return { total_tokens: order };
+        case "cost":
+            return { cost: order };
         default:
             return { id: order };
     }

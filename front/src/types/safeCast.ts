@@ -9,7 +9,7 @@ export const safeCastToTimeOption = (
 };
 
 export const safeCastToSortOptions = (value: string | null): SortOptions => {
-    if (["datetime_utc", "total_tokens"].includes(value ?? ""))
+    if (["datetime_utc", "total_tokens", "cost"].includes(value ?? ""))
         return value as SortOptions;
     return "id";
 };
