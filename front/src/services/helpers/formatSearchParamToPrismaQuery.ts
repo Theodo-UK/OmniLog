@@ -116,7 +116,7 @@ export const stringsToSortObject = (
         case "total_tokens":
             return { total_tokens: order };
         case "cost":
-            return { cost: order };
+            return { cost: { sort: order, nulls: "last" } };
         default:
             return { id: order };
     }

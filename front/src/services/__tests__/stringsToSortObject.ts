@@ -18,6 +18,6 @@ describe("stringsToSortObject", () => {
         const llm_key = "cost";
         const llm_order = "asc";
         const testObject = stringsToSortObject(llm_key, llm_order);
-        expect(testObject).toEqual({ cost: "asc" });
+        expect(testObject).toEqual({ cost: { sort: "asc", nulls: "last" } });
     });
 });

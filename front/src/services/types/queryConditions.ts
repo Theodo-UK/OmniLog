@@ -9,7 +9,7 @@ export type PrismaSort =
     | { id: Order }
     | { datetime_utc: Order }
     | { total_tokens: Order }
-    | { cost: Order };
+    | { cost: { sort: Order; nulls: "last" } };
 
 export type SearchCondition =
     | [
