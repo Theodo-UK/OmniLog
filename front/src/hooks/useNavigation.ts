@@ -1,12 +1,17 @@
 import { LogDisplayOptions } from "@/types/logDisplayOptions";
-import { safeCastToOrder, safeCastToSortOptions, safeCastToTimeOption } from "@/types/safeCast";
+import {
+    safeCastToOrder,
+    safeCastToSortOptions,
+    safeCastToTimeOption,
+} from "@/types/safeCast";
 import { useRouter, useSearchParams } from "next/navigation";
 
 export const useNavigation = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
 
-    const dateTimeFilter: LogDisplayOptions["dateTimeFilter"] = safeCastToTimeOption(searchParams.get("dateTimeFilter"));
+    const dateTimeFilter: LogDisplayOptions["dateTimeFilter"] =
+        safeCastToTimeOption(searchParams.get("dateTimeFilter"));
 
     const sortBy = safeCastToSortOptions(searchParams.get("sortBy"));
     const sortOrder = safeCastToOrder(searchParams.get("sortOrder"));
@@ -22,13 +27,12 @@ export const useNavigation = () => {
         }
 
         const isCustomInterval = FilterBy.endDateTime && FilterBy.startDateTime;
-        if (isCustomInterval)
-            params.delete("dateTimeFilter");
-        else {
+        const isDateTmeFilter = FilterBy.dateTimeFilter !== undefined;
+        if (isCustomInterval) params.delete("dateTimeFilter");
+        if (isDateTmeFilter) {
             params.delete("startDateTime");
             params.delete("endDateTime");
         }
-
         router.push(`?${params.toString()}`);
     };
     const removeSearchParam = (key: keyof LogDisplayOptions) => {

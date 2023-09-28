@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { convertSearchParamToPrismaConditions } from "../helpers/formatSearchParamToPrismaQuery";
-import { MS_PER_WEEK, MS_PER_HOUR } from "../helpers/timeConstants";
+import { MS_PER_HOUR, MS_PER_WEEK } from "../helpers/timeConstants";
 
 describe("extractDataFromSearchParam", () => {
     it("should return an object with the default values if no search params are passed", () => {

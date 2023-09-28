@@ -1,4 +1,13 @@
-import { LogDisplayOptions, Order, TimeOption } from "@/types/logDisplayOptions";
+import {
+    LogDisplayOptions,
+    Order,
+    TimeOption,
+} from "@/types/logDisplayOptions";
+import {
+    safeCastToOrder,
+    safeCastToSortOptions,
+    safeCastToTimeOption,
+} from "@/types/safeCast";
 import { llmLogs } from "@prisma/client";
 import {
     PrismaSort,
@@ -6,14 +15,18 @@ import {
     Timeframe,
 } from "../types/queryConditions";
 import { MS_PER_DAY, MS_PER_HOUR, MS_PER_WEEK } from "./timeConstants";
-import { safeCastToOrder, safeCastToSortOptions, safeCastToTimeOption } from "@/types/safeCast";
 
-export const convertSearchParamToPrismaConditions = (searchParams?: URLSearchParams) => {
+export const convertSearchParamToPrismaConditions = (
+    searchParams?: URLSearchParams,
+) => {
     const data = extractDataFromSearchParams(searchParams);
 
     let timeframe: Timeframe;
     if (data.startDateTime && data.endDateTime)
-        timeframe = intervalToTimeframeObject(data.startDateTime, data.endDateTime);
+        timeframe = intervalToTimeframeObject(
+            data.startDateTime,
+            data.endDateTime,
+        );
     else timeframe = stringToTimeframeObject(data.dateTimeFilter);
 
     const sortObject = stringsToSortObject(data.sortBy, data.sortOrder);
@@ -23,7 +36,9 @@ export const convertSearchParamToPrismaConditions = (searchParams?: URLSearchPar
     return { timeframe, sort: sortObject, searchCondition };
 };
 
-const extractDataFromSearchParams = (searchParams?: URLSearchParams): LogDisplayOptions => {
+const extractDataFromSearchParams = (
+    searchParams?: URLSearchParams,
+): LogDisplayOptions => {
     const params = new URLSearchParams(searchParams);
     const data: LogDisplayOptions = {
         dateTimeFilter: safeCastToTimeOption(params.get("dateTimeFilter")),
@@ -34,8 +49,7 @@ const extractDataFromSearchParams = (searchParams?: URLSearchParams): LogDisplay
         search: params.get("search") || undefined,
     };
     return data;
-}
-
+};
 
 export const stringToTimeframeObject = (
     stringTimeOption?: TimeOption,
@@ -62,7 +76,10 @@ export const stringToTimeframeObject = (
     };
 };
 
-export const intervalToTimeframeObject = (startDateString: string, endDateString: string): Timeframe => {
+export const intervalToTimeframeObject = (
+    startDateString: string,
+    endDateString: string,
+): Timeframe => {
     const startDate = new Date(startDateString);
     const endDate = new Date(endDateString);
 
@@ -90,7 +107,6 @@ export const stringsToSortObject = (
     key?: keyof llmLogs,
     order?: Order,
 ): PrismaSort => {
-
     key = key || "datetime_utc";
     order = order || "desc";
 
@@ -99,6 +115,8 @@ export const stringsToSortObject = (
             return { datetime_utc: order };
         case "total_tokens":
             return { total_tokens: order };
+        case "cost":
+            return { cost: { sort: order, nulls: "last" } };
         default:
             return { id: order };
     }

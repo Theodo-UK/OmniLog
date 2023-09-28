@@ -8,7 +8,8 @@ export type Timeframe = {
 export type PrismaSort =
     | { id: Order }
     | { datetime_utc: Order }
-    | { total_tokens: Order };
+    | { total_tokens: Order }
+    | { cost: { sort: Order; nulls: "last" } };
 
 export type SearchCondition =
     | [

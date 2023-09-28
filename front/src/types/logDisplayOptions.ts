@@ -6,13 +6,13 @@ export type LogDisplayOptions = {
     dateTimeFilter?: TimeOption;
     search?: string;
     startDateTime?: string;
-    endDateTime?: string
+    endDateTime?: string;
 };
 
-export type TimeOption = "Last hour" | "Last day" | "Last week"
+export type TimeOption = "Last hour" | "Last day" | "Last week";
 
 export type Order = "asc" | "desc";
-export type SortOptions = "datetime_utc" | "total_tokens" | "id";
+export type SortOptions = "datetime_utc" | "total_tokens" | "id" | "cost";
 
 export type LogData = llmLogs;
 export type LogDataArray = LogData[];
