@@ -26,10 +26,10 @@ export const useNavigation = () => {
             params.set(key, value);
         }
 
-        const isCustomInterval =
-            params.get("endDateTime") && params.get("startDateTime");
+        const isCustomInterval = FilterBy.endDateTime && FilterBy.startDateTime;
+        const isDateTmeFilter = FilterBy.dateTimeFilter !== undefined;
         if (isCustomInterval) params.delete("dateTimeFilter");
-        else {
+        if (isDateTmeFilter) {
             params.delete("startDateTime");
             params.delete("endDateTime");
         }

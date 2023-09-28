@@ -1,26 +1,36 @@
 import { useNavigation } from "@/hooks/useNavigation";
 import { safeCastToTimeOption } from "@/types/safeCast";
 import { useState } from "react";
+import { getSelectedTimeFromURL } from "../helpers/getSelectedTimeFromURL";
 
 export const useTimeDropdown = () => {
+    const timeOptions = [
+        "Last hour",
+        "Last day",
+        "Last week",
+        "Custom interval",
+    ];
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-    const timeOptions = ["Last hour", "Last day", "Last week", "Custom interval"];
+    const { dateTimeFilter, getStringParam, updateSearchParam } =
+        useNavigation();
 
-    const { dateTimeFilter, getStringParam, updateSearchParam } = useNavigation();
-    const [selectedTime, setSelectedTime] = useState<string | undefined>(dateTimeFilter);
-    const [startDateTime, endDateTime] = [getStringParam("startDateTime"), getStringParam("endDateTime")];
+    const [startDateTime, endDateTime] = [
+        getStringParam("startDateTime"),
+        getStringParam("endDateTime"),
+    ];
 
-    const isCustomInterval = startDateTime && endDateTime;
-    const isValidFilter = timeOptions.includes(selectedTime ?? "");
-    if (isCustomInterval && selectedTime !== "Custom interval") setSelectedTime("Custom interval");
-    else if (!isValidFilter) setSelectedTime("Last hour");
+    const [selectedTime, setSelectedTime] = useState<string | undefined>(
+        getSelectedTimeFromURL(startDateTime, endDateTime, dateTimeFilter),
+    );
 
     const onSelectTime = (newValue: string) => {
         setSelectedTime(newValue);
         if (newValue !== "Custom interval") {
-            updateSearchParam({ dateTimeFilter: safeCastToTimeOption(newValue) });
+            updateSearchParam({
+                dateTimeFilter: safeCastToTimeOption(newValue),
+            });
         } else {
             setIsPopupOpen(true);
         }
