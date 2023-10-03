@@ -1,15 +1,12 @@
 import { useNavigation } from "@/hooks/useNavigation";
-import { safeCastToTimeOption } from "@/types/safeCast";
 import { useState } from "react";
 import { getSelectedTimeFromURL } from "../helpers/getSelectedTimeFromURL";
+import { timeFormatCleaner } from "@/services/helpers/timeFormatCleaner";
+import { timeOptionConstants } from "@/services/helpers/timeConstants";
 
 export const useTimeDropdown = () => {
-    const timeOptions = [
-        "Last hour",
-        "Last day",
-        "Last week",
-        "Custom interval",
-    ];
+    let timeOptions = timeOptionConstants.map((option) => option.displayName);
+    timeOptions = timeOptions.concat("Custom interval");
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -26,10 +23,11 @@ export const useTimeDropdown = () => {
     );
 
     const onSelectTime = (newValue: string) => {
+        const cleanTime = timeFormatCleaner(newValue);
         setSelectedTime(newValue);
         if (newValue !== "Custom interval") {
             updateSearchParam({
-                dateTimeFilter: safeCastToTimeOption(newValue),
+                dateTimeFilter: cleanTime,
             });
         } else {
             setIsPopupOpen(true);
