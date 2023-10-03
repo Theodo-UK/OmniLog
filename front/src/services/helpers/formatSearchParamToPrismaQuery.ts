@@ -57,7 +57,7 @@ export const stringToTimeframeObject = (
     const now = new Date();
     let numberTimeframe = MS_PER_HOUR;
     const matchingTimeOption = timeOptionConstants.filter(
-        (option) => stringTimeOption === option.urlName,
+        (option) => stringTimeOption === option.timeOption,
     );
 
     if (matchingTimeOption[0]) {

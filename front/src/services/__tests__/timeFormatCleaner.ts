@@ -1,24 +1,24 @@
 import { TimeOption } from "@/types/logDisplayOptions";
-import { timeFormatCleaner } from "../helpers/timeFormatCleaner";
+import { displayNameToTimeOption } from "../helpers/displayNameToTimeOption";
 
-describe("timeFormatCleaner", () => {
+describe("displayNameToTimeOption", () => {
     it('should convert "Last day" to the corresponding TimeOption', () => {
-        const result = timeFormatCleaner("Last day");
+        const result = displayNameToTimeOption("Last day");
         const expected: TimeOption = "last-day";
         expect(result).toEqual(expected);
     });
     it('should convert "Last week" to the corresponding TimeOption', () => {
-        const result = timeFormatCleaner("Last week");
+        const result = displayNameToTimeOption("Last week");
         const expected: TimeOption = "last-week";
         expect(result).toEqual(expected);
     });
     it('should convert "Last hour" to the corresponding TimeOption', () => {
-        const result = timeFormatCleaner("Last hour");
+        const result = displayNameToTimeOption("Last hour");
         const expected: TimeOption = "last-hour";
         expect(result).toEqual(expected);
     });
     it("should convert invalid option to undefined", () => {
-        const result = timeFormatCleaner("invalid option");
+        const result = displayNameToTimeOption("invalid option");
         const expected = undefined;
         expect(result).toEqual(expected);
     });

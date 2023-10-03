@@ -5,7 +5,7 @@ export const safeCastToTimeOption = (
     value: string | null,
 ): TimeOption | undefined => {
     const urlNames: string[] = timeOptionConstants.map(
-        (option) => option.urlName,
+        (option) => option.timeOption,
     );
     if (!value) {
         return undefined;

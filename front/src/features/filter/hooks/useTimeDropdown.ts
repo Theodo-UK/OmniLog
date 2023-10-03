@@ -1,8 +1,8 @@
 import { useNavigation } from "@/hooks/useNavigation";
 import { useState } from "react";
 import { getSelectedTimeFromURL } from "../helpers/getSelectedTimeFromURL";
-import { timeFormatCleaner } from "@/services/helpers/timeFormatCleaner";
 import { timeOptionConstants } from "@/services/helpers/timeConstants";
+import { displayNameToTimeOption } from "@/services/helpers/displayNameToTimeOption";
 
 export const useTimeDropdown = () => {
     let timeOptions = timeOptionConstants.map((option) => option.displayName);
@@ -23,7 +23,7 @@ export const useTimeDropdown = () => {
     );
 
     const onSelectTime = (newValue: string) => {
-        const cleanTime = timeFormatCleaner(newValue);
+        const cleanTime = displayNameToTimeOption(newValue);
         setSelectedTime(newValue);
         if (newValue !== "Custom interval") {
             updateSearchParam({
