@@ -1,6 +1,4 @@
-const validTimeOptions = ["Last hour", "Last day", "Last week"];
-
-type TimeOption = (typeof validTimeOptions)[number];
+import { TimeOption } from "@/types/logDisplayOptions";
 
 export const getSelectedTimeFromURL = (
     startDateTime: string | undefined,
@@ -8,9 +6,9 @@ export const getSelectedTimeFromURL = (
     dateTimeFilter: TimeOption | undefined,
 ) => {
     const isCustomInterval = startDateTime && endDateTime;
-    const isValidFilter = validTimeOptions.includes(dateTimeFilter ?? "");
-
     if (isCustomInterval) return "Custom interval";
 
-    if (!isValidFilter) return "Last hour";
+    if (!dateTimeFilter) return "Last hour";
+
+    return dateTimeFilter;
 };
