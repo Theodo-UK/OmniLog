@@ -1,11 +1,16 @@
+import { timeOptionConstants } from "@/services/helpers/timeConstants";
 import { Order, SortOptions, TimeOption } from "./logDisplayOptions";
 
 export const safeCastToTimeOption = (
     value: string | null,
 ): TimeOption | undefined => {
-    if (["Last hour", "Last day", "Last week"].includes(value ?? ""))
-        return value as TimeOption;
-    return undefined;
+    const urlNames: string[] = timeOptionConstants.map(
+        (option) => option.urlName,
+    );
+    if (!value) {
+        return undefined;
+    }
+    if (urlNames.includes(value)) return value as TimeOption;
 };
 
 export const safeCastToSortOptions = (value: string | null): SortOptions => {
