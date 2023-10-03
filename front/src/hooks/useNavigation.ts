@@ -40,6 +40,9 @@ export const useNavigation = () => {
         params.delete(key);
         router.push(`?${params.toString()}`);
     };
+    const navigateBack = () => {
+        router.back();
+    };
     return {
         router,
         updateSearchParam,
@@ -48,5 +51,6 @@ export const useNavigation = () => {
         sortOrder,
         dateTimeFilter,
         getStringParam,
+        navigateBack,
     };
 };
