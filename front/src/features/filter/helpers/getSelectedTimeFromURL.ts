@@ -1,3 +1,4 @@
+import { displayNameFromTimeOption } from "@/services/helpers/displayNameToTimeOption";
 import { TimeOption } from "@/types/logDisplayOptions";
 
 export const getSelectedTimeFromURL = (
@@ -10,5 +11,5 @@ export const getSelectedTimeFromURL = (
 
     if (!dateTimeFilter) return "Last hour";
 
-    return dateTimeFilter;
+    return displayNameFromTimeOption(dateTimeFilter);
 };
