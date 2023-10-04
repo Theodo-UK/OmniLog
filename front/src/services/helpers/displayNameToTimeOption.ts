@@ -10,3 +10,13 @@ export const displayNameToTimeOption = (
 
     return timeOptionConstant ? timeOptionConstant.timeOption : undefined;
 };
+
+export const displayNameFromTimeOption = (
+    timeOption: TimeOption,
+): string | undefined => {
+    const timeOptionConstant = timeOptionConstants.filter(
+        (option) => timeOption === option.timeOption,
+    )[0];
+
+    return timeOptionConstant ? timeOptionConstant.displayName : undefined;
+};
