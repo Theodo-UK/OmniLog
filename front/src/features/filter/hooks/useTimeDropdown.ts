@@ -1,12 +1,13 @@
 import { useNavigation } from "@/hooks/useNavigation";
+import { displayNameToTimeOption } from "@/services/helpers/displayNameToTimeOption";
+import { timeOptionConstants } from "@/services/helpers/timeConstants";
 import { useState } from "react";
 import { getSelectedTimeFromURL } from "../helpers/getSelectedTimeFromURL";
-import { timeOptionConstants } from "@/services/helpers/timeConstants";
-import { displayNameToTimeOption } from "@/services/helpers/displayNameToTimeOption";
 
 export const useTimeDropdown = () => {
-    let timeOptions = timeOptionConstants.map((option) => option.displayName);
-    timeOptions = timeOptions.concat("Custom interval");
+    const timeOptions = timeOptionConstants
+        .map((option) => option.displayName)
+        .concat("Custom interval");
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
