@@ -15,6 +15,8 @@ Omnilog allows you to easily monitor your LLM project!
 
 ![image](https://github.com/Theodo-UK/OmniLog/assets/57725347/a494d81d-dab1-4836-8922-efec380c5812)
 
+(For developer setup information, refer to the Developer Info section at the bottom of the page)
+
 # Quickstart
 
 Get started with OmniLog in five easy steps:
@@ -67,6 +69,6 @@ By default, AWS does not remove resources like S3 buckets or DynamoDB tables. Yo
 
 # Developer Info
 ### Table of Contents
-1. [Front docs](/front/README.md)
+1. [Dev setup - front](/front/README.md)
 2. [Python SDK](/sdk-python/README.md)
 3. [Adding new users](/docs/create_user.md)
