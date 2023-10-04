@@ -6,48 +6,48 @@ describe("getSelectedTimeFromURL", () => {
     describe("clean format", () => {
         test.each([
             [
-                'should return "Custom interval" if startDateTime and endDateTime are defined',
+                "startDateTime and endDateTime are defined",
+                "Custom interval",
                 "2021-08-01T00:00:00.000Z",
                 "2021-08-02T00:00:00.000Z",
                 undefined,
-                "Custom interval",
             ],
             [
-                "should return 'Last hour' if dateTimeFilter is not defined",
-                undefined,
-                undefined,
-                undefined,
+                "dateTimeFilter is not defined",
                 "Last hour",
+                undefined,
+                undefined,
+                undefined,
             ],
             [
-                "should return 'Last hour' if dateTimeFilter is last-hour",
+                "dateTimeFilter is last-hour",
+                "Last hour",
                 undefined,
                 undefined,
                 "last-hour" as TimeOption,
-                "Last hour",
             ],
             [
-                "should return 'Last day' if dateTimeFilter is last-day",
+                "dateTimeFilter is last-day",
+                "Last day",
                 undefined,
                 undefined,
                 "last-day" as TimeOption,
-                "Last day",
             ],
             [
-                "should return 'Last week' if dateTimeFilter is last-week",
+                "dateTimeFilter is last-week",
+                "Last week",
                 undefined,
                 undefined,
                 "last-week" as TimeOption,
-                "Last week",
             ],
         ])(
-            "%s",
+            "if %s, then should return %s.",
             (
-                testName,
+                condition,
+                expected,
                 startDateTime,
                 endDateTime,
                 dateTimeFilter,
-                expected,
             ) => {
                 const result = getSelectedTimeFromURL(
                     startDateTime,

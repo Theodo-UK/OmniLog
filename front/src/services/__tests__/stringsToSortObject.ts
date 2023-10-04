@@ -1,23 +1,21 @@
+import { Order } from "@/types/logDisplayOptions";
+import { llmLogs } from "@prisma/client";
 import "@testing-library/jest-dom";
 import { stringsToSortObject } from "../helpers/formatSearchParamToPrismaQuery";
 
 describe("stringsToSortObject", () => {
-    it("should return an object with datetime as the property and the order as the value", () => {
-        const llm_key = "datetime_utc";
-        const llm_order = "asc";
-        const testObject = stringsToSortObject(llm_key, llm_order);
-        expect(testObject).toEqual({ datetime_utc: "asc" });
-    });
-    it("should return an object with tokens as the property and the order as the value", () => {
-        const llm_key = "total_tokens";
-        const llm_order = "desc";
-        const testObject = stringsToSortObject(llm_key, llm_order);
-        expect(testObject).toEqual({ total_tokens: "desc" });
-    });
-    it("should return an object with cost as the property and the order as the value", () => {
-        const llm_key = "cost";
-        const llm_order = "asc";
-        const testObject = stringsToSortObject(llm_key, llm_order);
-        expect(testObject).toEqual({ cost: { sort: "asc", nulls: "last" } });
-    });
+    it.each([
+        ["datetime_utc", "asc", { datetime_utc: "asc" }],
+        ["total_tokens", "desc", { total_tokens: "desc" }],
+        ["cost", "asc", { cost: { sort: "asc", nulls: "last" } }],
+    ])(
+        "should return an object with %s as the property and %s as the value",
+        (llm_key, llm_order, expected) => {
+            const testObject = stringsToSortObject(
+                llm_key as keyof llmLogs,
+                llm_order as Order,
+            );
+            expect(testObject).toEqual(expected);
+        },
+    );
 });

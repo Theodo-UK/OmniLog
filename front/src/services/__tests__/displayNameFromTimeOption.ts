@@ -3,27 +3,11 @@ import { displayNameFromTimeOption } from "../helpers/displayNameToTimeOption";
 
 describe("displayNameToTimeOption", () => {
     it.each([
-        [
-            "should convert last-day to the corresponding displayName",
-            "last-day",
-            "Last day",
-        ],
-        [
-            "should convert last-week to the corresponding displayName",
-            "last-week",
-            "Last week",
-        ],
-        [
-            "should convert last-hour to the corresponding displayName",
-            "last-hour",
-            "Last hour",
-        ],
-        [
-            "should convert invalid time options to undefined",
-            "invalid",
-            undefined,
-        ],
-    ])("%s", (testName, timeOption, expected) => {
+        ["last-day", "Last day"],
+        ["last-week", "Last week"],
+        ["last-hour", "Last hour"],
+        ["invalid time option", undefined],
+    ])("should convert %s to %s", (timeOption, expected) => {
         const result = displayNameFromTimeOption(timeOption as TimeOption);
         expect(result).toEqual(expected);
     });
