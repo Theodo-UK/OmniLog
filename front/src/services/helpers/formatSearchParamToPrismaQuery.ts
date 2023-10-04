@@ -14,7 +14,7 @@ import {
     SearchCondition,
     Timeframe,
 } from "../types/queryConditions";
-import { MS_PER_DAY, MS_PER_HOUR, MS_PER_WEEK } from "./timeConstants";
+import { MS_PER_HOUR, timeOptionConstants } from "./timeConstants";
 
 export const convertSearchParamToPrismaConditions = (
     searchParams?: URLSearchParams,
@@ -55,19 +55,13 @@ export const stringToTimeframeObject = (
     stringTimeOption?: TimeOption,
 ): Timeframe => {
     const now = new Date();
-    let numberTimeframe;
-    switch (stringTimeOption) {
-        case "Last hour":
-            numberTimeframe = MS_PER_HOUR;
-            break;
-        case "Last day":
-            numberTimeframe = MS_PER_DAY;
-            break;
-        case "Last week":
-            numberTimeframe = MS_PER_WEEK;
-            break;
-        default:
-            numberTimeframe = MS_PER_HOUR;
+    let numberTimeframe = MS_PER_HOUR;
+    const matchingTimeOption = timeOptionConstants.filter(
+        (option) => stringTimeOption === option.timeOption,
+    );
+
+    if (matchingTimeOption[0]) {
+        numberTimeframe = matchingTimeOption[0].duration;
     }
 
     return {

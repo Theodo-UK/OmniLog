@@ -14,8 +14,9 @@ describe("extractDataFromSearchParam", () => {
     });
 
     it("should return three non-default objects if parameters are defined", () => {
+        const testTimeUrl = "last-week";
         const searchParamsString = new URLSearchParams(
-            "sortBy=total_tokens&sortOrder=asc&search=first&dateTimeFilter=Last+week",
+            `sortBy=total_tokens&sortOrder=asc&search=first&dateTimeFilter=${testTimeUrl}`,
         );
         const { timeframe, sort, searchCondition } =
             convertSearchParamToPrismaConditions(searchParamsString);
