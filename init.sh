@@ -22,7 +22,7 @@ echo "Installing dependencies for web app in $(pwd)"
 
 yarn install
 
-yarn prisma db push --skip-generate
+yarn prisma migrate deploy
 
 echo "Tables successfully created in database."
 
