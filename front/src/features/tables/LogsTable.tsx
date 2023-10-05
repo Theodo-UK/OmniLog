@@ -4,6 +4,7 @@ import { ColumnHeader } from "@/features/tables/components/ColumnHeader";
 import { useNavigation } from "@/hooks/useNavigation";
 import { LogDataArray } from "@/types/logDisplayOptions";
 import { ColumnContent } from "./components/ColumnContent";
+import { ColumnContentTags } from "./components/ColumnContentTags";
 import { formatCostToString } from "./helpers/formatCost";
 
 export default function LogsTable({ logs }: { logs: LogDataArray }) {
@@ -32,6 +33,7 @@ export default function LogsTable({ logs }: { logs: LogDataArray }) {
                             sortKey={"cost"}
                             width={"small"}
                         />
+                        <ColumnHeader title={"Tags"} width={"medium"} />
                     </tr>
                 </thead>
                 <tbody>
@@ -59,6 +61,7 @@ export default function LogsTable({ logs }: { logs: LogDataArray }) {
                                     "undefined: an error occurred"
                                 }
                             />
+                            <ColumnContentTags tags={log.tags} />
                         </tr>
                     ))}
                 </tbody>
