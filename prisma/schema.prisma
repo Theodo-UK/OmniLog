@@ -24,6 +24,13 @@ model llmLogs {
   output_string String
   total_tokens  Int
   cost          Float?
+  tags          Tag[]
+}
+
+model Tag {
+  id   String    @id @default(uuid())
+  name String
+  logs llmLogs[]
 }
 
 model omnilogUser {

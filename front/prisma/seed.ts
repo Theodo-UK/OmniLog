@@ -25,6 +25,16 @@ async function main() {
             password: hashed,
         },
     });
+    const tagSeeded = await prisma.tag.create({
+        data: {
+            name: "Seeded",
+        },
+    });
+    const tagA = await prisma.tag.create({
+        data: {
+            name: "Tag A",
+        },
+    });
     await prisma.llmLogs.create({
         data: {
             datetime_utc: new Date().toISOString(),
@@ -32,6 +42,30 @@ async function main() {
             output_string: "Some result",
             total_tokens: 1,
             cost: 0.11,
+            tags: {
+                connect: {
+                    id: tagSeeded.id,
+                },
+            },
+        },
+    });
+    await prisma.llmLogs.create({
+        data: {
+            datetime_utc: new Date().toISOString(),
+            input_string: "Some other string about A",
+            output_string: "Some other result",
+            total_tokens: 2,
+            cost: 0.22,
+            tags: {
+                connect: [
+                    {
+                        id: tagA.id,
+                    },
+                    {
+                        id: tagSeeded.id,
+                    },
+                ],
+            },
         },
     });
 }

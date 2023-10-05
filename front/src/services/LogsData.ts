@@ -12,6 +12,14 @@ export const LogsData = {
                 OR: searchCondition,
             },
             orderBy: sort,
+            include: {
+                tags: {
+                    orderBy: {
+                        name: "asc",
+                    },
+                    take: 5,
+                },
+            },
         });
     },
     getLogDetails: async (id: string): Promise<llmLogs> => {
