@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const TheodoLogo = () => {
     return (
-        <div className="fixed bottom-0 left-0 flex h-auto w-full items-start justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:justify-end lg:w-auto lg:bg-none">
+        <div className="fixed bottom-0 left-0 flex h-auto w-full items-start justify-center bg-gradient-to-t from-white via-white dark:text-white dark:from-black dark:via-black lg:static lg:justify-end lg:w-auto lg:bg-none">
             <p className="text-lg text-center -mr-8 mt-8">by</p>
             <a
                 className="pointer-events-none flex place-items-center gap-2 lg:pointer-events-auto lg:p-0"
