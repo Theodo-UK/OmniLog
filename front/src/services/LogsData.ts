@@ -1,9 +1,9 @@
-import { llmLogs } from "@prisma/client";
+import { LogData, LogDataArray } from "@/types/logDisplayOptions";
 import { prisma } from "./PrismaClient";
 import { convertSearchParamToPrismaConditions } from "./helpers/formatSearchParamToPrismaQuery";
 
 export const LogsData = {
-    getLogs: async (searchParams?: URLSearchParams): Promise<llmLogs[]> => {
+    getLogs: async (searchParams?: URLSearchParams): Promise<LogDataArray> => {
         const { timeframe, sort, searchCondition } =
             convertSearchParamToPrismaConditions(searchParams);
         return await prisma.llmLogs.findMany({
@@ -22,10 +22,13 @@ export const LogsData = {
             },
         });
     },
-    getLogDetails: async (id: string): Promise<llmLogs> => {
+    getLogDetails: async (id: string): Promise<LogData> => {
         const log = await prisma.llmLogs.findUnique({
             where: {
                 id,
+            },
+            include: {
+                tags: true,
             },
         });
 

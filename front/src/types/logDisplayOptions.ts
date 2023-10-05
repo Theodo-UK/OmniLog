@@ -1,4 +1,4 @@
-import { llmLogs } from "@prisma/client";
+import { Tag, llmLogs } from "@prisma/client";
 
 export type LogDisplayOptions = {
     sortBy?: SortOptions;
@@ -14,5 +14,5 @@ export type TimeOption = "last-hour" | "last-day" | "last-week";
 export type Order = "asc" | "desc";
 export type SortOptions = "datetime_utc" | "total_tokens" | "id" | "cost";
 
-export type LogData = llmLogs;
+export type LogData = llmLogs & { tags: Tag[] };
 export type LogDataArray = LogData[];

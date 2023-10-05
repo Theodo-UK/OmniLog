@@ -44,11 +44,15 @@ else
 fi
 
 # cd back to root to run commands
-cd "$project_path" || exit 1 
+cd "$project_path" || exit 1
 
 echo "Installing dependencies..."
 
 yarn install
+
+echo "Deploying prisma migrations..."
+
+yarn prisma migrate deploy
 
 echo "Generating prisma types..."
 
@@ -59,7 +63,7 @@ echo "Running yarn sst deploy..."
 if [ "$GITHUB_ACTIONS" = true ]; then
     yarn sst deploy --stage "$SST_STAGE_NAME" --region "$AWS_REGION"
 else
-    # try catch 
+    # try catch
     if ! error_output=$(yarn sst deploy --profile "$AWS_PROFILE_NAME" --stage "$SST_STAGE_NAME" --region "$AWS_REGION" 2>&1 1>/dev/tty); then
     handle_errors "$error_output"
     fi
