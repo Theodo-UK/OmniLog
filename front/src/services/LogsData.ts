@@ -28,7 +28,11 @@ export const LogsData = {
                 id,
             },
             include: {
-                tags: true,
+                tags: {
+                    orderBy: {
+                        name: "asc",
+                    },
+                },
             },
         });
 
