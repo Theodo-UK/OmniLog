@@ -13,7 +13,12 @@ export const LogsData = {
             },
             orderBy: sort,
             include: {
-                tags: true,
+                tags: {
+                    orderBy: {
+                        name: "asc",
+                    },
+                    take: 5,
+                },
             },
         });
     },
