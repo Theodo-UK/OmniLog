@@ -1,5 +1,5 @@
 import { FilterHeader } from "@/features/filter/FilterHeader";
-import { TableBody } from "@/features/tables/TableBody";
+import { TableBody } from "@/features/tables/views/TableBody";
 import { LogsData } from "@/services/LogsData";
 
 export const revalidate = 0;
