@@ -11,12 +11,12 @@ export const TagPopup = ({ logId }: { logId: string }) => {
     return (
         <>
             <ButtonIcon onClick={() => setIsPopupOpen(true)} icon={faPlus} />
-            <Popup open={isPopupOpen}>
+            <Popup open={isPopupOpen} setOpen={setIsPopupOpen}>
                 <div className="bg-white items-stretch sm:items-start text-center">
-                    <h3 className="text-base font-bold leading-6 text-gray-900 my-2">
+                    <h2 className=" text-lg font-bold leading-6 text-gray-900 my-4">
                         Pick a tag to add
-                    </h3>
-                    <div className=" w-full mt-6 p-2 outline outline-gray-500 rounded-md px-4 py-2 flex flex-wrap items-center gap-1">
+                    </h2>
+                    <div className=" w-full my-6 p-2 outline outline-gray-500 bg-gray-50 rounded-md px-4 py-2 flex flex-wrap items-center gap-1">
                         {tags.map((tag) => (
                             <button
                                 key={tag.id}
@@ -29,9 +29,17 @@ export const TagPopup = ({ logId }: { logId: string }) => {
                         ))}
                     </div>
                 </div>
-                <div className="gap-2 flex">
-                    <Button colour="red" onClick={() => setIsPopupOpen(false)}>
-                        Exit
+                <div className="flex gap-4">
+                    <Button
+                        colour="red"
+                        onClick={() => {
+                            setIsPopupOpen(false);
+                        }}
+                    >
+                        Cancel
+                    </Button>
+                    <Button colour="blue" onClick={() => {}}>
+                        Useless Validation
                     </Button>
                 </div>
             </Popup>

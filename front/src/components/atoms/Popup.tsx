@@ -1,13 +1,16 @@
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, ReactNode } from "react";
+import { ButtonIcon } from "./ButtonIcon";
 import { CardAtom } from "./CardAtom";
 
 type PopupProps = {
     children: ReactNode;
     open: boolean;
+    setOpen: (open: boolean) => void;
 };
 
-export const Popup = ({ children, open }: PopupProps) => {
+export const Popup = ({ children, open, setOpen }: PopupProps) => {
     return (
         <Transition.Root show={open} as={Fragment}>
             <Dialog as="div" className="relative z-10" onClose={() => {}}>
@@ -18,7 +21,19 @@ export const Popup = ({ children, open }: PopupProps) => {
                     <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
                         <CustomTransition>
                             <Dialog.Panel className="relative transform shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                                <CardAtom>{children}</CardAtom>
+                                <CardAtom>
+                                    <div className="absolute top-3 right-3">
+                                        <ButtonIcon
+                                            onClick={() => {
+                                                setOpen(false);
+                                            }}
+                                            icon={faTimes}
+                                        />
+                                    </div>
+                                    <div className="p-2 flex flex-col">
+                                        {children}
+                                    </div>
+                                </CardAtom>
                             </Dialog.Panel>
                         </CustomTransition>
                     </div>
