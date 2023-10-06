@@ -1,4 +1,5 @@
 import { timeOptionConstants } from "@/services/helpers/timeConstants";
+import { Tag } from "@prisma/client";
 import { Order, SortOptions, TimeOption } from "./logDisplayOptions";
 
 export const safeCastToTimeOption = (
@@ -22,4 +23,18 @@ export const safeCastToSortOptions = (value: string | null): SortOptions => {
 export const safeCastToOrder = (value: string | null): Order => {
     if (["asc", "desc"].includes(value ?? "")) return value as Order;
     return "desc";
+};
+
+export const safeCastToTagArray = (
+    tagArray: { name: string; id: string }[],
+): Tag[] => {
+    for (const tag of tagArray) {
+        if (typeof tag.id !== "string") {
+            return [];
+        }
+        if (typeof tag.name !== "string") {
+            return [];
+        }
+    }
+    return tagArray as Tag[];
 };
