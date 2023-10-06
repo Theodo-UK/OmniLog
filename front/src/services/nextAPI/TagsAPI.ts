@@ -3,10 +3,10 @@ import { Tag } from "@prisma/client";
 
 export const TagsAPI = {
     getTags: async (): Promise<Tag[]> => {
-        const tagArray = await fetch("/api/tags", { method: "GET" }).then(
+        const response = await fetch("/api/tags", { method: "GET" }).then(
             (res) => res.json(),
         );
-        return safeCastToTagArray(tagArray);
+        return safeCastToTagArray(response.tags);
     },
     connectTagToLog: (logId: string, tagId: string): void => {
         fetch(`/api/logs/${logId}/connectTag`, {
