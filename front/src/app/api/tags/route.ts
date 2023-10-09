@@ -1,5 +1,5 @@
-import { getErrorMessage } from "@/app/helpers/getErrorMessage";
 import { TagsData } from "@/services/prisma/TagsData";
+import { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 export const GET = async (): Promise<NextResponse> => {
@@ -7,12 +7,9 @@ export const GET = async (): Promise<NextResponse> => {
         const tags = await TagsData.getTags();
         return NextResponse.json({ tags }, { status: 200 });
     } catch (err: unknown) {
-        const message = getErrorMessage(err);
-        return NextResponse.json(
-            {
-                error: `failed to fetch tags from prisma: ${message}`,
-            },
-            { status: 500 },
-        );
+        let message = `failed to fetch tags from prisma: ${err}`;
+        if (err instanceof Prisma.PrismaClientKnownRequestError)
+            message = `failed to fetch tags from prisma: ${err.message}`;
+        return NextResponse.json({ error: message }, { status: 500 });
     }
 };
