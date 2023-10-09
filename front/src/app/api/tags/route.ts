@@ -1,10 +1,11 @@
 import { TagsData } from "@/services/prisma/TagsData";
+import { NextResponse } from "next/server";
 
-export const GET = async () => {
+export const GET = async (): Promise<NextResponse> => {
     try {
         const tags = await TagsData.getTags();
-        return Response.json({ tags });
+        return NextResponse.json({ tags });
     } catch (err) {
-        return Response.json({ error: "failed to fetch tags from prisma" });
+        return NextResponse.json({ error: "failed to fetch tags from prisma" });
     }
 };
