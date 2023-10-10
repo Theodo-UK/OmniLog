@@ -42,4 +42,22 @@ export const LogsData = {
 
         return log;
     },
+    connectTagToLog: async (logId: string, tagId: string) => {
+        const result = await prisma.llmLogs.update({
+            where: {
+                id: logId,
+            },
+            data: {
+                tags: {
+                    connect: {
+                        id: tagId,
+                    },
+                },
+            },
+            include: {
+                tags: true,
+            },
+        });
+        return result;
+    },
 };
