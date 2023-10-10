@@ -12,7 +12,7 @@ export const Button = ({
     colour = "blue",
     ...props
 }: ButtonProps) => {
-    const bgColour = colourPicker(colour);
+    const bgColour = buttonColourPicker(colour);
     return (
         <button
             className={` ${bgColour} text-white font-bold py-2 px-4 rounded ${className} transition-colors duration-100`}
@@ -24,7 +24,7 @@ export const Button = ({
     );
 };
 
-const colourPicker = (colour: string): string => {
+const buttonColourPicker = (colour: string): string => {
     const blueStyle = "bg-theodo-turquoise hover:bg-omnilog-clear-blue";
     const greyStyle = "bg-theodo-grey-regular hover:bg-theodo-turquoise";
     const greenStyle = "bg-theodo-green-dark hover:bg-theodo-green-regular";
