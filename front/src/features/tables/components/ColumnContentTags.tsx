@@ -2,7 +2,7 @@ import { TagPopup } from "@/features/tables/components/TagPopup";
 import { Tag } from "@prisma/client";
 import { useState } from "react";
 import { TagLabel } from "../../../components/atoms/TagLabel";
-import { concatAndSortTags } from "../helpers/concatAndSortTags";
+import { concatAndSortTags, isTagInArray } from "../helpers/tagArrayManagement";
 
 export const ColumnContentTags = ({
     tags,
@@ -13,6 +13,7 @@ export const ColumnContentTags = ({
 }) => {
     const [tagArray, setTagArray] = useState<Tag[]>(tags);
     const addTag = (tag: Tag) => {
+        if (isTagInArray(tagArray, tag.id)) return;
         setTagArray(concatAndSortTags(tagArray, tag));
     };
     return (
