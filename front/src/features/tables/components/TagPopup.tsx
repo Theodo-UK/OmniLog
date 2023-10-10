@@ -3,9 +3,15 @@ import { ButtonIcon } from "@/components/atoms/ButtonIcon";
 import { Popup } from "@/components/atoms/Popup";
 import { TagLabel } from "@/components/atoms/TagLabel";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { Tag } from "@prisma/client";
 import { useTagPopup } from "../hooks/useTagPopup";
 
-export const TagPopup = ({ logId }: { logId: string }) => {
+type TagPopupProps = {
+    logId: string;
+    addTagToDisplay: (tag: Tag) => void;
+};
+
+export const TagPopup = ({ logId, addTagToDisplay }: TagPopupProps) => {
     const { isPopupOpen, setIsPopupOpen, tags, selectTag } = useTagPopup(logId);
 
     return (
@@ -22,6 +28,7 @@ export const TagPopup = ({ logId }: { logId: string }) => {
                                 key={tag.id}
                                 onClick={() => {
                                     selectTag(tag.id);
+                                    addTagToDisplay(tag);
                                 }}
                             >
                                 <TagLabel tag={tag} />
