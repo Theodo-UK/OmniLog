@@ -8,10 +8,4 @@ export const TagsAPI = {
         );
         return safeCastToTagArray(response.tags);
     },
-    connectTagToLog: (logId: string, tagId: string): void => {
-        fetch(`/api/logs/${logId}/connectTag`, {
-            method: "POST",
-            body: JSON.stringify({ tagId }),
-        }).then((res) => res.json());
-    },
 };

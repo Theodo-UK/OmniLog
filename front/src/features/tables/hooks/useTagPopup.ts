@@ -1,3 +1,4 @@
+import { LogsAPI } from "@/services/nextAPI/LogsAPI";
 import { TagsAPI } from "@/services/nextAPI/TagsAPI";
 import { Tag } from "@prisma/client";
 import { MouseEventHandler, useEffect, useState } from "react";
@@ -11,7 +12,7 @@ export const useTagPopup = (logId: string) => {
     }, []);
 
     const selectTag = (tagId: string) => {
-        TagsAPI.connectTagToLog(logId, tagId);
+        LogsAPI.connectTagToLog(logId, tagId);
         setIsPopupOpen(false);
     };
 
