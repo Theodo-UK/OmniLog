@@ -1,5 +1,5 @@
 import { prismaErrorHandler } from "@/features/tags/utils";
-import { LogsData } from "@/services/LogsData";
+import { LogsData } from "@/services/prisma/LogsData";
 import { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
 

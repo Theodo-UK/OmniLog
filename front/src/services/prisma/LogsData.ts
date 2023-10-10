@@ -1,6 +1,6 @@
 import { LogData, LogDataArray } from "@/types/logDisplayOptions";
-import { prisma } from "./PrismaClient";
-import { convertSearchParamToPrismaConditions } from "./helpers/formatSearchParamToPrismaQuery";
+import { prisma } from "../PrismaClient";
+import { convertSearchParamToPrismaConditions } from "../helpers/formatSearchParamToPrismaQuery";
 
 export const LogsData = {
     getLogs: async (searchParams?: URLSearchParams): Promise<LogDataArray> => {
