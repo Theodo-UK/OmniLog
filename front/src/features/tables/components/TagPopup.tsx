@@ -12,11 +12,12 @@ type TagPopupProps = {
 };
 
 export const TagPopup = ({ logId, addTagToDisplay }: TagPopupProps) => {
-    const { isPopupOpen, setIsPopupOpen, tags, selectTag } = useTagPopup(logId);
+    const { isPopupOpen, openPopup, setIsPopupOpen, tags, selectTag } =
+        useTagPopup(logId);
 
     return (
         <>
-            <ButtonIcon onClick={() => setIsPopupOpen(true)} icon={faPlus} />
+            <ButtonIcon onClick={openPopup} icon={faPlus} />
             <Popup open={isPopupOpen} setOpen={setIsPopupOpen}>
                 <div className="bg-white items-stretch sm:items-start text-center">
                     <h2 className=" text-lg font-bold leading-6 text-gray-900 my-4">
