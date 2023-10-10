@@ -13,7 +13,7 @@ type TagPopupProps = {
 
 export const TagPopup = ({ logId, addTagToDisplay }: TagPopupProps) => {
     const { isPopupOpen, openPopup, setIsPopupOpen, tags, selectTag } =
-        useTagPopup(logId);
+        useTagPopup(logId, addTagToDisplay);
 
     return (
         <>
@@ -27,10 +27,7 @@ export const TagPopup = ({ logId, addTagToDisplay }: TagPopupProps) => {
                         {tags.map((tag) => (
                             <button
                                 key={tag.id}
-                                onClick={() => {
-                                    selectTag(tag.id);
-                                    addTagToDisplay(tag);
-                                }}
+                                onClick={() => selectTag(tag.id)}
                             >
                                 <TagLabel tag={tag} />
                             </button>
