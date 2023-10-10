@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { concatAndSortTags } from "../concatAndSortTags";
+import { concatAndSortTags } from "../tagArrayManagement";
 
 describe("concatAndSortTags", () => {
     const tags = [
