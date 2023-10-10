@@ -1,4 +1,3 @@
-import { Button } from "@/components/atoms/Button";
 import { ButtonIcon } from "@/components/atoms/ButtonIcon";
 import { Popup } from "@/components/atoms/Popup";
 import { TagLabel } from "@/components/atoms/TagLabel";
@@ -33,19 +32,6 @@ export const TagPopup = ({ logId, addTagToDisplay }: TagPopupProps) => {
                             </button>
                         ))}
                     </div>
-                </div>
-                <div className="flex gap-4">
-                    <Button
-                        colour="red"
-                        onClick={() => {
-                            setIsPopupOpen(false);
-                        }}
-                    >
-                        Cancel
-                    </Button>
-                    <Button colour="blue" onClick={() => {}}>
-                        Useless Validation
-                    </Button>
                 </div>
             </Popup>
         </>
