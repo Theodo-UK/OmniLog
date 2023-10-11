@@ -25,6 +25,11 @@ async function main() {
             password: hashed,
         },
     });
+    const project = await prisma.project.create({
+        data: {
+            name: "Default Project",
+        },
+    });
     const tagSeeded = await prisma.tag.create({
         data: {
             name: "Seeded",
@@ -47,6 +52,11 @@ async function main() {
                     id: tagSeeded.id,
                 },
             },
+            project: {
+                connect: {
+                    id: project.id,
+                },
+            },
         },
     });
     await prisma.llmLogs.create({
@@ -65,6 +75,11 @@ async function main() {
                         id: tagSeeded.id,
                     },
                 ],
+            },
+            project: {
+                connect: {
+                    id: project.id,
+                },
             },
         },
     });
