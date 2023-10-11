@@ -54,7 +54,7 @@ async function main() {
             },
             project: {
                 connect: {
-                    id: project.id,
+                    name: project.name,
                 },
             },
         },
@@ -78,7 +78,7 @@ async function main() {
             },
             project: {
                 connect: {
-                    id: project.id,
+                    name: project.name,
                 },
             },
         },
