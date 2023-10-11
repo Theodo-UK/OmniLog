@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MouseEventHandler } from "react";
 
 type ButtonIconProps = {
-    onClick: MouseEventHandler<HTMLButtonElement> | (() => void);
+    onClick: MouseEventHandler<HTMLButtonElement>;
     icon: IconDefinition;
 };
 
