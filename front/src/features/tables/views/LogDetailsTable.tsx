@@ -62,7 +62,7 @@ export const LogDetailsTable = ({ logDetails }: { logDetails: LogData }) => {
                     </tr>
                     <tr>
                         <td className="font-bold px-4 py-2">Project</td>
-                        <td className="px-4 py-2">{logDetails.projectName}</td>
+                        <td className="px-4 py-2">{logDetails.project.name}</td>
                     </tr>
                 </tbody>
             </table>
