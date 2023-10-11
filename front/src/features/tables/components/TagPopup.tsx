@@ -11,13 +11,15 @@ type TagPopupProps = {
 };
 
 export const TagPopup = ({ logId, addTagToDisplay }: TagPopupProps) => {
-    const { isPopupOpen, openPopup, setIsPopupOpen, tags, selectTag } =
-        useTagPopup(logId, addTagToDisplay);
+    const { isPopupOpen, openPopup, closePopup, tags, selectTag } = useTagPopup(
+        logId,
+        addTagToDisplay,
+    );
 
     return (
         <>
             <ButtonIcon onClick={openPopup} icon={faPlus} />
-            <Popup open={isPopupOpen} setOpen={setIsPopupOpen}>
+            <Popup isOpen={isPopupOpen} close={closePopup}>
                 <div className="bg-white items-stretch sm:items-start text-center">
                     <h2 className=" text-lg font-bold leading-6 text-gray-900 my-4">
                         Pick a tag to add

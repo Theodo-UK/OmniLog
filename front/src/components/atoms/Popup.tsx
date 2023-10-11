@@ -6,13 +6,13 @@ import { CardAtom } from "./CardAtom";
 
 type PopupProps = {
     children: ReactNode;
-    open: boolean;
-    setOpen: (open: boolean) => void;
+    isOpen: boolean;
+    close: () => void;
 };
 
-export const Popup = ({ children, open, setOpen }: PopupProps) => {
+export const Popup = ({ children, isOpen, close }: PopupProps) => {
     return (
-        <Transition.Root show={open} as={Fragment}>
+        <Transition.Root show={isOpen} as={Fragment}>
             <Dialog as="div" className="relative z-10" onClose={() => {}}>
                 <CustomTransition>
                     <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
@@ -24,9 +24,7 @@ export const Popup = ({ children, open, setOpen }: PopupProps) => {
                                 <CardAtom>
                                     <div className="absolute top-3 right-3">
                                         <ButtonIcon
-                                            onClick={() => {
-                                                setOpen(false);
-                                            }}
+                                            onClick={close}
                                             icon={faTimes}
                                         />
                                     </div>

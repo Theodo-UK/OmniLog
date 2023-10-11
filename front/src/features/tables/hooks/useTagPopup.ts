@@ -31,5 +31,8 @@ export const useTagPopup = (
         setIsPopupOpen(true);
     };
 
-    return { isPopupOpen, openPopup, setIsPopupOpen, tags, selectTag };
+    const closePopup = () => {
+        setIsPopupOpen(false);
+    };
+    return { isPopupOpen, openPopup, closePopup, tags, selectTag };
 };
