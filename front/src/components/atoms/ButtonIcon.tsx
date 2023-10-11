@@ -10,7 +10,7 @@ type ButtonIconProps = {
 export const ButtonIcon = ({ onClick, icon }: ButtonIconProps) => {
     return (
         <button
-            className={` bg-white hover:bg-theodo-grey-regular outline outline-gray-500 text-gray-600 rounded-3xl h-6 w-6 justify-center align-middle transition-colors duration-100`}
+            className="bg-white hover:bg-theodo-grey-regular outline outline-gray-500 text-gray-600 rounded-3xl h-6 w-6 justify-center align-middle transition-colors duration-100"
             onClick={onClick}
         >
             <FontAwesomeIcon icon={icon} />
