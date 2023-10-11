@@ -60,6 +60,10 @@ export const LogDetailsTable = ({ logDetails }: { logDetails: LogData }) => {
                             logId={logDetails.id}
                         />
                     </tr>
+                    <tr>
+                        <td className="font-bold px-4 py-2">Project</td>
+                        <td className="px-4 py-2">{logDetails.projectName}</td>
+                    </tr>
                 </tbody>
             </table>
         </CardAtom>
