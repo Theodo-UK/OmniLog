@@ -25,12 +25,20 @@ model llmLogs {
   total_tokens  Int
   cost          Float?
   tags          Tag[]
+  project       Project  @relation(fields: [projectId], references: [id])
+  projectId     String
 }
 
 model Tag {
   id   String    @id @default(uuid())
   name String
   logs llmLogs[]
+}
+
+model Project {
+  id      String    @id @default(uuid())
+  name    String    @unique
+  llmLogs llmLogs[]
 }
 
 model omnilogUser {

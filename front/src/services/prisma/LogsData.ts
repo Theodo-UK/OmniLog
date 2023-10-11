@@ -19,6 +19,7 @@ export const LogsData = {
                     },
                     take: 5,
                 },
+                project: true,
             },
         });
     },
@@ -33,6 +34,7 @@ export const LogsData = {
                         name: "asc",
                     },
                 },
+                project: true,
             },
         });
 
