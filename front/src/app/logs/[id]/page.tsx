@@ -1,5 +1,5 @@
-import { LogDetailsTable } from "@/features/tables/LogDetailsTable";
-import { LogsData } from "@/services/LogsData";
+import { LogDetailsTable } from "@/features/tables/views/LogDetailsTable";
+import { LogsData } from "@/services/prisma/LogsData";
 
 export default async function LogDetails({
     params,

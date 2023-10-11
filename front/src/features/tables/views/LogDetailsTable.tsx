@@ -3,7 +3,7 @@ import { Button } from "@/components/atoms/Button";
 import { CardAtom } from "@/components/atoms/CardAtom";
 import { useNavigation } from "@/hooks/useNavigation";
 import { LogData } from "@/types/logDisplayOptions";
-import { ColumnContentTags } from "./components/ColumnContentTags";
+import { ColumnContentTags } from "../components/ColumnContentTags";
 
 export const LogDetailsTable = ({ logDetails }: { logDetails: LogData }) => {
     const cost_text: string =
@@ -55,7 +55,10 @@ export const LogDetailsTable = ({ logDetails }: { logDetails: LogData }) => {
                     </tr>
                     <tr>
                         <td className="font-bold px-4 py-2">Tags</td>
-                        <ColumnContentTags tags={logDetails.tags} />
+                        <ColumnContentTags
+                            tags={logDetails.tags}
+                            logId={logDetails.id}
+                        />
                     </tr>
                 </tbody>
             </table>

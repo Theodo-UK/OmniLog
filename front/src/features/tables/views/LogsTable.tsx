@@ -3,9 +3,9 @@ import { CardAtom } from "@/components/atoms/CardAtom";
 import { ColumnHeader } from "@/features/tables/components/ColumnHeader";
 import { useNavigation } from "@/hooks/useNavigation";
 import { LogDataArray } from "@/types/logDisplayOptions";
-import { ColumnContent } from "./components/ColumnContent";
-import { ColumnContentTags } from "./components/ColumnContentTags";
-import { formatCostToString } from "./helpers/formatCost";
+import { ColumnContent } from "../components/ColumnContent";
+import { ColumnContentTags } from "../components/ColumnContentTags";
+import { formatCostToString } from "../helpers/formatCost";
 
 export default function LogsTable({ logs }: { logs: LogDataArray }) {
     const { router } = useNavigation();
@@ -61,7 +61,7 @@ export default function LogsTable({ logs }: { logs: LogDataArray }) {
                                     "undefined: an error occurred"
                                 }
                             />
-                            <ColumnContentTags tags={log.tags} />
+                            <ColumnContentTags tags={log.tags} logId={log.id} />
                         </tr>
                     ))}
                 </tbody>

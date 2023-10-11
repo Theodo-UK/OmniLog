@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 
-jest.mock("../../services/LogsData.ts", () => ({
+jest.mock("../../services/prisma/LogsData.ts", () => ({
     getLogs: jest.fn(() => Promise.resolve([])),
 }));
 
