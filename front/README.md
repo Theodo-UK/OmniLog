@@ -33,7 +33,7 @@ NEXTAUTH_URL=http://localhost:3000
 ```
 
 ```
-// .env.development (used for yarn sst dev)
+// .env.development (used for yarn dev_sst)
 AWS_PROFILE_NAME=<your_aws_profile_name>
 SST_STAGE_NAME=<your_name>-dev
 DATABASE_URL=<your_database_uri>?pgbouncer=true
@@ -42,7 +42,7 @@ NEXTAUTH_URL=http://localhost:3000
 ```
 
 ```
-// .env.production (used for yarn sst deploy)
+// .env.production (used for yarn deploy)
 AWS_PROFILE_NAME=<your_aws_profile_name>
 SST_STAGE_NAME=staging
 DATABASE_URL=<your_database_uri>?pgbouncer=true
@@ -68,5 +68,7 @@ Note that `?pgbouncer=true` is required at the end of DATABASE_URL ([see issue](
         -   Binds the Next.js app to the local Lambda environment (therefore allowing it to use AWS resources)
 
 # Deploying to staging
+
+This is the command to deploy the local code straight to staging (without going through a PR). We discourage its usage but it can be useful for debugging.
 
 -   `yarn deploy`
