@@ -8,10 +8,13 @@
 
 # Overview
 
+[![GitHub last commit](https://img.shields.io/github/last-commit/Theodo-UK/OmniLog)](https://github.com/Theodo-UK/OmniLog/commits)
+[![Downloads](https://static.pepy.tech/badge/omnilogger)](https://www.pepy.tech/projects/omnilogger)
+
 Omnilog allows you to easily monitor your LLM project!
 
 1. Simply run our initialisation script on your AWS account
-2. Start our listener in our python project,
+2. Start our listener in your python project,
 3. View your logs and analytics in your privately deployed web app!
 
 ![image](https://github.com/Theodo-UK/OmniLog/assets/57725347/a494d81d-dab1-4836-8922-efec380c5812)
@@ -74,6 +77,9 @@ If you want to remove the AWS resources, then you simply have to call this scrip
 > By default, AWS does not remove resources like S3 buckets or DynamoDB tables. You will need to modify these manually via the AWS console.
 
 # Help us by contributing
+
+[![Build Status](https://github.com/Theodo-UK/OmniLog/workflows/app-cd/badge.svg)](https://github.com/Theodo-UK/OmniLog/actions)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/YourUsername/YourRepo)
 
 We welcome contributions from the community to help improve OmniLog. You can contribute in the following ways:
 
