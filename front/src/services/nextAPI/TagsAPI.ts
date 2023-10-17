@@ -1,8 +1,8 @@
+import { TagData } from "@/types/logDisplayOptions";
 import { safeCastToTagArray } from "@/types/safeCast";
-import { Tag } from "@prisma/client";
 
 export const TagsAPI = {
-    getTags: async (): Promise<Tag[]> => {
+    getTags: async (): Promise<TagData[]> => {
         const response = await fetch("/api/tags", { method: "GET" }).then(
             (res) => res.json(),
         );

@@ -7,8 +7,15 @@ from omnilogger.helpers.errors import LogDictKeyError
 
 def check_log_type(log: llmLogsCreateInput):
     assert isinstance(log, dict), LogDictKeyError()
-    assert set({**log.copy(), "id": -1}.keys()) == set(
-        llmLogsCreateInput.__annotations__.keys()
+    assert set({**log.copy(), "projectId": "test"}.keys()) == set(
+        [
+            "datetime_utc",
+            "input_string",
+            "output_string",
+            "total_tokens",
+            "cost",
+            "projectId",
+        ]
     ), LogDictKeyError()
 
     assert isinstance(log["datetime_utc"], datetime.datetime), TypeError(
@@ -25,3 +32,7 @@ def check_log_type(log: llmLogsCreateInput):
     )
     if "cost" in log:
         assert isinstance(log["cost"], float), TypeError("log.cost must be a float")
+    if "projectId" in log:
+        assert isinstance(log["projectId"], str | None), TypeError(
+            "log.projectId must be a string"
+        )

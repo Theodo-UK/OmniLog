@@ -1,5 +1,5 @@
 import { TagPopup } from "@/features/tables/components/TagPopup";
-import { Tag } from "@prisma/client";
+import { TagData } from "@/types/logDisplayOptions";
 import { useState } from "react";
 import { TagLabel } from "../../../components/atoms/TagLabel";
 import { concatAndSortTags, isTagInArray } from "../helpers/tagArrayManagement";
@@ -8,11 +8,11 @@ export const ColumnContentTags = ({
     tags,
     logId,
 }: {
-    tags: Tag[];
+    tags: TagData[];
     logId: string;
 }) => {
-    const [tagArray, setTagArray] = useState<Tag[]>(tags);
-    const addTag = (tag: Tag) => {
+    const [tagArray, setTagArray] = useState<TagData[]>(tags);
+    const addTag = (tag: TagData) => {
         if (isTagInArray(tagArray, tag.id)) return;
         setTagArray(concatAndSortTags(tagArray, tag));
     };

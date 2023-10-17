@@ -14,5 +14,9 @@ export type TimeOption = "last-hour" | "last-day" | "last-week";
 export type Order = "asc" | "desc";
 export type SortOptions = "datetime_utc" | "total_tokens" | "id" | "cost";
 
-export type LogData = llmLogs & { tags: Tag[] } & { project: Project };
+export type ProjectData = Project;
+
+export type TagData = Tag;
+
+export type LogData = llmLogs & { tags: TagData[] } & { project: ProjectData };
 export type LogDataArray = LogData[];
