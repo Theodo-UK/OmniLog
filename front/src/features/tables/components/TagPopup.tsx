@@ -2,12 +2,12 @@ import { ButtonIcon } from "@/components/atoms/ButtonIcon";
 import { Popup } from "@/components/atoms/Popup";
 import { TagLabel } from "@/components/atoms/TagLabel";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { Tag } from "@prisma/client";
+import { TagData } from "@/types/logDisplayOptions";
 import { useTagPopup } from "../hooks/useTagPopup";
 
 type TagPopupProps = {
     logId: string;
-    addTagToDisplay: (tag: Tag) => void;
+    addTagToDisplay: (tag: TagData) => void;
 };
 
 export const TagPopup = ({ logId, addTagToDisplay }: TagPopupProps) => {

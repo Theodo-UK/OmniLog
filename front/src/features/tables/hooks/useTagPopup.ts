@@ -1,15 +1,15 @@
 import { LogsAPI } from "@/services/nextAPI/LogsAPI";
 import { TagsAPI } from "@/services/nextAPI/TagsAPI";
-import { Tag } from "@prisma/client";
+import { TagData } from "@/types/logDisplayOptions";
 import { MouseEventHandler, useEffect, useState } from "react";
 import { findTagById } from "../helpers/tagArrayManagement";
 
 export const useTagPopup = (
     logId: string,
-    addTagToDisplay: (tag: Tag) => void,
+    addTagToDisplay: (tag: TagData) => void,
 ) => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [tags, setTags] = useState<Tag[]>([]);
+    const [tags, setTags] = useState<TagData[]>([]);
 
     useEffect(() => {
         TagsAPI.getTags().then((tags) => setTags(tags));
