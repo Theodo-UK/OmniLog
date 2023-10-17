@@ -2,8 +2,8 @@
 
 ## Understand your LLM prompts, Empowered by Generative AI
 
-<div align="center">
-    <img src="./images/logo.png" alt="LLM-Ops-logo" width="50%"  style="border-radius: 50%; padding-bottom: 20px"/>
+<div align="center" style="background-color: white; border-radius: 150px; margin: 0 25% 20px 25%">
+    <img src="./images/logo.png" alt="LLM-Ops-logo" height="300" style="border-radius: 50px"/>
 </div>
 
 # Overview
@@ -32,7 +32,7 @@ Get started with OmniLog in five easy steps:
 - We recommend [Neon](https://neon.tech/) for an simple setup with a very generous free tier. You will need the connection string later (This can be found on the homepage after creating your Neon project) e.g:
 
 <div align="center">
-    <img src="./images/connection_details.avif" alt="LLM-Ops-logo" width="100%"/>
+    <img src="./images/connection_details.avif" alt="neon-connection-details" width="100%" style="max-width: 700px"/>
 </div>
 
 3. Third, clone our repository:
@@ -51,7 +51,7 @@ bash ./init.sh
 
 6. Run the `init.sh` script again, and skip the configuring of the .env files to deploy your web app properly.
 
-7. Use the Python SDK inside your LLM project:
+7. Use the [Python SDK](https://pypi.org/project/omnilogger/) inside your LLM project:
 
 ```python
 from omnilogger import start_openai_listener
