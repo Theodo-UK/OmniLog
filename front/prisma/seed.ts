@@ -27,7 +27,7 @@ async function main() {
     });
     const project = await prisma.project.create({
         data: {
-            name: "Default Project",
+            name: "Project A",
         },
     });
     const tagSeeded = await prisma.tag.create({
@@ -48,9 +48,14 @@ async function main() {
             total_tokens: 1,
             cost: 0.11,
             tags: {
-                connect: {
-                    id: tagSeeded.id,
-                },
+                connect: [
+                    {
+                        id: tagA.id,
+                    },
+                    {
+                        id: tagSeeded.id,
+                    },
+                ],
             },
             project: {
                 connect: {
@@ -67,18 +72,8 @@ async function main() {
             total_tokens: 2,
             cost: 0.22,
             tags: {
-                connect: [
-                    {
-                        id: tagA.id,
-                    },
-                    {
-                        id: tagSeeded.id,
-                    },
-                ],
-            },
-            project: {
                 connect: {
-                    name: project.name,
+                    id: tagSeeded.id,
                 },
             },
         },
