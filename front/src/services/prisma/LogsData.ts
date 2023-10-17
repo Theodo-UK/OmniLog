@@ -1,7 +1,10 @@
 import { LogData, LogDataArray } from "@/types/logDisplayOptions";
 import { prisma } from "../PrismaClient";
 import { convertSearchParamToPrismaConditions } from "../helpers/formatSearchParamToPrismaQuery";
-import { convertToLogData, convertToLogDataArray } from "../helpers/convertToLogData";
+import {
+    injectDefaultProjectInLogData,
+    injectDefaultProjectInLogDataArray,
+} from "../helpers/injectDefaultProjectInLogData";
 
 export const LogsData = {
     getLogs: async (searchParams?: URLSearchParams): Promise<LogDataArray> => {
@@ -23,7 +26,7 @@ export const LogsData = {
                 project: true,
             },
         });
-        return convertToLogDataArray(logs);
+        return injectDefaultProjectInLogDataArray(logs);
     },
     getLogDetails: async (id: string): Promise<LogData> => {
         const log = await prisma.llmLogs.findUnique({
@@ -44,7 +47,7 @@ export const LogsData = {
             throw new Error("Log not found");
         }
 
-        return convertToLogData(log);
+        return injectDefaultProjectInLogData(log);
     },
     connectTagToLog: async (logId: string, tagId: string) => {
         const result = await prisma.llmLogs.update({

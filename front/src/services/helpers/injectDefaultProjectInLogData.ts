@@ -1,4 +1,9 @@
-import { TagData, ProjectData, LogData, LogDataArray } from "@/types/logDisplayOptions";
+import {
+    LogData,
+    LogDataArray,
+    ProjectData,
+    TagData,
+} from "@/types/logDisplayOptions";
 import { llmLogs } from "@prisma/client";
 import { ProjectsData } from "../prisma/ProjectsData";
 
@@ -7,7 +12,7 @@ export type LogDataFromPrisma = llmLogs & {
     project: ProjectData | null;
 };
 
-export const convertToLogData = (
+export const injectDefaultProjectInLogData = (
     log: LogDataFromPrisma,
 ): LogData => {
     const defaultProject: ProjectData = ProjectsData.getDefaultProject();
@@ -16,10 +21,10 @@ export const convertToLogData = (
         project: log.project || defaultProject,
         projectId: log.projectId || defaultProject.id,
     };
-}
+};
 
-export const convertToLogDataArray = (
+export const injectDefaultProjectInLogDataArray = (
     logArray: LogDataFromPrisma[],
 ): LogDataArray => {
-    return logArray.map(convertToLogData);
-}
+    return logArray.map(injectDefaultProjectInLogData);
+};

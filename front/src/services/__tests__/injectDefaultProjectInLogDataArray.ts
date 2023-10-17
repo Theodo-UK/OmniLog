@@ -1,8 +1,8 @@
 import { ProjectData, TagData } from "@/types/logDisplayOptions";
 import {
     LogDataFromPrisma,
-    convertToLogDataArray,
-} from "../helpers/convertToLogData";
+    injectDefaultProjectInLogDataArray,
+} from "../helpers/injectDefaultProjectInLogData";
 import { ProjectsData } from "../prisma/ProjectsData";
 
 describe("convertToLogData", () => {
@@ -46,14 +46,14 @@ describe("convertToLogData", () => {
     it("should convert a list of logs from prisma format to logDataArray", () => {
         const logs: LogDataFromPrisma[] = [logWithProject];
 
-        const result = convertToLogDataArray(logs);
+        const result = injectDefaultProjectInLogDataArray(logs);
 
         expect(result).toEqual(logs);
     });
     it("should add a default project to log if one is missing", () => {
         const logs: LogDataFromPrisma[] = [logWithoutProject];
 
-        const result = convertToLogDataArray(logs);
+        const result = injectDefaultProjectInLogDataArray(logs);
 
         expect(result).toEqual([
             {
@@ -66,14 +66,14 @@ describe("convertToLogData", () => {
     it("should accept an empty array", () => {
         const logs: LogDataFromPrisma[] = [];
 
-        const result = convertToLogDataArray(logs);
+        const result = injectDefaultProjectInLogDataArray(logs);
 
         expect(result).toEqual([]);
     });
     it("should accept a large array", () => {
         const logs: LogDataFromPrisma[] = Array(100).fill(logWithProject);
 
-        const result = convertToLogDataArray(logs);
+        const result = injectDefaultProjectInLogDataArray(logs);
 
         expect(result).toEqual(logs);
     });

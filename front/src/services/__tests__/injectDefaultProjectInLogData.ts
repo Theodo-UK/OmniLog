@@ -1,8 +1,11 @@
 import { ProjectData, TagData } from "@/types/logDisplayOptions";
-import { LogDataFromPrisma, convertToLogData } from "../helpers/convertToLogData";
+import {
+    LogDataFromPrisma,
+    injectDefaultProjectInLogData,
+} from "../helpers/injectDefaultProjectInLogData";
 import { ProjectsData } from "../prisma/ProjectsData";
 
-describe("convertToLogData", () => {
+describe("injectDefaultProjectInLogData", () => {
     const tag: TagData = {
         id: "tag-a",
         name: "Tag A",
@@ -30,11 +33,10 @@ describe("convertToLogData", () => {
             tags: [tag],
         };
 
-        const result = convertToLogData(log);
+        const result = injectDefaultProjectInLogData(log);
 
         expect(result).toEqual(log);
-    }
-    );
+    });
     it("should add a default project to log if one is missing", () => {
         const log: LogDataFromPrisma = {
             id: "1",
@@ -48,13 +50,12 @@ describe("convertToLogData", () => {
             tags: [tag],
         };
 
-        const result = convertToLogData(log);
+        const result = injectDefaultProjectInLogData(log);
 
         expect(result).toEqual({
             ...log,
             project: defaultProject,
             projectId: defaultProject.id,
         });
-    }
-    );
+    });
 });
