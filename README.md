@@ -60,7 +60,7 @@ start_openai_listener()
 
 ```
 
-That's it! You should now be able to see your logs at the AWS URI given from `init.sh`. See the [sdk-python docs](/sdk-python/README.md) for more details.
+That's it! You should now be able to see your logs at the AWS URI given from `init.sh`. See the [sdk-python docs](/sdk-python/README.md) for more details. To share your project with others, see the [Adding new users](/docs/create_user.md) guide.
 
 # Removing the AWS resources
 
@@ -73,10 +73,14 @@ If you want to remove the AWS resources, then you simply have to call this scrip
 > ⚠️ REMOVAL POLICY:
 > By default, AWS does not remove resources like S3 buckets or DynamoDB tables. You will need to modify these manually via the AWS console.
 
-# Developer Info
+# Help us by contributing
 
-### Table of Contents
+We welcome contributions from the community to help improve OmniLog. You can contribute in the following ways:
 
-1. [Dev setup - front](/front/README.md)
-2. [Python SDK](/sdk-python/README.md)
-3. [Adding new users](/docs/create_user.md)
+Contribute to the Web App by setting up a development environment as outlined in the [Dev-setup](/front/README.md) guide.
+
+Contribute to the Omnilogger pip package by following the guidelines provided in the [Python SDK](/sdk-python/README.md#contributing) documentation.
+
+Your contributions are valuable and greatly appreciated! If you have ideas for improvements, feature requests, or bug reports, please don't hesitate to open an issue or create a pull request.
+
+Thank you for your support in making OmniLog even better!
